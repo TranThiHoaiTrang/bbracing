@@ -1,0 +1,6 @@
+127.0.0.1()--query--tables(delete from table_user_online where time < 1712466442) (12:17:22 07/04/2024)
+127.0.0.1()--update--product([["","id","=","2106"]]) (12:17:22 07/04/2024)
+127.0.0.1()--query--tables(delete from table_user_online where time < 1712466442) (12:17:22 07/04/2024)
+127.0.0.1()--query--tables(delete from table_user_online where time < 1712466444) (12:17:28 07/04/2024)
+127.0.0.1()--query--tables(delete from table_user_online where time < 1712466469) (12:17:49 07/04/2024)
+127.0.0.1()--query--tables(delete from table_user_online where time < 1712466470) (12:17:50 07/04/2024)

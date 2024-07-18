@@ -1,0 +1,176 @@
+.section.add_this-section {
+    z-index: 999999;
+    position: fixed;
+    bottom: calc(5% + 80px);
+    right: 7px;
+}
+.section.add_this-section ul.add_this {
+    list-style: none;
+    margin: 0;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.section.add_this-section ul.add_this li .add_this-inner {
+    width: 2.3rem;
+    height: 2.3rem;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 10%);
+    position: relative;
+    display: block;
+}
+.section.add_this-section ul.add_this li .add_this-inner img {
+    background: #fff;
+    border-radius: 50%;
+}
+.section.add_this-section ul.add_this li .add_this-inner > .title {
+    font-weight: 300;
+    position: absolute;
+    top: 4px;
+    right: 55px;
+    z-index: 9;
+    line-height: normal;
+    padding: 5px 10px;
+    width: auto;
+    border-radius: 5px;
+    font-size: 11px;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.8);
+    visibility: hidden;
+    opacity: 0;
+    transition: all 200ms linear;
+}
+.section.add_this-section ul.add_this li .add_this-inner:hover > .title {
+    visibility: visible;
+    opacity: 1;
+}
+.section.add_this-section ul.add_this li .add_this-inner > .title::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent rgba(0, 0, 0, 0.8);
+    position: absolute;
+    left: 100%;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    transition: all 200ms linear;
+}
+.suntory-alo-ph-circle-fill {
+    animation: 2.3s ease-in-out 0s normal none infinite running suntory-alo-circle-fill-anim;
+    border: 2px solid transparent;
+    border-radius: 100%;
+    height: 44px;
+    width: 44px;
+    position: absolute;
+    transform-origin: 50% 50% 0;
+    transition: all 0.5s ease 0s;
+}
+.suntory-alo-ph-circle {
+    animation: 2s ease-in-out 0s normal none infinite running suntory-alo-circle-anim;
+    background-color: #ff8383;
+    border: 2px solid #fc2020;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    left: -4px;
+    opacity: 0.1;
+    position: absolute;
+    top: -3.6px;
+    transform-origin: 50% 50% 0;
+    transition: all 0.5s ease 0s;
+}
+img.lac {
+    animation: phonering-alo-circle-img-anim 1s infinite ease-in-out;
+    transform-origin: 50% 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9;
+    position: relative;
+}
+.tienichname{
+    right: 0px;
+    background-color: #FFF;
+    box-shadow: 0px 0px 2px #00000057;
+    border-radius: 40px;
+    padding: 5px 50px 5px 10px;
+    float: right;
+    position: absolute;
+    white-space: nowrap;
+    transition: min-width 1s;
+    z-index: 0;
+    font-size: 20px;
+    color: #f00;
+    font-weight: 600;
+    top: 50%;
+    transform: translateY(-50%);
+}
+@keyframes phonering-alo-circle-img-anim {
+    0% {
+        -webkit-transform: rotate(0) scale(1) skew(1deg);
+    }
+    10% {
+        -webkit-transform: rotate(-25deg) scale(1) skew(1deg);
+    }
+    20% {
+        -webkit-transform: rotate(25deg) scale(1) skew(1deg);
+    }
+    30% {
+        -webkit-transform: rotate(-25deg) scale(1) skew(1deg);
+    }
+    40% {
+        -webkit-transform: rotate(25deg) scale(1) skew(1deg);
+    }
+    50% {
+        -webkit-transform: rotate(0) scale(1) skew(1deg);
+    }
+    100% {
+        -webkit-transform: rotate(0) scale(1) skew(1deg);
+    }
+}
+@keyframes suntory-alo-circle-anim {
+    0% {
+        opacity: 0.2;
+        transform: rotate(0deg) scale(0.7) skew(1deg);
+    }
+    50% {
+        opacity: 0.2;
+        transform: rotate(0deg) scale(1) skew(1deg);
+    }
+    100% {
+        opacity: 0.2;
+        transform: rotate(0deg) scale(0.7) skew(1deg);
+    }
+}
+@keyframes suntory-alo-circle-fill-anim {
+    0% {
+        opacity: 0.2;
+        transform: rotate(0deg) scale(0.7) skew(1deg);
+    }
+    50% {
+        opacity: 0.2;
+        transform: rotate(0deg) scale(1) skew(1deg);
+    }
+    100% {
+        opacity: 0.2;
+        transform: rotate(0deg) scale(0.7) skew(1deg);
+    }
+}
+
+/* Combo Phone */
+.support-online{position:fixed;z-index:999;right:-5px;bottom:calc(5% + 70px);}
+.support-online a{position:relative;margin:10px;text-align:left;width:40px;height:40px;border-radius: 50%;}
+.support-online a img{border-radius: 50%;}
+.support-online i{width:40px;height:40px;background:#f00;color:#fff;border-radius:100%;font-size:20px;text-align:center;line-height:1.9;position:relative;z-index:999;}
+.support-online a{display: flex;
+    align-items: center;
+    justify-content: center;}
+.support-online .support-online .btn-support{cursor:pointer;}
+
