@@ -72,6 +72,41 @@
                             <input type="text" class="form-control" name="data[diachi]" id="diachi" placeholder="Địa chỉ" value="<?=@$item['diachi']?>">
                         </div>
                     <?php } ?>
+                    <?php if(isset($config['newsletter'][$type]['id_sanpham']) && $config['newsletter'][$type]['id_sanpham'] == true) { ?>
+                        <div class="form-group col-md-4">
+                            <?php 
+                            if(!empty($item['id_sanpham'])){
+                                $sanpham = $d->rawQueryOne("select * from #_product where type = 'san-pham' and id = '".$item['id_sanpham']."' and hienthi > 0 order by stt,id desc");
+                            }
+                            if(!empty($item['id_brand'])){
+                                $brand = $d->rawQueryOne("select * from #_product_brand where type = 'san-pham' and id = '".$item['id_brand']."' and hienthi > 0 order by stt,id desc");
+                            }
+                            if(!empty($item['id_list'])){
+                                $list = $d->rawQueryOne("select * from #_product_list where type = 'san-pham' and id = '".$item['id_list']."' and hienthi > 0 order by stt,id desc");
+                            }
+                            if(!empty($item['id_doday'])){
+                                $doday = $d->rawQueryOne("select * from #_product_doday where type = 'san-pham' and id = '".$item['id_doday']."' and hienthi > 0 order by stt,id desc");
+                            }
+                            ?>
+                            <?php if(!empty($sanpham)) { ?>
+                                <label for="id_sanpham">Tên sản phẩm:</label>
+                                <input type="text" class="form-control" name="data[id_sanpham]" id="id_sanpham" placeholder="Tên sản phẩm" value="<?=$sanpham['tenvi']?>">
+                            <?php } ?>
+                            <?php if(!empty($brand)) { ?>
+                                <label for="id_sanpham">Tên Brand:</label>
+                                <input type="text" class="form-control" name="data[id_sanpham]" id="id_sanpham" placeholder="Tên Brand" value="<?=$brand['tenvi']?>">
+                            <?php } ?>
+                            <?php if(!empty($list)) { ?>
+                                <label for="id_sanpham">Tên danh mục:</label>
+                                <input type="text" class="form-control" name="data[id_sanpham]" id="id_sanpham" placeholder="Tên danh mục" value="<?=$list['tenvi']?>">
+                            <?php } ?>
+                            <?php if(!empty($doday)) { ?>
+                                <label for="id_sanpham">Tên Vehicles:</label>
+                                <input type="text" class="form-control" name="data[id_sanpham]" id="id_sanpham" placeholder="Tên Vehicles" value="<?=$doday['tenvi']?>">
+                            <?php } ?>
+                            
+                        </div>
+                    <?php } ?>
                     <?php if(isset($config['newsletter'][$type]['chude']) && $config['newsletter'][$type]['chude'] == true) { ?>
                         <div class="form-group col-md-4">
                             <label for="chude">Chủ đề:</label>

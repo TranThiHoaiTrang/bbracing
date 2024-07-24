@@ -10,7 +10,7 @@
         foreach($config['newsletter'] as $k => $v) 
         {
             $emailNotify = $d->rawQuery("select id from #_newsletter where type = ? and tinhtrang = 0",array($k));
-            $countNotify += count($emailNotify);
+            // $countNotify += count($emailNotify);
         }
     }
 

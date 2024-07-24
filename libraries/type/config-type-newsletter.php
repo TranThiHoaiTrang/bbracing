@@ -9,6 +9,7 @@
     $config['newsletter'][$nametype]['traloicauhoi'] = true;
     $config['newsletter'][$nametype]['dienthoai'] = false;
     $config['newsletter'][$nametype]['diachi'] = false;
+    $config['newsletter'][$nametype]['id_sanpham'] = true;
     $config['newsletter'][$nametype]['chude'] = false;
     $config['newsletter'][$nametype]['noidung'] = false;
     $config['newsletter'][$nametype]['noidungen'] = false;

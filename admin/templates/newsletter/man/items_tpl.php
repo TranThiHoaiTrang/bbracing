@@ -1,8 +1,8 @@
 <?php
-    $linkMan = "index.php?com=newsletter&act=man&type=".$type."&p=".$curPage;
-    $linkAdd = "index.php?com=newsletter&act=add&type=".$type."&p=".$curPage;
-    $linkEdit = "index.php?com=newsletter&act=edit&type=".$type."&p=".$curPage;
-    $linkDelete = "index.php?com=newsletter&act=delete&type=".$type."&p=".$curPage;
+$linkMan = "index.php?com=newsletter&act=man&type=" . $type . "&p=" . $curPage;
+$linkAdd = "index.php?com=newsletter&act=add&type=" . $type . "&p=" . $curPage;
+$linkEdit = "index.php?com=newsletter&act=edit&type=" . $type . "&p=" . $curPage;
+$linkDelete = "index.php?com=newsletter&act=delete&type=" . $type . "&p=" . $curPage;
 ?>
 <!-- Content Header -->
 <section class="content-header text-sm">
@@ -19,16 +19,16 @@
 <!-- Main content -->
 <section class="content">
     <div class="card-footer text-sm sticky-top">
-        <?php if(isset($config['newsletter'][$type]['guiemail']) && $config['newsletter'][$type]['guiemail'] == true) { ?>
-           <a class="btn btn-sm bg-gradient-success text-white" id="send-email" title="Gửi email"><i class="fas fa-paper-plane mr-2"></i>Gửi email</a>
+        <?php if (isset($config['newsletter'][$type]['guiemail']) && $config['newsletter'][$type]['guiemail'] == true) { ?>
+            <a class="btn btn-sm bg-gradient-success text-white" id="send-email" title="Gửi email"><i class="fas fa-paper-plane mr-2"></i>Gửi email</a>
         <?php } ?>
-        <!-- <a class="btn btn-sm bg-gradient-primary text-white" href="<?=$linkAdd?>" title="Thêm mới"><i class="fas fa-plus mr-2"></i>Thêm mới</a> -->
-        <a class="btn btn-sm bg-gradient-danger text-white" id="delete-all" data-url="<?=$linkDelete?>" title="Xóa tất cả"><i class="far fa-trash-alt mr-2"></i>Xóa tất cả</a>
+        <!-- <a class="btn btn-sm bg-gradient-primary text-white" href="<?= $linkAdd ?>" title="Thêm mới"><i class="fas fa-plus mr-2"></i>Thêm mới</a> -->
+        <a class="btn btn-sm bg-gradient-danger text-white" id="delete-all" data-url="<?= $linkDelete ?>" title="Xóa tất cả"><i class="far fa-trash-alt mr-2"></i>Xóa tất cả</a>
         <div class="form-inline form-search d-inline-block align-middle ml-3">
             <div class="input-group input-group-sm">
-                <input class="form-control form-control-navbar text-sm" type="search" id="keyword" placeholder="Tìm kiếm" aria-label="Tìm kiếm" value="<?=(isset($_GET['keyword'])) ? $_GET['keyword'] : ''?>" onkeypress="doEnter(event,'keyword','<?=$linkMan?>')">
+                <input class="form-control form-control-navbar text-sm" type="search" id="keyword" placeholder="Tìm kiếm" aria-label="Tìm kiếm" value="<?= (isset($_GET['keyword'])) ? $_GET['keyword'] : '' ?>" onkeypress="doEnter(event,'keyword','<?= $linkMan ?>')">
                 <div class="input-group-append bg-primary rounded-right">
-                    <button class="btn btn-navbar text-white" type="button" onclick="onSearch('keyword','<?=$linkMan?>')">
+                    <button class="btn btn-navbar text-white" type="button" onclick="onSearch('keyword','<?= $linkMan ?>')">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
@@ -37,8 +37,8 @@
     </div>
     <div class="card card-primary card-outline text-sm mb-0">
         <div class="card-header">
-            <h3 class="card-title">Danh sách <?=$config['newsletter'][$type]['title_main']?></h3>
-            <?php if(isset($config['newsletter'][$type]['guiemail']) && $config['newsletter'][$type]['guiemail'] == true) { ?>
+            <h3 class="card-title">Danh sách <?= $config['newsletter'][$type]['title_main'] ?></h3>
+            <?php if (isset($config['newsletter'][$type]['guiemail']) && $config['newsletter'][$type]['guiemail'] == true) { ?>
                 <p class="d-block text-secondary w-100 float-left mb-0 mt-1">Chọn email sau đó kéo xuống dưới cùng danh sách này để có thể thiết lập nội dung email muốn gửi đi.</p>
             <?php } ?>
         </div>
@@ -53,73 +53,111 @@
                             </div>
                         </th>
                         <th class="align-middle text-center" width="10%">STT</th>
-                        <?php if(isset($config['newsletter'][$type]['showten']) && $config['newsletter'][$type]['showten'] == true) { ?>
+                        <?php if (isset($config['newsletter'][$type]['showten']) && $config['newsletter'][$type]['showten'] == true) { ?>
                             <th class="align-middle">Họ tên</th>
                         <?php } ?>
-                        <?php if(isset($config['newsletter'][$type]['email']) && $config['newsletter'][$type]['email'] == true) { ?>
+                        <?php if (isset($config['newsletter'][$type]['email']) && $config['newsletter'][$type]['email'] == true) { ?>
                             <th class="align-middle">Email</th>
                         <?php } ?>
-                        <?php if(isset($config['newsletter'][$type]['showdienthoai']) && $config['newsletter'][$type]['showdienthoai'] == true) { ?>
+                        <?php if (isset($config['newsletter'][$type]['id_sanpham']) && $config['newsletter'][$type]['id_sanpham'] == true) { ?>
+                            <th class="align-middle">Tên (Sản phẩm/Brand/Danh mục/vehicles)</th>
+                        <?php } ?>
+                        <?php if (isset($config['newsletter'][$type]['showdienthoai']) && $config['newsletter'][$type]['showdienthoai'] == true) { ?>
                             <th class="align-middle">Điện thoại</th>
                         <?php } ?>
-                        <?php if(isset($config['newsletter'][$type]['file']) && $config['newsletter'][$type]['file'] == true) { ?>
+                        <?php if (isset($config['newsletter'][$type]['file']) && $config['newsletter'][$type]['file'] == true) { ?>
                             <th class="align-middle">Download</th>
                         <?php } ?>
-                        <?php if(isset($config['newsletter'][$type]['showngaytao']) && $config['newsletter'][$type]['showngaytao'] == true) { ?>
+                        <?php if (isset($config['newsletter'][$type]['showngaytao']) && $config['newsletter'][$type]['showngaytao'] == true) { ?>
                             <th class="align-middle">Ngày tạo</th>
                         <?php } ?>
-                        <?php if(isset($config['newsletter'][$type]['tinhtrang']) && count($config['newsletter'][$type]['tinhtrang']) > 0) { ?>
+                        <?php if (isset($config['newsletter'][$type]['tinhtrang']) && count($config['newsletter'][$type]['tinhtrang']) > 0) { ?>
                             <th class="align-middle">Tình trạng</th>
                         <?php } ?>
                         <th class="align-middle text-center">Thao tác</th>
                     </tr>
                 </thead>
-                <?php if(empty($items)) { ?>
-                    <tbody><tr><td colspan="100" class="text-center">Không có dữ liệu</td></tr></tbody>
+                <?php if (empty($items)) { ?>
+                    <tbody>
+                        <tr>
+                            <td colspan="100" class="text-center">Không có dữ liệu</td>
+                        </tr>
+                    </tbody>
                 <?php } else { ?>
                     <tbody>
-                        <?php for($i=0;$i<count($items);$i++) { ?>
+                        <?php for ($i = 0; $i < count($items); $i++) { ?>
                             <tr>
                                 <td class="align-middle">
                                     <div class="custom-control custom-checkbox my-checkbox">
-                                        <input type="checkbox" class="custom-control-input select-checkbox" id="select-checkbox-<?=$items[$i]['id']?>" value="<?=$items[$i]['id']?>">
-                                        <label for="select-checkbox-<?=$items[$i]['id']?>" class="custom-control-label"></label>
+                                        <input type="checkbox" class="custom-control-input select-checkbox" id="select-checkbox-<?= $items[$i]['id'] ?>" value="<?= $items[$i]['id'] ?>">
+                                        <label for="select-checkbox-<?= $items[$i]['id'] ?>" class="custom-control-label"></label>
                                     </div>
                                 </td>
                                 <td class="align-middle">
-                                    <input type="number" class="form-control form-control-mini m-auto update-stt" min="0" value="<?=$items[$i]['stt']?>" data-id="<?=$items[$i]['id']?>" data-table="newsletter">
+                                    <input type="number" class="form-control form-control-mini m-auto update-stt" min="0" value="<?= $items[$i]['stt'] ?>" data-id="<?= $items[$i]['id'] ?>" data-table="newsletter">
                                 </td>
-                                <?php if(isset($config['newsletter'][$type]['showten']) && $config['newsletter'][$type]['showten'] == true) { ?>
+                                <?php if (isset($config['newsletter'][$type]['showten']) && $config['newsletter'][$type]['showten'] == true) { ?>
                                     <td class="align-middle">
-                                        <a class="text-dark" href="<?=$linkEdit?>&id=<?=$items[$i]['id']?>" title="<?=$items[$i]['ten']?>"><?=$items[$i]['ten']?></a>
+                                        <a class="text-dark" href="<?= $linkEdit ?>&id=<?= $items[$i]['id'] ?>" title="<?= $items[$i]['ten'] ?>"><?= $items[$i]['ten'] ?></a>
                                     </td>
                                 <?php } ?>
-                                <?php if(isset($config['newsletter'][$type]['email']) && $config['newsletter'][$type]['email'] == true) { ?>
+                                <?php if (isset($config['newsletter'][$type]['email']) && $config['newsletter'][$type]['email'] == true) { ?>
                                     <td class="align-middle">
-                                        <a class="text-dark" href="<?=$linkEdit?>&id=<?=$items[$i]['id']?>" title="<?=$items[$i]['email']?>"><?=$items[$i]['email']?></a>
+                                        <a class="text-dark" href="<?= $linkEdit ?>&id=<?= $items[$i]['id'] ?>" title="<?= $items[$i]['email'] ?>"><?= $items[$i]['email'] ?></a>
                                     </td>
                                 <?php } ?>
-                                <?php if(isset($config['newsletter'][$type]['showdienthoai']) && $config['newsletter'][$type]['showdienthoai'] == true) { ?>
-                                    <td class="align-middle"><?=$items[$i]['dienthoai']?></td>
-                                <?php } ?>
-                                <?php if(isset($config['newsletter'][$type]['file']) && $config['newsletter'][$type]['file'] == true) { ?>
+                                <?php if (isset($config['newsletter'][$type]['id_sanpham']) && $config['newsletter'][$type]['id_sanpham'] == true) { ?>
                                     <td class="align-middle">
-                                        <?php if(isset($items[$i]['taptin']) && ($items[$i]['taptin'] != '')) { ?>
-                                            <a class="btn btn-sm bg-gradient-primary text-white d-inline-block p-1 rounded" href="<?=UPLOAD_FILE.$items[$i]['taptin']?>" title="Download tập tin"><i class="fas fa-download mr-2"></i>Download tập tin</a>
+                                        <?php
+                                        if (!empty($items[$i]['id_sanpham'])) {
+                                            $sanpham = $d->rawQueryOne("select * from #_product where type = 'san-pham' and id = '" . $items[$i]['id_sanpham'] . "' and hienthi > 0 order by stt,id desc");
+                                        }
+                                        if (!empty($items[$i]['id_brand'])) {
+                                            $brand = $d->rawQueryOne("select * from #_product_brand where type = 'san-pham' and id = '" . $items[$i]['id_brand'] . "' and hienthi > 0 order by stt,id desc");
+                                        }
+                                        if (!empty($items[$i]['id_list'])) {
+                                            $list = $d->rawQueryOne("select * from #_product_list where type = 'san-pham' and id = '" . $items[$i]['id_list'] . "' and hienthi > 0 order by stt,id desc");
+                                        }
+                                        if (!empty($items[$i]['id_doday'])) {
+                                            $doday = $d->rawQueryOne("select * from #_product_doday where type = 'san-pham' and id = '" . $items[$i]['id_doday'] . "' and hienthi > 0 order by stt,id desc");
+                                        }
+                                        ?>
+                                        <?php if (!empty($items[$i]['id_sanpham'])) { ?>
+                                            <a class="text-dark" href="<?= $linkEdit ?>&id=<?= $items[$i]['id'] ?>" title="<?= $sanpham['tenvi'] ?>"><?= $sanpham['tenvi'] ?></a>
+                                        <?php } ?>
+                                        <?php if (!empty($items[$i]['id_brand'])) { ?>
+                                            <a class="text-dark" href="<?= $linkEdit ?>&id=<?= $items[$i]['id'] ?>" title="<?= $brand['tenvi'] ?>"><?= $brand['tenvi'] ?></a>
+                                        <?php } ?>
+                                        <?php if (!empty($items[$i]['id_list'])) { ?>
+                                            <a class="text-dark" href="<?= $linkEdit ?>&id=<?= $items[$i]['id'] ?>" title="<?= $list['tenvi'] ?>"><?= $list['tenvi'] ?></a>
+                                        <?php } ?>
+                                        <?php if (!empty($items[$i]['id_doday'])) { ?>
+                                            <a class="text-dark" href="<?= $linkEdit ?>&id=<?= $items[$i]['id'] ?>" title="<?= $doday['tenvi'] ?>"><?= $doday['tenvi'] ?></a>
+                                        <?php } ?>
+
+                                    </td>
+                                <?php } ?>
+                                <?php if (isset($config['newsletter'][$type]['showdienthoai']) && $config['newsletter'][$type]['showdienthoai'] == true) { ?>
+                                    <td class="align-middle"><?= $items[$i]['dienthoai'] ?></td>
+                                <?php } ?>
+                                <?php if (isset($config['newsletter'][$type]['file']) && $config['newsletter'][$type]['file'] == true) { ?>
+                                    <td class="align-middle">
+                                        <?php if (isset($items[$i]['taptin']) && ($items[$i]['taptin'] != '')) { ?>
+                                            <a class="btn btn-sm bg-gradient-primary text-white d-inline-block p-1 rounded" href="<?= UPLOAD_FILE . $items[$i]['taptin'] ?>" title="Download tập tin"><i class="fas fa-download mr-2"></i>Download tập tin</a>
                                         <?php } else { ?>
                                             <a class="bg-gradient-secondary text-white d-inline-block p-1 rounded" href="#" title="Tập tin trống"><i class="fas fa-download mr-2"></i>Tập tin trống</a>
                                         <?php } ?>
                                     </td>
                                 <?php } ?>
-                                <?php if(isset($config['newsletter'][$type]['showngaytao']) && $config['newsletter'][$type]['showngaytao'] == true) { ?>
-                                    <td class="align-middle"><?=date("h:i:s A - d/m/Y", $items[$i]['ngaytao'])?></td>
+                                <?php if (isset($config['newsletter'][$type]['showngaytao']) && $config['newsletter'][$type]['showngaytao'] == true) { ?>
+                                    <td class="align-middle"><?= date("h:i:s A - d/m/Y", $items[$i]['ngaytao']) ?></td>
                                 <?php } ?>
-                                <?php if(isset($config['newsletter'][$type]['tinhtrang']) && count($config['newsletter'][$type]['tinhtrang']) > 0) { ?>
-                                    <td class="align-middle"><?=$func->get_status_newsletter($items[$i]['tinhtrang'],$type)?></td>
+                                <?php if (isset($config['newsletter'][$type]['tinhtrang']) && count($config['newsletter'][$type]['tinhtrang']) > 0) { ?>
+                                    <td class="align-middle"><?= $func->get_status_newsletter($items[$i]['tinhtrang'], $type) ?></td>
                                 <?php } ?>
                                 <td class="align-middle text-center text-md text-nowrap">
-                                    <a class="text-primary mr-2" href="<?=$linkEdit?>&id=<?=$items[$i]['id']?>" title="Chỉnh sửa"><i class="fas fa-edit"></i></a>
-                                    <a class="text-danger" id="delete-item" data-url="<?=$linkDelete?>&id=<?=$items[$i]['id']?>" title="Xóa"><i class="fas fa-trash-alt"></i></a>
+                                    <a class="text-primary mr-2" href="<?= $linkEdit ?>&id=<?= $items[$i]['id'] ?>" title="Chỉnh sửa"><i class="fas fa-edit"></i></a>
+                                    <a class="text-danger" id="delete-item" data-url="<?= $linkDelete ?>&id=<?= $items[$i]['id'] ?>" title="Xóa"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -128,14 +166,14 @@
             </table>
         </div>
     </div>
-    <?php if($paging) { ?>
+    <?php if ($paging) { ?>
         <div class="card-footer text-sm">
-            <?=$paging?>
+            <?= $paging ?>
         </div>
     <?php } ?>
-    <?php if(isset($config['newsletter'][$type]['guiemail']) && $config['newsletter'][$type]['guiemail'] == true) { ?>
-        <div class="card card-primary card-outline text-sm mb-0 <?=(!$paging)?'mt-3':'';?>">
-            <form name="frmsendemail" method="post" action="<?=$linkMan?>" enctype="multipart/form-data">
+    <?php if (isset($config['newsletter'][$type]['guiemail']) && $config['newsletter'][$type]['guiemail'] == true) { ?>
+        <div class="card card-primary card-outline text-sm mb-0 <?= (!$paging) ? 'mt-3' : ''; ?>">
+            <form name="frmsendemail" method="post" action="<?= $linkMan ?>" enctype="multipart/form-data">
                 <div class="card-header">
                     <h3 class="card-title">Gửi email đến danh sách được chọn</h3>
                 </div>
@@ -162,10 +200,10 @@
         </div>
     <?php } ?>
     <div class="card-footer text-sm">
-        <?php if(isset($config['newsletter'][$type]['guiemail']) && $config['newsletter'][$type]['guiemail'] == true) { ?>
-           <a class="btn btn-sm bg-gradient-success text-white" id="send-email" title="Gửi email"><i class="fas fa-paper-plane mr-2"></i>Gửi email</a>
+        <?php if (isset($config['newsletter'][$type]['guiemail']) && $config['newsletter'][$type]['guiemail'] == true) { ?>
+            <a class="btn btn-sm bg-gradient-success text-white" id="send-email" title="Gửi email"><i class="fas fa-paper-plane mr-2"></i>Gửi email</a>
         <?php } ?>
-        <!-- <a class="btn btn-sm bg-gradient-primary text-white" href="<?=$linkAdd?>" title="Thêm mới"><i class="fas fa-plus mr-2"></i>Thêm mới</a> -->
-        <a class="btn btn-sm bg-gradient-danger text-white" id="delete-all" data-url="<?=$linkDelete?>" title="Xóa tất cả"><i class="far fa-trash-alt mr-2"></i>Xóa tất cả</a>
+        <!-- <a class="btn btn-sm bg-gradient-primary text-white" href="<?= $linkAdd ?>" title="Thêm mới"><i class="fas fa-plus mr-2"></i>Thêm mới</a> -->
+        <a class="btn btn-sm bg-gradient-danger text-white" id="delete-all" data-url="<?= $linkDelete ?>" title="Xóa tất cả"><i class="far fa-trash-alt mr-2"></i>Xóa tất cả</a>
     </div>
 </section>

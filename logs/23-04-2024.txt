@@ -1,6 +1,0 @@
-127.0.0.1()--query--tables(delete from table_user_online where time < 1713833567) (08:02:47 23/04/2024)
-127.0.0.1()--query--tables(delete from table_user_online where time < 1713857594) (14:43:14 23/04/2024)
-127.0.0.1()--query--tables(delete from table_user_online where time < 1713857612) (14:43:32 23/04/2024)
-127.0.0.1()--query--tables(delete from table_user_online where time < 1713857614) (14:43:34 23/04/2024)
-127.0.0.1()--query--tables(delete from table_user_online where time < 1713857670) (14:44:30 23/04/2024)
-127.0.0.1()--query--tables(delete from table_user_online where time < 1713857676) (14:44:36 23/04/2024)
