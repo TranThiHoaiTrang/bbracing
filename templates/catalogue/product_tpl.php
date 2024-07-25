@@ -286,14 +286,14 @@ $brand_list = $d->rawQuery("select * from #_product_brand where type = 'san-pham
                                                 <input type="hidden" name="color_detail" class="color_detail" value="<?= $v['id_mau'] ?>">
                                                 <?php if ($v['soluongkho'] <= 0) { ?>
                                                     <?php if ($v['cothemua'] <= 0) { ?>
-                                                        <a class="muangay1">
+                                                        <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
                                                             <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
                                                             <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
                                                         </a>
                                                     <?php } else { ?>
                                                         <?php if ($lang == 'vi') { ?>
                                                             <?php if ($v['gia'] <= 0) { ?>
-                                                                <a class="muangay1">
+                                                                <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
                                                                     <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
                                                                     <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
                                                                 </a>
@@ -306,7 +306,7 @@ $brand_list = $d->rawQuery("select * from #_product_brand where type = 'san-pham
 
                                                         <?php } else { ?>
                                                             <?php if ($v['giado'] <= 0) { ?>
-                                                                <a class="muangay1">
+                                                                <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
                                                                     <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
                                                                     <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
                                                                 </a>
@@ -322,7 +322,7 @@ $brand_list = $d->rawQuery("select * from #_product_brand where type = 'san-pham
                                                 <?php } else { ?>
                                                     <?php if ($lang == 'vi') { ?>
                                                         <?php if ($v['gia'] <= 0) { ?>
-                                                            <a class="muangay1">
+                                                            <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
                                                                 <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
                                                                 <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
                                                             </a>
@@ -335,7 +335,7 @@ $brand_list = $d->rawQuery("select * from #_product_brand where type = 'san-pham
 
                                                     <?php } else { ?>
                                                         <?php if ($v['giado'] <= 0) { ?>
-                                                            <a class="muangay1">
+                                                            <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
                                                                 <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
                                                                 <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
                                                             </a>

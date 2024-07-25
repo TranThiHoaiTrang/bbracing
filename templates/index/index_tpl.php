@@ -193,7 +193,7 @@
                                     ?>
                                         <div class="danhmuc_sp">
                                             <a href="<?= $v['tenkhongdauvi'] ?>">
-                                                <img width="465" height="269" data-sizes="auto" src="<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" data-src="<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="" sizes="308px">
+                                                <img width="450" height="200" data-sizes="auto" src="<?=THUMBS?>/450x200x2/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" data-src="<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="" sizes="200">
                                                 <div class="name_danhmuc_sp"><?= $v['ten' . $lang] ?></div>
                                             </a>
                                         </div>
@@ -309,14 +309,14 @@
                                                     <input type="hidden" name="color_detail" class="color_detail" value="<?= $v['id_mau'] ?>">
                                                     <?php if ($v['soluongkho'] <= 0) { ?>
                                                         <?php if ($v['cothemua'] <= 0) { ?>
-                                                            <a class="muangay1">
+                                                            <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
                                                                 <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
                                                                 <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
                                                             </a>
                                                         <?php } else { ?>
                                                             <?php if ($lang == 'vi') { ?>
                                                                 <?php if ($v['gia'] <= 0) { ?>
-                                                                    <a class="muangay1">
+                                                                    <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
                                                                         <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
                                                                         <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
                                                                     </a>
@@ -329,7 +329,7 @@
 
                                                             <?php } else { ?>
                                                                 <?php if ($v['giado'] <= 0) { ?>
-                                                                    <a class="muangay1">
+                                                                    <a  href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
                                                                         <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
                                                                         <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
                                                                     </a>
@@ -345,7 +345,7 @@
                                                     <?php } else { ?>
                                                         <?php if ($lang == 'vi') { ?>
                                                             <?php if ($v['gia'] <= 0) { ?>
-                                                                <a class="muangay1">
+                                                                <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
                                                                     <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
                                                                     <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
                                                                 </a>
@@ -358,7 +358,7 @@
 
                                                         <?php } else { ?>
                                                             <?php if ($v['giado'] <= 0) { ?>
-                                                                <a class="muangay1">
+                                                                <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
                                                                     <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
                                                                     <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
                                                                 </a>
@@ -433,14 +433,14 @@
                                                         <input type="hidden" name="color_detail" class="color_detail" value="<?= $v['id_mau'] ?>">
                                                         <?php if ($v['soluongkho'] <= 0) { ?>
                                                             <?php if ($v['cothemua'] <= 0) { ?>
-                                                                <a class="muangay1">
+                                                                <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
                                                                     <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
                                                                     <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
                                                                 </a>
                                                             <?php } else { ?>
                                                                 <?php if ($lang == 'vi') { ?>
                                                                     <?php if ($v['gia'] <= 0) { ?>
-                                                                        <a class="muangay1">
+                                                                        <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
                                                                             <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
                                                                             <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
                                                                         </a>
@@ -453,7 +453,7 @@
 
                                                                 <?php } else { ?>
                                                                     <?php if ($v['giado'] <= 0) { ?>
-                                                                        <a class="muangay1">
+                                                                        <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
                                                                             <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
                                                                             <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
                                                                         </a>
@@ -469,7 +469,7 @@
                                                         <?php } else { ?>
                                                             <?php if ($lang == 'vi') { ?>
                                                                 <?php if ($v['gia'] <= 0) { ?>
-                                                                    <a class="muangay1">
+                                                                    <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
                                                                         <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
                                                                         <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
                                                                     </a>
@@ -482,7 +482,7 @@
 
                                                             <?php } else { ?>
                                                                 <?php if ($v['giado'] <= 0) { ?>
-                                                                    <a class="muangay1">
+                                                                    <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
                                                                         <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
                                                                         <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
                                                                     </a>
@@ -518,7 +518,7 @@
             <!-- <video width="100%" height="100%" style="display: block;" loop="true" autoplay="autoplay" controls muted playsinline="" data-wf-ignore="true" data-object-fit="cover">
             <source src="./assets/images/Brembo_video_landing_new_01122022.mp4" type="video/mp4" />
         </video> -->
-            <iframe class="background-video-embed" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Zard | World Première Products Background" width="100%" src="https://www.youtube.com/embed/<?= $id_youtube ?>?autoplay=1&mute=1&controls=0&rel=0&enablejsapi=1&loop=1&playlist=<?= $id_youtube ?>" id="widget2"></iframe>
+            <iframe class="background-video-embed" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="no-referrer" title="Zard | World Première Products Background" width="100%" loading="lazy" src="https://www.youtube.com/embed/<?= $id_youtube ?>?autoplay=1&mute=1&controls=0&rel=0&enablejsapi=1&loop=1&playlist=<?= htmlspecialchars($id_youtube, ENT_QUOTES, 'UTF-8') ?>" id="widget2"></iframe>
         </div>
     </div>
 <?php } ?>

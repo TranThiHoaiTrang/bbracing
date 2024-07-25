@@ -46,7 +46,7 @@
 
 <div class="support-online">
     <div class="support-content" style="display: block;">
-        <a class="add_this-inner" href="https://zalo.me/<?= preg_replace('/[^0-9]/', '', $optsetting['zalo']); ?>" target="_blank" title="">
+        <a class="add_this-inner" href="https://zalo.me/<?= preg_replace('/[^0-9]/', '', $optsetting['zalo']); ?>" target="_blank" title="zalo">
             <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="background: #007bff; border-radius: 50%;">
                 <circle cx="22" cy="22" r="22" fill="url(#paint4_linear)"></circle>
                 <g clip-path="url(#clip0)">
@@ -67,17 +67,17 @@
                 </defs>
             </svg>
         </a>
-        <a class="add_this-inner" href="<?= $optsetting['line'] ?>" target="_blank" title="">
+        <a class="add_this-inner" href="<?= $optsetting['line'] ?>" target="_blank" title="Line">
             <img src="./assets/images/line.png" alt="">
         </a>
-        <a class="add_this-inner" href="<?= $optsetting['wechat'] ?>" target="_blank" title="">
+        <a class="add_this-inner" href="<?= $optsetting['wechat'] ?>" target="_blank" title="Wechat">
             <img src="./assets/images/wechat.png" alt="">
         </a>
-        <a class="add_this-inner" href="<?= $optsetting['whatsapp'] ?>" target="_blank" title="">
+        <a class="add_this-inner" href="<?= $optsetting['whatsapp'] ?>" target="_blank" title="whatsapp">
             <img src="./assets/images/whatapp.png" alt="">
         </a>
     </div>
-    <a class="btn-support" style="background: #f00;">
+    <a href="<?=$config_base?>" onclick="event.preventDefault();" class="btn-support" style="background: #f00;" title="">
         <div class="animated infinite zoomIn kenit-alo-circle"></div>
         <div class="animated infinite pulse kenit-alo-circle-fill"></div>
         <!-- <i class="fa fa-user-circle" aria-hidden="true"></i> -->

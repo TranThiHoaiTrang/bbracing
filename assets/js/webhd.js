@@ -149,6 +149,7 @@ $(".menu_mobi_add>ul>li>ul").css({
 $(".menu_mobi_add>ul>li").each(function (index, element) {
   if ($(this).children("ul").children("li").length > 0) {
     $(this).children("a").append('<i class="fas fa-chevron-right"></i>');
+    $(this).children(".menu_span").append('<i class="fas fa-chevron-right"></i>');
   }
 });
 $(".menu_mobi_add ul li a i").click(function () {
@@ -165,6 +166,34 @@ $(".menu_mobi_add ul li a i").click(function () {
     }
   } else {
     $(this).parent("a").addClass("active2");
+    if ($(this).parents("li").children("ul").children("li").length > 0) {
+      //$(".menu_m ul li ul").hide(0);
+      //$(this).parents('li').children('ul').show(300);
+      $(".menu_m ul li ul").css({
+        display: "none",
+      });
+      $(this).parents("li").children("ul").css({
+        display: "block",
+      });
+      return false;
+    }
+  }
+});
+
+$(".menu_mobi_add ul li .menu_span i").click(function () {
+  if ($(this).parent(".menu_span").hasClass("active2")) {
+    $(this).parent(".menu_span").removeClass("active2");
+    if (
+      $(this).parent(".menu_span").parent("li").children("ul").children("li").length > 0
+    ) {
+      $(this).parent(".menu_span").parent("li").children("ul").css({
+        display: "none",
+      });
+      //$(this).parent('a').parent('li').children('ul').hide(300);
+      return false;
+    }
+  } else {
+    $(this).parent(".menu_span").addClass("active2");
     if ($(this).parents("li").children("ul").children("li").length > 0) {
       //$(".menu_m ul li ul").hide(0);
       //$(this).parents('li').children('ul').show(300);

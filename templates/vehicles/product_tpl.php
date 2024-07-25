@@ -434,7 +434,7 @@ $brand_list = $d->rawQuery("select * from #_product_brand where type = 'san-pham
                                                     <input type="hidden" name="color_detail" class="color_detail" value="<?= $v['id_mau'] ?>">
                                                     <?php if ($v['soluongkho'] <= 0) { ?>
                                                         <?php if ($v['cothemua'] <= 0) { ?>
-                                                            <a class="muangay1">
+                                                            <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
                                                                 <i class="fas fa-shopping-cart cart_hethang"></i>
                                                             </a>
                                                         <?php } else { ?>

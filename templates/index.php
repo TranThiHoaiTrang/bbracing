@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?= $config['website']['lang-doc'] ?>">
+<html lang="<?= $lang ?>">
 
 <head>
     <?php include TEMPLATE . LAYOUT . "head.php"; ?>

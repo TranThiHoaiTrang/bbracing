@@ -39,7 +39,7 @@
                                                             <li>
                                                                 <a class="a_brand" title="<?= $v['ten' . $lang] ?>" href="<?= $v[$sluglang] ?>">
                                                                     <!-- <span><?= $v['ten' . $lang] ?></span> -->
-                                                                    <img width="140" height="26" data-sizes="auto" src="<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" data-src="<?= THUMBS ?>/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="" sizes="308px">
+                                                                    <img width="140" height="26" data-sizes="auto" src="<?= THUMBS ?>/140x50x2/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" data-src="<?= THUMBS ?>/140x50x2/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="" sizes="308px">
                                                                 </a>
                                                             </li>
                                                         <?php } ?>
@@ -135,7 +135,7 @@
                                                             <li>
                                                                 <a title="<?= $v['ten' . $lang] ?>" href="<?= $v[$sluglang] ?>">
                                                                     <!-- <span><?= $v['ten' . $lang] ?></span> -->
-                                                                    <img width="140" height="26" data-sizes="auto" src="<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" data-src="<?= THUMBS ?>/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="" sizes="308px">
+                                                                    <img width="140" height="26" data-sizes="auto" src="<?= THUMBS ?>/140x50x2/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" data-src="<?= THUMBS ?>/140x50x2/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="" sizes="308px">
                                                                 </a>
                                                             </li>
                                                         <?php } ?>
@@ -145,7 +145,7 @@
                                         <?php } ?>
                                     </li>
                                     <li class="menulicha menu_ngang">
-                                        <a title="<?= tintuc ?>"><?= tintuc ?></a>
+                                        <div class="menu_span" title="<?= tintuc ?>"><?= tintuc ?></div>
                                         <?php if ($ttlistmenu) { ?>
                                             <ul class="menu_cap_con">
                                                 <?php foreach ($ttlistmenu as $c => $cat) { ?>
@@ -170,7 +170,7 @@
                                         <?php } ?>
                                     </li>
                                     <li class="menulicha menu_ngang">
-                                        <a title="<?= lienhe ?>"><?= lienhe ?></a>
+                                        <div class="menu_span" title="<?= lienhe ?>"><?= lienhe ?></div>
                                         <ul class="menu_cap_con menu_Cap_con_lh">
                                             <li>
                                                 <a href="officail" title="BBRacing" class="double_click" data-duongdan="officail">

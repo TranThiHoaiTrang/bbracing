@@ -17,9 +17,9 @@
     };
 </script>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-<script type="text/javascript" src="//connect.facebook.net/en_US/all.js#xfbml=1&appId=1719171225253796" id="facebook-jssdk"></script>
+<!-- <script type="text/javascript" src="//connect.facebook.net/en_US/all.js#xfbml=1&appId=1719171225253796" id="facebook-jssdk"></script> -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.umd.min.js"></script> -->
-<script src="https://www.paypal.com/sdk/js?client-id=AVe4HtYg2CbjhoYDaN4A3PNdU6F3IBGUmjr2eFaIs2SkX1oQrs0cryHyscneB8_QEDyXgLikg-9agRVL&currency=USD"></script>
+<!-- <script src="https://www.paypal.com/sdk/js?client-id=AVe4HtYg2CbjhoYDaN4A3PNdU6F3IBGUmjr2eFaIs2SkX1oQrs0cryHyscneB8_QEDyXgLikg-9agRVL&currency=USD"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.js" integrity="sha512-M0cjXJTonbWEdLI3HJIoJSQBb9980RWmOCk+tvWkhgFrAZqSSIg1+1Db/vDu7Qk9W3L90gBynve17PYvarjfQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- Js Files -->
@@ -29,7 +29,9 @@ $js->setJs("./assets/js/jquery.min.js");
 $js->setJs("./assets/bootstrap/bootstrap.js");
 $js->setJs("./assets/js/wow.min.js");
 $js->setJs("./assets/owlcarousel2/owl.carousel.js");
+if($source == 'product'){
 $js->setJs("./assets/magiczoomplus/magiczoomplus.js");
+}
 $js->setJs("./assets/simplyscroll/jquery.simplyscroll.js");
 $js->setJs("./assets/slick/slick.js");
 $js->setJs("./assets/fancybox3/jquery.fancybox.js");
@@ -446,14 +448,19 @@ echo $js->getJs();
             clearTimeout(openModal);
         };
 
+        if(closeButton){
+            closeButton.addEventListener("click", closeModal);
+        }
         // setTimeout(openModal, 5000);
-        closeButton.addEventListener("click", closeModal);
+       
 
         $(window).load(function() {
 
             if (document.cookie.indexOf("popup") == -1) {
                 document.cookie = "popunder1=popup";
-                setTimeout(openModal, 0);
+                if(modal){
+                   setTimeout(openModal, 0); 
+                }
             }
 
         });

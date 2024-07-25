@@ -295,11 +295,11 @@
                         </div>
                     </div>
                 </div>
-
+                <?php if(!empty($row_detail['id_option'])) {?>
                 <div class="all_option_des_ulli">
                     <?php
                     $id_option = $d->rawQuery("select id,tenvi,tenen,tenkhongdauvi from #_product_option where id REGEXP '" . $row_detail['id_option'] . "' and type = '$type'");
-                    // $id_option = explode('|', $row_detail['id_option']); 
+                    // $id_option = explode('|', $row_detail['id_option']);
                     ?>
                     <ul class="nav nav-pills mb-2" id="pills-tab-idop" role="tablist">
                         <?php
@@ -362,6 +362,7 @@
                         <?php } ?>
                     </div>
                 </div>
+                <?php } ?>
             </div>
         </div>
 

@@ -39,7 +39,7 @@
 <!-- Background -->
 <?php
  
-    $bgbody2 = $d->rawQuery("select hienthi, options, photo,type from #_photo where act = ? and ( type = ? or type = ? or type = ?) ",array('photo_static','banner_sp_moi','background-footer','background-banner'));
+    $bgbody2 = $d->rawQuery("select hienthi, options, photo,type from #_photo where act = ? and ( type = ? or type = ? or type = ? or type = ?) ",array('photo_static','banner_sp_moi','background-footer','background-banner','banner_sp_moi_mobile'));
     
     foreach ($bgbody2 as $key => $value) {
         if($value['hienthi']){
