@@ -154,6 +154,17 @@ echo $js->getJs();
         });
     }
 
+    document.addEventListener("DOMContentLoaded", function() {
+        const background2 = document.querySelector(".wrap-user-tracking");
+        const screenHeight = window.innerHeight;
+        if ($(window).width() >= 769) {
+            const screenHeight_ = screenHeight - 535;
+            if (background2 != undefined) {
+                background2.style.minHeight = screenHeight_ + "px";
+            }
+        }
+    });
+
 
     // BAO HANH
     // var arrayJson = [];

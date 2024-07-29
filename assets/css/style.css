@@ -1195,7 +1195,7 @@ div.menu_mobi, div.menu_mobi_add { display: none;}
 	}
 	.menu_mobi_add>ul>li>ul>li>a{
 		color: #f00;
-    	font-weight: 600;
+    	/* font-weight: 600; */
 	}
     .diachi-top{display: none;}
 
@@ -1502,6 +1502,18 @@ div.menu_mobi, div.menu_mobi_add { display: none;}
 	}
 }
 @media(max-width:700px){
+	.name_sp_moi{
+		-webkit-line-clamp: unset;
+	}
+	.mainkhung_product .all_content_sp_moi{
+		height: calc(100% - 169px);
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	.mainkhung_product .img_sp_moi img{
+		height: 169px !important;
+	}
 	.all_gioithieu_footer{
 		flex-wrap: wrap;
 	}
@@ -1551,6 +1563,12 @@ div.menu_mobi, div.menu_mobi_add { display: none;}
     .right_dv{ width: 100%; min-height: 400px; }
 }
 @media(max-width:500px){
+	.mainkhung_product .img_sp_moi img {
+		height: 137px !important;
+	}
+	.mainkhung_product .all_content_sp_moi{
+		height: calc(100% - 137px);
+	}
 	.grid-pro-detail{margin-bottom: 20px;}
 	.tenvi_option{font-size: 12px;}
 	#pills-tab-option-list .nav-link,#pills-tab-idop .nav-link{font-size: 12px;}
@@ -1612,7 +1630,13 @@ div.menu_mobi, div.menu_mobi_add { display: none;}
 	.all_thongtin{width: 50%;justify-content: space-between;}
 }
 @media(max-width:440px){
-	
+	.mainkhung_product .img_sp_moi img {
+		height: 120px !important;
+	}
+	.mainkhung_product .all_content_sp_moi{
+		height: calc(100% - 120px);
+	}
+	.name_danhmuc_sp{font-size: 13px;min-height: 43px;}
 	.all_form_nhapma input{width: 100% !important;}
 	.table_order_top_left,.table_order_top_right{width: 100%;}
 	.table_order_top,.all_form_nhapma{
@@ -1692,7 +1716,12 @@ div.menu_mobi, div.menu_mobi_add { display: none;}
 	.top-contact .form-contact .button-contact .file-contact span b{max-width:105px;}
 }
 @media(max-width:369px){
-	.name_danhmuc_sp{font-size: 13px;}
+	.mainkhung_product .img_sp_moi img {
+		height: 90px !important;
+	}
+	.mainkhung_product .all_content_sp_moi{
+		height: calc(100% - 90px);
+	}
 	.all_sp_thaythe_cungloai,.all_sp_thaythe{grid-template-columns: repeat(1, 1fr);}
 	.title_sp_nb {
 		font-size: 20px;

@@ -345,7 +345,7 @@
                         </a>
                         <div class="thongtin_giohang">
                             <ul>
-                                <li><a href="account/tracking"><i class="far fa-id-card"></i><?= $lang == 'vi' ? 'Theo dõi đơn hàng' : 'Tracking' ?></a></li>
+                                <li><a href="account/tracking"><i class="far fa-id-card"></i><?= $lang == 'vi' ? 'Bảo hành' : 'Guarantee' ?></a></li>
                             </ul>
                         </div>
                     </div>
@@ -407,7 +407,7 @@
                     <a href="account/tracking">
                         <div class="giohang">
                             <i class="fas fa-file-contract"></i>
-                            <span><?= $lang == 'vi' ? 'Bảo hành' : 'Tracking' ?></span>
+                            <span><?= $lang == 'vi' ? 'Bảo hành' : 'Guarantee' ?></span>
                         </div>
                     </a>
                 </div>

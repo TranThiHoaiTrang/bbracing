@@ -1,0 +1,6 @@
+127.0.0.1()--query--tables(delete from table_counter where id < '31278') (10:24:11 27/07/2024)
+127.0.0.1()--query--tables(delete from table_user_online where time < 1722050051) (10:24:11 27/07/2024)
+127.0.0.1()--query--tables(delete from table_counter where id < '31278') (10:30:11 27/07/2024)
+127.0.0.1()--query--tables(delete from table_user_online where time < 1722050411) (10:30:11 27/07/2024)
+127.0.0.1()--query--tables(delete from table_counter where id < '31278') (10:32:48 27/07/2024)
+127.0.0.1()--query--tables(delete from table_user_online where time < 1722050568) (10:32:48 27/07/2024)

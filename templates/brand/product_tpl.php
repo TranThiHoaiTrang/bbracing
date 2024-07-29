@@ -213,42 +213,73 @@ $brand_list = $d->rawQuery("select * from #_product_brand where type = 'san-pham
                                         <!-- </div> -->
                                     </div>
                                     <div class="all_content_sp_moi">
-
-                                        <a href="<?= $brand_sp['tenkhongdauvi'] ?>">
-                                            <div class="brand_sp"><?= $brand_sp['ten' . $lang] ?></div>
-                                        </a>
-                                        <a href="<?= $v['tenkhongdauvi'] ?>">
-                                            <div class="name_sp_moi text-split"><?= $v['ten' . $lang] ?></div>
-                                        </a>
-                                        <div class="masp_pro masp_pro_hethang">
-                                            <span>
-                                                <span>P/N:</span>
-                                                <span><?= $v['masp'] ?></span>
-                                            </span>
-                                            <?php if ($v['cothemua'] <= 0) { ?>
-                                                <span class="hethang_sp"><?= $lang == 'vi' ? 'Hết hàng' : 'Out of stock' ?></span>
-                                            <?php } elseif ($v['soluongkho'] <= 0) { ?>
-                                                <span class="hethang_sp"><?= $lang == 'vi' ? 'Hết hàng' : 'Out of stock' ?></span>
-                                            <?php } ?>
+                                        <div class="top_all_content_sp_moi">
+                                            <a href="<?= $brand_sp['tenkhongdauvi'] ?>">
+                                                <div class="brand_sp"><?= $brand_sp['ten' . $lang] ?></div>
+                                            </a>
+                                            <a href="<?= $v['tenkhongdauvi'] ?>">
+                                                <div class="name_sp_moi text-split"><?= $v['ten' . $lang] ?></div>
+                                            </a>
                                         </div>
-                                        <div class="all_gia_giohang">
-                                            <div class="all_gia_spmoi">
-                                                <?= $func->chuyendoitigia($v) ?>
+                                        <div class="bottom_all_content_sp_moi">
+                                            <div class="masp_pro masp_pro_hethang">
+                                                <span>
+                                                    <span>P/N:</span>
+                                                    <span><?= $v['masp'] ?></span>
+                                                </span>
+                                                <?php if ($v['cothemua'] <= 0) { ?>
+                                                    <span class="hethang_sp"><?= $lang == 'vi' ? 'Hết hàng' : 'Out of stock' ?></span>
+                                                <?php } elseif ($v['soluongkho'] <= 0) { ?>
+                                                    <span class="hethang_sp"><?= $lang == 'vi' ? 'Hết hàng' : 'Out of stock' ?></span>
+                                                <?php } ?>
                                             </div>
-                                            <div class="giohang_sp">
-                                                <input type="hidden" name="cannang" class="cannang" value="<?= $v['cannang'] ?>">
-                                                <input type="hidden" name="kichthuoc" class="kichthuoc" value="<?= $v['kichthuoc'] ?>">
-                                                <input type="hidden" name="color_detail" class="color_detail" value="<?= $v['id_mau'] ?>">
-                                                <?php if ($v['soluongkho'] <= 0) { ?>
-                                                    <?php if ($v['cothemua'] <= 0) { ?>
-                                                        <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
-                                                            <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
-                                                            <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
-                                                        </a>
+                                            <div class="all_gia_giohang">
+                                                <div class="all_gia_spmoi">
+                                                    <?= $func->chuyendoitigia($v) ?>
+                                                </div>
+                                                <div class="giohang_sp">
+                                                    <input type="hidden" name="cannang" class="cannang" value="<?= $v['cannang'] ?>">
+                                                    <input type="hidden" name="kichthuoc" class="kichthuoc" value="<?= $v['kichthuoc'] ?>">
+                                                    <input type="hidden" name="color_detail" class="color_detail" value="<?= $v['id_mau'] ?>">
+                                                    <?php if ($v['soluongkho'] <= 0) { ?>
+                                                        <?php if ($v['cothemua'] <= 0) { ?>
+                                                            <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
+                                                                <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
+                                                                <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
+                                                            </a>
+                                                        <?php } else { ?>
+                                                            <?php if ($lang == 'vi') { ?>
+                                                                <?php if ($v['gia'] <= 0) { ?>
+                                                                    <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
+                                                                        <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
+                                                                        <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
+                                                                    </a>
+                                                                <?php } else { ?>
+                                                                    <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
+                                                                        <!-- <i class="fas fa-shopping-cart"></i> -->
+                                                                        <img src="./assets/images/cart_pro.svg" width="16" alt="">
+                                                                    </a>
+                                                                <?php } ?>
+
+                                                            <?php } else { ?>
+                                                                <?php if ($v['giado'] <= 0) { ?>
+                                                                    <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
+                                                                        <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
+                                                                        <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
+                                                                    </a>
+                                                                <?php } else { ?>
+                                                                    <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
+                                                                        <!-- <i class="fas fa-shopping-cart"></i> -->
+                                                                        <img src="./assets/images/cart_pro.svg" width="16" alt="">
+                                                                    </a>
+                                                                <?php } ?>
+                                                            <?php } ?>
+
+                                                        <?php } ?>
                                                     <?php } else { ?>
                                                         <?php if ($lang == 'vi') { ?>
                                                             <?php if ($v['gia'] <= 0) { ?>
-                                                                <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
+                                                                <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
                                                                     <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
                                                                     <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
                                                                 </a>
@@ -261,7 +292,7 @@ $brand_list = $d->rawQuery("select * from #_product_brand where type = 'san-pham
 
                                                         <?php } else { ?>
                                                             <?php if ($v['giado'] <= 0) { ?>
-                                                                <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
+                                                                <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
                                                                     <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
                                                                     <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
                                                                 </a>
@@ -272,39 +303,12 @@ $brand_list = $d->rawQuery("select * from #_product_brand where type = 'san-pham
                                                                 </a>
                                                             <?php } ?>
                                                         <?php } ?>
-
                                                     <?php } ?>
-                                                <?php } else { ?>
-                                                    <?php if ($lang == 'vi') { ?>
-                                                        <?php if ($v['gia'] <= 0) { ?>
-                                                            <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
-                                                                <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
-                                                                <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
-                                                                <!-- <i class="fas fa-shopping-cart"></i> -->
-                                                                <img src="./assets/images/cart_pro.svg" width="16" alt="">
-                                                            </a>
-                                                        <?php } ?>
 
-                                                    <?php } else { ?>
-                                                        <?php if ($v['giado'] <= 0) { ?>
-                                                            <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
-                                                                <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
-                                                                <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
-                                                            </a>
-                                                        <?php } else { ?>
-                                                            <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
-                                                                <!-- <i class="fas fa-shopping-cart"></i> -->
-                                                                <img src="./assets/images/cart_pro.svg" width="16" alt="">
-                                                            </a>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                <?php } ?>
-
+                                                </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             <?php } ?>

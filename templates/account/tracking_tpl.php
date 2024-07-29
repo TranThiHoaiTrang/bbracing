@@ -6,7 +6,23 @@ if ($_REQUEST['PayerID']) {
 }
 if ($iduser) {
 ?>
-    <div class="fixwidth mt-4">
+<div class="fixwidth mt-2">
+            <div class="wrap-user">
+                <div class="alert_user">
+                    <div class="alert_body">
+                        <div style="display: flex;align-items: center;justify-content: center;margin-bottom: 15px;gap: 5px;">
+                            <i class="fas fa-check-circle fasuccess" style="margin-bottom: 0;"></i>
+                            <span style="font-weight: 600;">Đang cập nhật</span>
+                        </div>
+                        <div>Thông tin đang được cập nhật</div>
+                    </div>
+                    <div class="alert_footer">
+                        <a href="" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- <div class="fixwidth mt-4">
         <div class="al_user_detail">
             <div class="user_detail_left">
                 <div class="all_fillter all_fillter_account">
@@ -16,7 +32,6 @@ if ($iduser) {
                                 <div class="all_tongquan_thongtin">
                                     <div class="avata_member">
                                         <div class="photoUpload-detail mb-2"><img style="width: 100%;" class="rounded" src="<?= UPLOAD_PHOTO_L . $row_detail['avatar'] ?>" onerror="src='assets/images/nguoidung.png'" alt="Alt Photo" /></div>
-                                        <!-- <input type="file" class="form-control" id="avatar" name="avatar" placeholder=""> -->
                                     </div>
                                     <div class="thongtin_coban">
                                         <div class="name_account">
@@ -27,7 +42,6 @@ if ($iduser) {
                                             <span><?= $lang == 'vi' ? 'Mã khách hàng' : 'Customer ID' ?>: </span>
                                             <span>BBR<?= $row_detail['id_member'] ?></span>
                                         </div>
-                                        <!-- <div class="hotline_account"><?= $row_detail['dienthoai'] ?></div> -->
                                     </div>
                                 </div>
                             </a>
@@ -70,13 +84,6 @@ if ($iduser) {
                                     </div>
                                 </a>
                             </div>
-                            <!-- <div class="all_brand_sp">
-                                <a href="account/diachi">
-                                    <div class="title_brand">
-                                        <span><?= $lang == 'vi' ? 'Địa chỉ giao hàng' : 'Delivery address' ?></span>
-                                    </div>
-                                </a>
-                            </div> -->
                             <div class="all_brand_sp">
                                 <?php if ($_SESSION[$login_member]['user_id'] != '') { ?>
                                     <a href="account/dang-xuat" onclick="FBLogout()">
@@ -197,13 +204,29 @@ if ($iduser) {
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <?php } else {
     $session = session_id();
     $donhang = $d->rawQuery("select * from table_order where session_id = ? order by ngaytao desc", array($session));
     if ($donhang) {
     ?>
-        <div class="fixwidth mt-4">
+        <div class="fixwidth mt-2">
+            <div class="wrap-user">
+                <div class="alert_user">
+                    <div class="alert_body">
+                        <div style="display: flex;align-items: center;justify-content: center;margin-bottom: 15px;gap: 5px;">
+                            <i class="fas fa-check-circle fasuccess" style="margin-bottom: 0;"></i>
+                            <span style="font-weight: 600;">Đang cập nhật</span>
+                        </div>
+                        <div>Thông tin đang được cập nhật</div>
+                    </div>
+                    <div class="alert_footer">
+                        <a href="" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="fixwidth mt-4">
             <div class="wrap-user">
                 <div class="all_table_donhang">
                     <table class="table table_donhang">
@@ -263,7 +286,7 @@ if ($iduser) {
                     </table>
                 </div>
             </div>
-        </div>
+        </div> -->
     <?php } else {
         // $func->transfer($lang == 'vi' ? 'Đang cập nhật' : 'Updating', $config_base . 'account/dang-nhap', true);
         // $trangkhongtontai = $lang == 'vi' ? 'Thông tin đang được cập nhật' : 'Information is being updated';
@@ -275,7 +298,7 @@ if ($iduser) {
         // echo "<script>var loginMessage = " . json_encode($login_message) . "; message_botro = " . json_encode($login_message_bx) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
     ?>
         <div class="fixwidth mt-2">
-            <div class="wrap-user">
+            <div class="wrap-user wrap-user-tracking">
                 <div class="alert_user">
                     <div class="alert_body">
                         <div style="display: flex;align-items: center;justify-content: center;margin-bottom: 15px;gap: 5px;">

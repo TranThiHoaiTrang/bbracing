@@ -332,124 +332,129 @@ $brand_list = $d->rawQuery("select * from #_product_brand where type = 'san-pham
                                                 }
                                             }
                                             ?>
-                                            <a href="<?= $brand_sp['tenkhongdauvi'] ?>">
-                                                <div class="brand_sp"><?= $brand_sp['ten' . $lang] ?></div>
-                                            </a>
-                                            <a href="<?= $v['tenkhongdauvi'] ?>">
-                                                <div class="name_sp_moi text-split"><?= $v['ten' . $lang] ?></div>
-                                            </a>
-                                            <div class="masp_pro masp_pro_hethang">
-                                                <span>
-                                                    <span>P/N:</span>
-                                                    <span><?= $v['masp'] ?></span>
-                                                </span>
-                                                <?php if ($v['cothemua'] <= 0) { ?>
-                                                    <span class="hethang_sp"><?= $lang == 'vi' ? 'Hết hàng' : 'Out of stock' ?></span>
-                                                <?php } elseif ($v['soluongkho'] <= 0) { ?>
-                                                    <span class="hethang_sp"><?= $lang == 'vi' ? 'Hết hàng' : 'Out of stock' ?></span>
-                                                <?php } ?>
+                                            <div class="top_all_content_sp_moi">
+                                                <a href="<?= $brand_sp['tenkhongdauvi'] ?>">
+                                                    <div class="brand_sp"><?= $brand_sp['ten' . $lang] ?></div>
+                                                </a>
+                                                <a href="<?= $v['tenkhongdauvi'] ?>">
+                                                    <div class="name_sp_moi text-split"><?= $v['ten' . $lang] ?></div>
+                                                </a>
                                             </div>
-                                            <div class="all_gia_giohang">
-                                                <div class="all_gia_spmoi">
-                                                    <?php if ($lang == 'vi') { ?>
-                                                        <?php if ($giakhuyenmai) { ?>
-                                                            <span class="giamoi"><?= $func->format_money($giakhuyenmai) ?></span>
+                                            <div class="bottom_all_content_sp_moi">
+                                                <div class="masp_pro masp_pro_hethang">
+                                                    <span>
+                                                        <span>P/N:</span>
+                                                        <span><?= $v['masp'] ?></span>
+                                                    </span>
+                                                    <?php if ($v['cothemua'] <= 0) { ?>
+                                                        <span class="hethang_sp"><?= $lang == 'vi' ? 'Hết hàng' : 'Out of stock' ?></span>
+                                                    <?php } elseif ($v['soluongkho'] <= 0) { ?>
+                                                        <span class="hethang_sp"><?= $lang == 'vi' ? 'Hết hàng' : 'Out of stock' ?></span>
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="all_gia_giohang">
+                                                    <div class="all_gia_spmoi">
+                                                        <?php if ($lang == 'vi') { ?>
+                                                            <?php if ($giakhuyenmai) { ?>
+                                                                <span class="giamoi"><?= $func->format_money($giakhuyenmai) ?></span>
 
-                                                            <span class="giadel"><?= $func->format_money($v['gia']) ?></span>
-                                                            <?php $sale = abs(round(((($giakhuyenmai / $v['gia']) * 100) - 100), 1));
-                                                            if ($sale) {
-                                                            ?>
-                                                                <span class="batch"><i class="fas fa-long-arrow-alt-down"></i><?= $sale ?> %</span>
-                                                            <?php } ?>
-                                                        <?php } elseif (!empty($v['giamoi']) || !empty($v['giadomoi'])) { ?>
-                                                            <?php if ($v['giamoi']) { ?>
-                                                                <span class="giamoi"><?= $func->format_money($v['giamoi']) ?></span>
                                                                 <span class="giadel"><?= $func->format_money($v['gia']) ?></span>
-                                                                <?php $sale = abs(round(((($v['giamoi'] / $v['gia']) * 100) - 100), 1));
+                                                                <?php $sale = abs(round(((($giakhuyenmai / $v['gia']) * 100) - 100), 1));
                                                                 if ($sale) {
                                                                 ?>
                                                                     <span class="batch"><i class="fas fa-long-arrow-alt-down"></i><?= $sale ?> %</span>
                                                                 <?php } ?>
-                                                            <?php } else {
-                                                                $tigia = $v['giado'] * str_replace(",", "", $brand_sp['tigia_brand']);
-                                                                $tigia_gia = round($tigia, 2);
-                                                                $tigia_moi = $v['giadomoi'] * str_replace(",", "", $brand_sp['tigia_brand']);
-                                                                $tigia_gia_moi = round($tigia_moi, 2);
-                                                            ?>
-                                                                <span class="giamoi"><?= $func->format_money($tigia_gia_moi) ?></span>
-                                                                <span class="giadel"><?= $func->format_money($tigia_gia) ?></span>
-                                                                <?php $sale = abs(round(((($tigia_gia_moi / $tigia_gia) * 100) - 100), 1));
-                                                                if ($sale) {
+                                                            <?php } elseif (!empty($v['giamoi']) || !empty($v['giadomoi'])) { ?>
+                                                                <?php if ($v['giamoi']) { ?>
+                                                                    <span class="giamoi"><?= $func->format_money($v['giamoi']) ?></span>
+                                                                    <span class="giadel"><?= $func->format_money($v['gia']) ?></span>
+                                                                    <?php $sale = abs(round(((($v['giamoi'] / $v['gia']) * 100) - 100), 1));
+                                                                    if ($sale) {
+                                                                    ?>
+                                                                        <span class="batch"><i class="fas fa-long-arrow-alt-down"></i><?= $sale ?> %</span>
+                                                                    <?php } ?>
+                                                                <?php } else {
+                                                                    $tigia = $v['giado'] * str_replace(",", "", $brand_sp['tigia_brand']);
+                                                                    $tigia_gia = round($tigia, 2);
+                                                                    $tigia_moi = $v['giadomoi'] * str_replace(",", "", $brand_sp['tigia_brand']);
+                                                                    $tigia_gia_moi = round($tigia_moi, 2);
                                                                 ?>
-                                                                    <span class="batch"><i class="fas fa-long-arrow-alt-down"></i><?= $sale ?> %</span>
+                                                                    <span class="giamoi"><?= $func->format_money($tigia_gia_moi) ?></span>
+                                                                    <span class="giadel"><?= $func->format_money($tigia_gia) ?></span>
+                                                                    <?php $sale = abs(round(((($tigia_gia_moi / $tigia_gia) * 100) - 100), 1));
+                                                                    if ($sale) {
+                                                                    ?>
+                                                                        <span class="batch"><i class="fas fa-long-arrow-alt-down"></i><?= $sale ?> %</span>
+                                                                    <?php } ?>
                                                                 <?php } ?>
-                                                            <?php } ?>
 
-                                                        <?php } else { ?>
-                                                            <?php if ($v['gia']) { ?>
-                                                                <span class="giamoi"><?= $func->format_money($v['gia']) ?></span>
-                                                            <?php } else {
-                                                                $tigia = $v['giado'] * str_replace(",", "", $brand_sp['tigia_brand']);
-                                                                $tigia_new = round($tigia, 2);
-                                                            ?>
-                                                                <span class="giamoi"><?= $func->format_money($tigia_new) ?></span>
-                                                            <?php } ?>
-                                                        <?php } ?>
-                                                    <?php } else { ?>
-                                                        <?php if ($giakhuyenmai) { ?>
-                                                            <span class="giamoi"><i class="fas fa-euro-sign"></i><?= $giakhuyenmai ?></span>
-                                                            <?php if ($v['giado']) { ?>
-                                                                <span class="giadel"><i class="fas fa-euro-sign"></i><?= $v['giado'] ?></span>
-
-                                                                <?php $sale = abs(round(((($giakhuyenmai / $v['giado']) * 100) - 100), 1));
-                                                                if ($sale) {
-                                                                ?>
-                                                                    <span class="batch"><i class="fas fa-long-arrow-alt-down"></i><?= $sale ?> %</span>
-                                                                <?php } ?>
                                                             <?php } else { ?>
+                                                                <?php if ($v['gia']) { ?>
+                                                                    <span class="giamoi"><?= $func->format_money($v['gia']) ?></span>
+                                                                <?php } else {
+                                                                    $tigia = $v['giado'] * str_replace(",", "", $brand_sp['tigia_brand']);
+                                                                    $tigia_new = round($tigia, 2);
+                                                                ?>
+                                                                    <span class="giamoi"><?= $func->format_money($tigia_new) ?></span>
+                                                                <?php } ?>
+                                                            <?php } ?>
+                                                        <?php } else { ?>
+                                                            <?php if ($giakhuyenmai) { ?>
+                                                                <span class="giamoi"><i class="fas fa-euro-sign"></i><?= $giakhuyenmai ?></span>
+                                                                <?php if ($v['giado']) { ?>
+                                                                    <span class="giadel"><i class="fas fa-euro-sign"></i><?= $v['giado'] ?></span>
+
+                                                                    <?php $sale = abs(round(((($giakhuyenmai / $v['giado']) * 100) - 100), 1));
+                                                                    if ($sale) {
+                                                                    ?>
+                                                                        <span class="batch"><i class="fas fa-long-arrow-alt-down"></i><?= $sale ?> %</span>
+                                                                    <?php } ?>
+                                                                <?php } else { ?>
+                                                                    <span class="giadel"><i class="fas fa-euro-sign"></i><?= $v['giado'] ?></span>
+
+                                                                    <?php $sale = abs(round(((($giakhuyenmai / $v['giado']) * 100) - 100), 1));
+                                                                    if ($sale) { ?>
+                                                                        <span class="batch"><i class="fas fa-long-arrow-alt-down"></i><?= $sale ?> %</span>
+                                                                    <?php } ?>
+                                                                <?php } ?>
+
+                                                            <?php } elseif (!empty($v['giadomoi'])) { ?>
+                                                                <span class="giamoi"><i class="fas fa-euro-sign"></i><?= $v['giadomoi'] ?></span>
                                                                 <span class="giadel"><i class="fas fa-euro-sign"></i><?= $v['giado'] ?></span>
 
-                                                                <?php $sale = abs(round(((($giakhuyenmai / $v['giado']) * 100) - 100), 1));
+                                                                <?php $sale = abs(round(((($v['giadomoi'] / $v['giado']) * 100) - 100), 1));
                                                                 if ($sale) { ?>
                                                                     <span class="batch"><i class="fas fa-long-arrow-alt-down"></i><?= $sale ?> %</span>
                                                                 <?php } ?>
+                                                            <?php } else { ?>
+                                                                <span class="giamoi"><i class="fas fa-euro-sign"></i><?= $v['giado'] ?></span>
                                                             <?php } ?>
-
-                                                        <?php } elseif (!empty($v['giadomoi'])) { ?>
-                                                            <span class="giamoi"><i class="fas fa-euro-sign"></i><?= $v['giadomoi'] ?></span>
-                                                            <span class="giadel"><i class="fas fa-euro-sign"></i><?= $v['giado'] ?></span>
-
-                                                            <?php $sale = abs(round(((($v['giadomoi'] / $v['giado']) * 100) - 100), 1));
-                                                            if ($sale) { ?>
-                                                                <span class="batch"><i class="fas fa-long-arrow-alt-down"></i><?= $sale ?> %</span>
-                                                            <?php } ?>
-                                                        <?php } else { ?>
-                                                            <span class="giamoi"><i class="fas fa-euro-sign"></i><?= $v['giado'] ?></span>
                                                         <?php } ?>
-                                                    <?php } ?>
-                                                </div>
-                                                <div class="giohang_sp">
-                                                    <input type="hidden" name="cannang" class="cannang" value="<?= $v['cannang'] ?>">
-                                                    <input type="hidden" name="kichthuoc" class="kichthuoc" value="<?= $v['kichthuoc'] ?>">
-                                                    <input type="hidden" name="color_detail" class="color_detail" value="<?= $v['id_mau'] ?>">
-                                                    <?php if ($v['soluongkho'] <= 0) { ?>
-                                                        <?php if ($v['cothemua'] <= 0) { ?>
-                                                            <a href="<?=$config_base?>" onclick="event.preventDefault();" class="muangay1">
-                                                                <i class="fas fa-shopping-cart cart_hethang"></i>
-                                                            </a>
+                                                    </div>
+                                                    <div class="giohang_sp">
+                                                        <input type="hidden" name="cannang" class="cannang" value="<?= $v['cannang'] ?>">
+                                                        <input type="hidden" name="kichthuoc" class="kichthuoc" value="<?= $v['kichthuoc'] ?>">
+                                                        <input type="hidden" name="color_detail" class="color_detail" value="<?= $v['id_mau'] ?>">
+                                                        <?php if ($v['soluongkho'] <= 0) { ?>
+                                                            <?php if ($v['cothemua'] <= 0) { ?>
+                                                                <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
+                                                                    <i class="fas fa-shopping-cart cart_hethang"></i>
+                                                                </a>
+                                                            <?php } else { ?>
+                                                                <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-lang="<?= $lang ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
+                                                                    <i class="fas fa-shopping-cart"></i>
+                                                                </a>
+                                                            <?php } ?>
                                                         <?php } else { ?>
-                                                            <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-lang="<?= $lang ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
+                                                            <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-lang="<?= $lang ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
                                                                 <i class="fas fa-shopping-cart"></i>
                                                             </a>
                                                         <?php } ?>
-                                                    <?php } else { ?>
-                                                        <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-lang="<?= $lang ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
-                                                            <i class="fas fa-shopping-cart"></i>
-                                                        </a>
-                                                    <?php } ?>
 
+                                                    </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 <?php } ?>
