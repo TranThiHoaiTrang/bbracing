@@ -18,24 +18,22 @@ $tenxe = $d->rawQuery("select * from #_product_size where type = ? and hienthi >
 $vehicles = $d->rawQuery("select * from #_product_doday where type = ? and hienthi > 0 order by stt,id desc ", array('san-pham'));
 $splistmenu = $d->rawQuery("select * from #_product_list where type = ? and hienthi > 0 and noibat > 0 order by stt,id desc", array('san-pham'));
 
-// if($lang == 'vi'){
-//     $thuonghieuxe = $d->rawQuery("select * from #_product_doday where type = ? and hienthi > 0 order by tenvi ASC ", array('san-pham'));
-//     $brand = $d->rawQuery("select * from #_product_brand where type = ? and hienthi > 0 order by tenvi ASC ", array('san-pham'));
-//     $tenxe = $d->rawQuery("select * from #_product_size where type = ? and hienthi > 0 order by tenvi ASC ", array('san-pham'));
-//     $vehicles = $d->rawQuery("select * from #_product_doday where type = ? and hienthi > 0 order by tenvi ASC ", array('san-pham'));
-//     $splistmenu = $d->rawQuery("select * from #_product_list where type = ? and hienthi > 0 and noibat > 0 order by tenvi ASC",array('san-pham'));
-//     // $nhomdanhmuc_menu = $d->rawQuery("select * from #_product_nhomdanhmuc where type = ? and hienthi > 0 order by tenvi ASC",array('san-pham'));
-// }
-// else{
-//     $thuonghieuxe = $d->rawQuery("select * from #_product_doday where type = ? and hienthi > 0 order by tenen ASC ", array('san-pham'));
-//     $brand = $d->rawQuery("select * from #_product_brand where type = ? and hienthi > 0 order by tenen ASC ", array('san-pham'));
-//     $tenxe = $d->rawQuery("select * from #_product_size where type = ? and hienthi > 0 order by tenen ASC ", array('san-pham'));
-//     $vehicles = $d->rawQuery("select * from #_product_doday where type = ? and hienthi > 0 order by tenen ASC ", array('san-pham'));
-//     $splistmenu = $d->rawQuery("select * from #_product_list where type = ? and hienthi > 0 and noibat > 0 order by tenen ASC",array('san-pham'));
-//     // $nhomdanhmuc_menu = $d->rawQuery("select * from #_product_nhomdanhmuc where type = ? and hienthi > 0 order by tenvi ASC",array('san-pham'));
-// }
-$nhomdanhmuc_menu = $d->rawQuery("select * from #_product_nhomdanhmuc where type = ? and id != '34' and hienthi > 0 order by stt,id desc", array('san-pham'));
-$nhomdanhmuc_menu2 = $d->rawQueryOne("select * from #_product_nhomdanhmuc where type = ? and id = 34 and hienthi > 0 order by stt,id desc", array('san-pham'));
+if($lang == 'vi'){
+    $splistmenu_order = $d->rawQuery("select * from #_product_list where type = ? and hienthi > 0 and noibat > 0 order by tenvi ASC", array('san-pham'));
+    $thuonghieuxe_order = $d->rawQuery("select * from #_product_doday where type = ? and hienthi > 0 order by tenvi ASC ", array('san-pham'));
+    $brand_order = $d->rawQuery("select * from #_product_brand where type = ? and hienthi > 0 order by tenvi ASC ", array('san-pham'));
+    $nhomdanhmuc_menu = $d->rawQuery("select * from #_product_nhomdanhmuc where type = ? and id != '34' and hienthi > 0 order by tenvi ASC",array('san-pham'));
+    $nhomdanhmuc_menu2 = $d->rawQueryOne("select * from #_product_nhomdanhmuc where type = ? and id = 34 and hienthi > 0 order by tenvi ASC", array('san-pham'));
+}
+else{
+    $splistmenu_order = $d->rawQuery("select * from #_product_list where type = ? and hienthi > 0 and noibat > 0 order by tenen ASC", array('san-pham'));
+    $thuonghieuxe_order = $d->rawQuery("select * from #_product_doday where type = ? and hienthi > 0 order by tenen ASC ", array('san-pham'));
+    $brand_order = $d->rawQuery("select * from #_product_brand where type = ? and hienthi > 0 order by tenen ASC ", array('san-pham'));
+    $nhomdanhmuc_menu = $d->rawQuery("select * from #_product_nhomdanhmuc where type = ? and id != '34' and hienthi > 0 order by tenen ASC",array('san-pham'));
+    $nhomdanhmuc_menu2 = $d->rawQueryOne("select * from #_product_nhomdanhmuc where type = ? and id = 34 and hienthi > 0 order by tenen ASC", array('san-pham'));
+}
+// $nhomdanhmuc_menu = $d->rawQuery("select * from #_product_nhomdanhmuc where type = ? and id != '34' and hienthi > 0 order by stt,id desc", array('san-pham'));
+// $nhomdanhmuc_menu2 = $d->rawQueryOne("select * from #_product_nhomdanhmuc where type = ? and id = 34 and hienthi > 0 order by stt,id desc", array('san-pham'));
 $ttlistmenu = $d->rawQuery("select * from #_news_list where type = ? and hienthi > 0 order by stt,id desc", array('tintuc'));
 
 $list_sp_nb = $d->rawQuery("select * from #_product_list where type = ? and hienthi > 0 and noibat > 0 order by stt,id desc", array('san-pham'));
@@ -253,5 +251,6 @@ if (isset($_POST['submit-newsletter'])) {
         $redirect_url = $func->getCurrentPageURL();
         $stt = false;
     }
-    echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+    $message_botro = '';
+    echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }

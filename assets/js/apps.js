@@ -431,7 +431,7 @@ NN_FRAMEWORK.OwlPage = function () {
   if ($(".auto_sanpham").exists()) {
     $(".auto_sanpham").owlCarousel({
       rewind: true,
-      autoplay: true,
+      autoplay: false,
       loop: true,
       lazyLoad: false,
       mouseDrag: true,
@@ -449,7 +449,7 @@ NN_FRAMEWORK.OwlPage = function () {
           margin: 10,
         },
         350: {
-          items: 2,
+          items: 1,
           margin: 10,
         },
         450: {
@@ -1448,7 +1448,11 @@ NN_FRAMEWORK.Cart = function () {
       },
     });
   });
-  $(document).on("click", ".check_brand,.check_idlist,.check_vehicles", function () {
+  $(document).on("click", ".check_brand,.check_idlist,.check_vehicles,.icon_check_brand", function () {
+    var url = window.location.href;
+    var urlObject = new URL(url);
+    // console.log(urlObject);
+
     var orderby = $(".orderby").val();
     var p = $(".input_number_show").val();
 
@@ -1457,42 +1461,109 @@ NN_FRAMEWORK.Cart = function () {
     var brandpro = $("input[name=id_brand]").val();
     var dodaypro = $("input[name=id_doday]").val();
     var dodaylistpro = $("input[name=id_doday_list]").val();
-    
 
-    var idbrand_list = "";
+    // console.log("a");
+    var idbrand_list = "";var idbrand_list_url="";
     var check_brand = $(".check_brand.active");
+    console.log(check_brand);
     check_brand.each(function () {
       idbrand_list = idbrand_list + "|" + $(this).data("idbrand");
+      idbrand_list_url = idbrand_list_url + "-" + $(this).data("idbrand");
     });
     if ((idbrand_list.length = 1)) {
       idbrand_list = idbrand_list.substring(1);
+      idbrand_list_url = idbrand_list_url.substring(1);
     }
+    
 
-    var idlist_list = "";
+    var idlist_list = "";var idlist_list_url = "";
     var check_list = $(".check_idlist.active");
     check_list.each(function () {
       idlist_list = idlist_list + "|" + $(this).data("idlist");
+      idlist_list_url = idlist_list_url + "-" + $(this).data("idlist");
     });
     if ((idlist_list.length = 1)) {
       idlist_list = idlist_list.substring(1);
+      idlist_list_url = idlist_list_url.substring(1);
     }
 
-    var vehicles_list = "";
-    var check_list = $(".check_vehicles.active");
-    check_list.each(function () {
+    var vehicles_list = "";var vehicles_list_url = "";
+    var check_vehicles = $(".check_vehicles.active");
+    check_vehicles.each(function () {
       vehicles_list = vehicles_list + "|" + $(this).data("idvehicles");
+      vehicles_list_url = vehicles_list_url + "-" + $(this).data("idvehicles");
     });
     if ((vehicles_list.length = 1)) {
       vehicles_list = vehicles_list.substring(1);
+      vehicles_list_url = vehicles_list_url.substring(1);
     }
-
+    // console.log(idbrand_list);
+    
     if($(this).hasClass('check_brand_dm') == true){
-      locthuonghiesanpham(idbrand_list,brandpro);
+      locthuonghiesanpham(idbrand_list,idlist_list,brandpro);
     }
     if($(this).hasClass('check_idlist_dm') == true){
-      locbrandsanpham(idlist_list,listpr);
+      locbrandsanpham(idlist_list,idbrand_list,listpr);
+    }
+    // console.log("aaa");
+    // console.log(listpr);
+
+    console.log(idlist_list_url);
+    
+    if (listpr) {
+      urlObject.searchParams.set("id_list", listpr);
+    }
+    else{
+      urlObject.searchParams.delete("id_list");
+    }
+    if (idlist_list_url) {
+      urlObject.searchParams.set("id_list", idlist_list_url);
+    }
+    else{
+      urlObject.searchParams.delete("id_list");
+    }
+    if (catpro) {
+      urlObject.searchParams.set("id_cat", catpro);
+    }
+    else{
+      urlObject.searchParams.delete("id_cat");
+    }
+    if (brandpro) {
+      urlObject.searchParams.set("id_brand", brandpro);
+    }
+    else{
+      urlObject.searchParams.delete("id_id_brandcat");
+    }
+    if (idbrand_list_url) {
+      urlObject.searchParams.set("id_brand", idbrand_list_url);
+    }
+    else{
+      urlObject.searchParams.delete("id_brand");
+    }
+    if (dodaypro) {
+      urlObject.searchParams.set("id_doday", dodaypro);
+    }
+    else{
+      urlObject.searchParams.delete("id_doday");
+    }
+    if (vehicles_list_url) {
+      urlObject.searchParams.set("id_doday", vehicles_list_url);
+    }
+    else{
+      urlObject.searchParams.delete("id_doday");
+    }
+    if (dodaylistpro) {
+      urlObject.searchParams.set("id_doday_list", dodaylistpro);
+    }
+    else{
+      urlObject.searchParams.delete("id_doday_list");
     }
 
+    var updatedURL = urlObject.toString();
+    //  console.log(updatedURL);
+    // location.href = updatedURL;
+    // loadPage(document.location);
+    
     $.ajax({
       url: "ajax/ajax_searchpro.php",
       type: "POST",
@@ -1512,6 +1583,7 @@ NN_FRAMEWORK.Cart = function () {
       success: function (result) {
         if (result != "") {
           $(".all_sp_search").html(result);
+          history.pushState({ path: updatedURL }, '', updatedURL); 
         }
       },
     });

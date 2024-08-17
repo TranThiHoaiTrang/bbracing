@@ -268,7 +268,8 @@ function info_user()
 		$redirect_url = $config_base;
 		$stt = false;
 	}
-	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+	$message_botro = '';
+	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }
 function my_question()
 {
@@ -298,7 +299,8 @@ function my_question()
 		$redirect_url = $config_base;
 		$stt = false;
 	}
-	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+	$message_botro = '';
+	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }
 function my_sub()
 {
@@ -316,8 +318,8 @@ function my_sub()
 		$redirect_url = $config_base;
 		$stt = false;
 	}
-
-	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+	$message_botro = '';
+	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }
 
 function my_cart()
@@ -365,8 +367,8 @@ function my_cart()
 			$stt = false;
 		}
 	}
-
-	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+	$message_botro = '';
+	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }
 
 function newsletter()
@@ -397,8 +399,8 @@ function newsletter()
 		$redirect_url = $config_base;
 		$stt = false;
 	}
-
-	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+	$message_botro = '';
+	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }
 
 function active_user()
@@ -449,8 +451,8 @@ function active_user()
 			$stt = false;
 		}
 	}
-
-	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+	$message_botro = '';
+	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }
 
 function login()
@@ -533,8 +535,8 @@ function login()
 		$redirect_url = $config_base . "account/dang-nhap";
 		$stt = false;
 	}
-
-	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+	$message_botro = '';
+	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }
 
 function signup()
@@ -650,7 +652,8 @@ function signup()
 		$redirect_url = $config_base;
 		$stt = false;
 	}
-	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+	$message_botro = '';
+	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }
 
 function signup_daili()
@@ -762,7 +765,8 @@ function signup_daili()
 		$redirect_url = $config_base ;
 		$stt = false;
 	}
-	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+	$message_botro = '';
+	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }
 
 function dealer_process()
@@ -791,7 +795,8 @@ function dealer_process()
 		$redirect_url = $config_base . "account/dangky_dealer";
 		$stt = false;
 	}
-	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+	$message_botro = '';
+	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }
 
 function update_thongtin()
@@ -906,7 +911,8 @@ function update_thongtin()
 		$redirect_url = $config_base . "account/thong-tin";
 		$stt = false;
 	}
-	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+	$message_botro = '';
+	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }
 
 function donhang_update($id_donhang)
@@ -941,7 +947,8 @@ function donhang_update($id_donhang)
 		$redirect_url = $config_base . "account/donhang_chitiet?id_donhang=" . openssl_encrypt($id_donhang, 'aes-256-cbc', 'bbracing', 0, $iv = 'bbracing') . "";
 		$stt = false;
 	}
-	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+	$message_botro = '';
+	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }
 
 function diachi_update()
@@ -1026,7 +1033,8 @@ function diachi_update()
 		$redirect_url = $config_base . "account/diachi";
 		$stt = false;
 	}
-	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+	$message_botro = '';
+	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }
 
 function thanhtoanthanhcong()
@@ -1142,7 +1150,8 @@ function thanhtoanthanhcong()
 			$stt = true;
 		}
 	}
-	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+	$message_botro = '';
+	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }
 
 function send_active_user($username)
@@ -1313,7 +1322,8 @@ function send_active_user($username)
 		$redirect_url = $config_base . "lien-he";
 		$stt = false;
 	}
-	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+	$message_botro = '';
+	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }
 
 function doimatkhau_user()
@@ -1526,7 +1536,8 @@ function doimatkhau_user()
 		$redirect_url = $config_base . "account/quen-mat-khau";
 		$stt = false;
 	}
-	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+	$message_botro = '';
+	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }
 
 function logout()

@@ -59,7 +59,7 @@
             <img src="./assets/images/whatapp.png" alt="">
         </a>
     </div>
-    <a href="<?=$config_base?>" onclick="event.preventDefault();" class="btn-support" style="background: #f00;" title="">
+    <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="btn-support" style="background: #f00;" title="">
         <div class="animated infinite zoomIn kenit-alo-circle"></div>
         <div class="animated infinite pulse kenit-alo-circle-fill"></div>
         <!-- <i class="fa fa-user-circle" aria-hidden="true"></i> -->

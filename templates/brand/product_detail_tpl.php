@@ -518,7 +518,7 @@
                                     <ul>
                                         <?php foreach ($tintucbrand as $v) { ?>
                                             <li>
-                                                <a href="<?= $v['tenkhongdauvi'] ?>">
+                                                <a href="<?= $v['tenkhongdau'.$lang] ?>">
                                                     <div class="name_tintuc_noibat">
                                                         <span><?= $lang == 'vi' ? 'Tin mới nhất' : 'Latest news' ?>: </span>
                                                         <span><?= $v['ten' . $lang] ?></span>
@@ -528,7 +528,7 @@
                                         <?php } ?>
                                         <?php foreach ($tintucnb as $v) { ?>
                                             <li>
-                                                <a href="<?= $v['tenkhongdauvi'] ?>">
+                                                <a href="<?= $v['tenkhongdau'.$lang] ?>">
                                                     <div class="name_tintuc_noibat tt_nb">
                                                         <span><?= $lang == 'vi' ? 'Tin mới nhất' : 'Latest news' ?>: </span>
                                                         <span><?= $v['ten' . $lang] ?></span>
@@ -599,7 +599,7 @@
                                 $onmybike_list = $d->rawQuery("select * from #_product_doday_list where type = 'san-pham' and id_doday = '" . $v['id'] . "' and id REGEXP '" . $row_detail['id_doday_list_onmybike'] . "' and hienthi > 0 order by stt,id desc");
                             ?>
                                 <li>
-                                    <a href="<?= $v['tenkhongdauvi'] ?>"><?= $v['ten' . $lang] ?></a>
+                                    <a href="<?= $v['tenkhongdau'.$lang] ?>"><?= $v['ten' . $lang] ?></a>
                                     <ul>
                                         <?php foreach ($onmybike_list as $vl) { ?>
                                             <li>

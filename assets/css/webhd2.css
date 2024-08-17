@@ -1515,7 +1515,7 @@ div#questions small {
   line-height: 1.6;
   float: none !important;
   transition: all ease 0.2s;
-  padding: 12px 10px;
+  padding: 10px 10px;
   position: relative;
   margin: 0px;
   color: #fff !important;
@@ -1538,7 +1538,7 @@ a.a_brand{
 }
 .brand_cap_con li a span {
   position: relative;
-  padding-bottom: 12px;
+  padding-bottom: 8px;
   display: inline-block;
 }
 .brand_cap_con li a span::before {
@@ -1811,4 +1811,57 @@ ul#pills-tab-idop {
   justify-content: center;
   padding: 0;
   margin-bottom: 15px;
+}
+.ngon_ngu{
+  position: relative;
+}
+.ul_ngonngu a {
+  color: #fff;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 5px;
+  border-bottom: 1px solid #666;
+}
+.ul_ngonngu {
+  position: absolute;
+  background: #000;
+  border: 1px solid #666;
+  z-index: 9;
+  width: 91px;
+  display: none;
+}
+.ngonngu_a {
+  width: 91px;
+  text-align: center;
+  /* background: #333; */
+  color: #fff;
+  font-size: 12px;
+  border-radius: 2px;
+  padding: 3px 0;
+  cursor: pointer;
+}
+.ngonngu_a i {
+  font-weight: 300;
+}
+.ul_ngonngu a:focus{
+  color: #fff;
+}
+.all_brand_sp .check_vehicles {
+  position: relative;
+  margin-left: 0;
+  z-index: 2;
+  padding: 0;
+}
+.all_brand_sp .icon_check_brand {
+  z-index: -5 !important;
+  position: absolute;
+  left: 0;
+}
+.all_brand_sp .check_vehicles span {
+  width: 100%;
+  display: block;
+  padding-left: 20px;
 }

@@ -2912,6 +2912,7 @@ class Functions
 					$str .= '<span class="batch"><i class="fas fa-long-arrow-alt-down"></i>' . $sale . ' %</span>';
 				}
 			} elseif (!empty($v['giamoi']) || !empty($v['giadomoi'])) {
+				
 				if ($v['giamoi']) {
 					$str .= '
 					<span class="giamoi">' . $func->format_money($v['giamoi']) . '</span>
@@ -2986,24 +2987,26 @@ class Functions
 		return $str;
 	}
 
-	function chuyendoitigia_pro_detail($row_detail,$pro_brand)
+	function chuyendoitigia_pro_detail($v,$pro_brand)
 	{
 		global $d, $login_member, $lang, $func;
 
-		$list_sp = $d->rawQueryOne("select id_news from #_product_list where type = 'san-pham' and id = '" . $row_detail['id_list'] . "' and hienthi > 0 order by stt,id desc limit 1");
+		$khuyenmai_sanpham_one = $d->rawQueryOne("select discount,icon from #_news where type = 'khuyenmai' and id = '" . $v['id_khuyenmai'] . "' and hienthi > 0 order by stt,id desc limit 1");
+
+		$brand_sp = $d->rawQueryOne("select * from #_product_brand where type = ? and id = ? and hienthi > 0 order by stt,id desc limit 1", array('san-pham', $v['id_brand']));
+		$list_sp = $d->rawQueryOne("select id_news from #_product_list where type = 'san-pham' and id = '" . $v['id_list'] . "' and hienthi > 0 order by stt,id desc limit 1");
 		$khuyenmai = $d->rawQueryOne("select discount from #_news where type = 'chuong-trinh-giam-gia' and id = '" . $list_sp['id_news'] . "' and hienthi > 0 order by stt,id desc limit 1");
-		$dis_user = $d->rawQueryOne("select discount from table_member_vip_discount where id_vip = '" . $_SESSION[$login_member]['id_vip'] . "' and id_brand = '" . $pro_brand['id'] . "' limit 1");
-		$khuyenmai_sanpham_one = $d->rawQueryOne("select discount from #_news where type = 'khuyenmai' and id = '" . $row_detail['id_khuyenmai'] . "' and hienthi > 0 order by stt,id desc limit 1");
+		$dis_user = $d->rawQueryOne("select discount from table_member_vip_discount where id_vip = '" . $_SESSION[$login_member]['id_vip'] . "' and id_brand = '" . $brand_sp['id'] . "' limit 1");
 
 		$giakhuyenmai = '';
 		if (!empty($list_sp['id_news'])) {
 			if ($dis_user['discount'] != 0) {
 				if ($lang == 'vi') {
-					if ($row_detail['gia']) {
-						$khuyenmai = (($row_detail['gia'] * $dis_user['discount']) / 100);
-						$giakhuyenmai = $row_detail['gia'] - $khuyenmai;
+					if ($v['gia']) {
+						$khuyenmai = (($v['gia'] * $dis_user['discount']) / 100);
+						$giakhuyenmai = $v['gia'] - $khuyenmai;
 					} else {
-						$tigia = $row_detail['giado'] * str_replace(",", "", $pro_brand['tigia_brand']);
+						$tigia = $v['gia'] * str_replace(",", "", $brand_sp['tigia_brand']);
 						$tigia_new = round($tigia, 2);
 
 						$khuyenmai = (($tigia_new * $dis_user['discount']) / 100);
@@ -3011,11 +3014,11 @@ class Functions
 						$giakhuyenmai = round($giakhuyenmai, 2);
 					}
 				} else {
-					if ($row_detail['giado']) {
-						$khuyenmai = (($row_detail['giado'] * $dis_user['discount']) / 100);
-						$giakhuyenmai = $row_detail['giado'] - $khuyenmai;
+					if ($v['giado']) {
+						$khuyenmai = (($v['giado'] * $dis_user['discount']) / 100);
+						$giakhuyenmai = $v['giado'] - $khuyenmai;
 					} else {
-						$tigia = $row_detail['gia'] / str_replace(",", "", $pro_brand['tigia_brand']);
+						$tigia = $v['gia'] / str_replace(",", "", $brand_sp['tigia_brand']);
 						$tigia_new = round($tigia, 2);
 
 						$khuyenmai = (($tigia_new * $dis_user['discount']) / 100);
@@ -3023,41 +3026,13 @@ class Functions
 						$giakhuyenmai = $giakhuyenmai;
 					}
 				}
-			} else {
+			} elseif ($khuyenmai_sanpham_one['discount'] != 0) {
 				if ($lang == 'vi') {
-					if ($row_detail['gia']) {
-						$khuyenmai = (($row_detail['gia'] * $khuyenmai['discount']) / 100);
-						$giakhuyenmai = $row_detail['gia'] - $khuyenmai;
+					if ($v['gia']) {
+						$khuyenmai = (($v['gia'] * $khuyenmai_sanpham_one['discount']) / 100);
+						$giakhuyenmai = $v['gia'] - $khuyenmai;
 					} else {
-						$tigia = $row_detail['giado'] * str_replace(",", "", $pro_brand['tigia_brand']);
-						$tigia_new = round($tigia, 2);
-
-						$khuyenmai = (($tigia_new * $khuyenmai['discount']) / 100);
-						$giakhuyenmai = $tigia_new - $khuyenmai;
-						$giakhuyenmai = round($giakhuyenmai, 2);
-					}
-				} else {
-					if ($row_detail['giado']) {
-						$khuyenmai = (($row_detail['giado'] * $khuyenmai['discount']) / 100);
-						$giakhuyenmai = $row_detail['giado'] - $khuyenmai;
-					} else {
-						$tigia = $row_detail['gia'] / str_replace(",", "", $pro_brand['tigia_brand']);
-						$tigia_new = round($tigia, 2);
-
-						$khuyenmai = (($tigia_new * $khuyenmai['discount']) / 100);
-						$giakhuyenmai = $tigia_new - $khuyenmai;
-						$giakhuyenmai = $giakhuyenmai;
-					}
-				}
-			}
-		} elseif (!empty($row_detail['id_khuyenmai'])) {
-			if ($khuyenmai_sanpham_one['discount'] != 0) {
-				if ($lang == 'vi') {
-					if ($row_detail['gia']) {
-						$khuyenmai = (($row_detail['gia'] * $khuyenmai_sanpham_one['discount']) / 100);
-						$giakhuyenmai = $row_detail['gia'] - $khuyenmai;
-					} else {
-						$tigia = $row_detail['giado'] * str_replace(",", "", $pro_brand['tigia_brand']);
+						$tigia = $v['giado'] * str_replace(",", "", $brand_sp['tigia_brand']);
 						$tigia_new = round($tigia, 2);
 
 						$khuyenmai = (($tigia_new * $khuyenmai_sanpham_one['discount']) / 100);
@@ -3065,11 +3040,11 @@ class Functions
 						$giakhuyenmai = round($giakhuyenmai, 2);
 					}
 				} else {
-					if ($row_detail['giado']) {
-						$khuyenmai = (($row_detail['giado'] * $khuyenmai_sanpham_one['discount']) / 100);
-						$giakhuyenmai = $row_detail['giado'] - $khuyenmai;
+					if ($v['giado']) {
+						$khuyenmai = (($v['giado'] * $khuyenmai_sanpham_one['discount']) / 100);
+						$giakhuyenmai = $v['giado'] - $khuyenmai;
 					} else {
-						$tigia = $row_detail['gia'] / str_replace(",", "", $pro_brand['tigia_brand']);
+						$tigia = $v['gia'] / str_replace(",", "", $brand_sp['tigia_brand']);
 						$tigia_new = round($tigia, 2);
 
 						$khuyenmai = (($tigia_new * $khuyenmai_sanpham_one['discount']) / 100);
@@ -3079,23 +3054,24 @@ class Functions
 				}
 			} else {
 				if ($lang == 'vi') {
-					if ($row_detail['gia']) {
-						$khuyenmai = (($row_detail['gia'] * $khuyenmai['discount']) / 100);
-						$giakhuyenmai = $row_detail['gia'] - $khuyenmai;
+					if ($v['gia']) {
+						$khuyenmai = (($v['gia'] * $khuyenmai['discount']) / 100);
+						$giakhuyenmai = $v['gia'] - $khuyenmai;
 					} else {
-						$tigia = $row_detail['giado'] * str_replace(",", "", $pro_brand['tigia_brand']);
+
+						$tigia = $v['giado'] * str_replace(",", "", $brand_sp['tigia_brand']);
 						$tigia_new = round($tigia, 2);
 
 						$khuyenmai = (($tigia_new * $khuyenmai['discount']) / 100);
 						$giakhuyenmai = $tigia_new - $khuyenmai;
-						$giakhuyenmai = $giakhuyenmai;
+						$giakhuyenmai = round($giakhuyenmai, 2);
 					}
 				} else {
-					if ($row_detail['giado']) {
-						$khuyenmai = (($row_detail['giado'] * $khuyenmai['discount']) / 100);
-						$giakhuyenmai = $row_detail['giado'] - $khuyenmai;
+					if ($v['giado']) {
+						$khuyenmai = (($v['giado'] * $khuyenmai['discount']) / 100);
+						$giakhuyenmai = $v['giado'] - $khuyenmai;
 					} else {
-						$tigia = $row_detail['gia'] / str_replace(",", "", $pro_brand['tigia_brand']);
+						$tigia = $v['gia'] / str_replace(",", "", $brand_sp['tigia_brand']);
 						$tigia_new = round($tigia, 2);
 
 						$khuyenmai = (($tigia_new * $khuyenmai['discount']) / 100);
@@ -3104,54 +3080,78 @@ class Functions
 					}
 				}
 			}
-		} elseif ($dis_user['discount'] != 0) {;
-			if ($lang == 'vi') {
-				if ($row_detail['gia']) {
-					$khuyenmai = (($row_detail['gia'] * $dis_user['discount']) / 100);
-					$giakhuyenmai = $row_detail['gia'] - $khuyenmai;
-				} else {
-					$tigia = $row_detail['giado'] * str_replace(",", "", $pro_brand['tigia_brand']);
-					$tigia_new = round($tigia, 2);
+		} else {
+			if ($dis_user['discount'] != 0) {
+				if ($lang == 'vi') {
+					if ($v['gia']) {
+						$khuyenmai = (($v['gia'] * $dis_user['discount']) / 100);
+						$giakhuyenmai = $v['gia'] - $khuyenmai;
+					} else {
+						$tigia = $v['giado'] * str_replace(",", "", $brand_sp['tigia_brand']);
+						$tigia_new = round($tigia, 2);
 
-					$khuyenmai = (($tigia_new * $dis_user['discount']) / 100);
-					$giakhuyenmai = $tigia_new - $khuyenmai;
-					$giakhuyenmai = round($giakhuyenmai, 2);
+						$khuyenmai = (($tigia_new * $dis_user['discount']) / 100);
+						$giakhuyenmai = $tigia_new - $khuyenmai;
+						$giakhuyenmai = round($giakhuyenmai, 2);
+					}
+				} else {
+					if ($v['giado']) {
+						$khuyenmai = (($v['giado'] * $dis_user['discount']) / 100);
+						$giakhuyenmai = $v['giado'] - $khuyenmai;
+					} else {
+						$tigia = $v['gia'] / str_replace(",", "", $brand_sp['tigia_brand']);
+						$tigia_new = round($tigia, 2);
+
+						$khuyenmai = (($tigia_new * $dis_user['discount']) / 100);
+						$giakhuyenmai = $tigia_new - $khuyenmai;
+						$giakhuyenmai = $giakhuyenmai;
+					}
 				}
-			} else {
-				if ($row_detail['giado']) {
-					$khuyenmai = (($row_detail['giado'] * $dis_user['discount']) / 100);
-					$giakhuyenmai = $row_detail['giado'] - $khuyenmai;
-				} else {
-					$tigia = $row_detail['gia'] / str_replace(",", "", $pro_brand['tigia_brand']);
-					$tigia_new = $tigia;
+			} elseif ($khuyenmai_sanpham_one['discount'] != 0) {
+				if ($lang == 'vi') {
+					if ($v['gia']) {
+						$khuyenmai = (($v['gia'] * $khuyenmai_sanpham_one['discount']) / 100);
+						$giakhuyenmai = $v['gia'] - $khuyenmai;
+					} else {
+						$tigia = $v['giado'] * str_replace(",", "", $brand_sp['tigia_brand']);
+						$tigia_new = round($tigia, 2);
 
-					$khuyenmai = (($tigia_new * $dis_user['discount']) / 100);
-					$giakhuyenmai = $tigia_new - $khuyenmai;
-					$giakhuyenmai = $giakhuyenmai;
+						$khuyenmai = (($tigia_new * $khuyenmai_sanpham_one['discount']) / 100);
+						$giakhuyenmai = $tigia_new - $khuyenmai;
+						$giakhuyenmai = round($giakhuyenmai, 2);
+					}
+				} else {
+					if ($v['giado']) {
+						$khuyenmai = (($v['giado'] * $khuyenmai_sanpham_one['discount']) / 100);
+						$giakhuyenmai = $v['giado'] - $khuyenmai;
+					} else {
+						$tigia = $v['gia'] / str_replace(",", "", $brand_sp['tigia_brand']);
+						$tigia_new = round($tigia, 2);
+
+						$khuyenmai = (($tigia_new * $khuyenmai_sanpham_one['discount']) / 100);
+						$giakhuyenmai = $tigia_new - $khuyenmai;
+						$giakhuyenmai = $giakhuyenmai;
+					}
 				}
 			}
 		}
-
+		
 		return $giakhuyenmai;
+		// return $func->hienthichuyendoitigia_pro_detail($giakhuyenmai, $v);
 	}
 	function hienthichuyendoitigia_pro_detail($row_detail,$pro_brand)
 	{
 		global $d, $func, $lang;
 		$str = '';
+		$brand_sp = $d->rawQueryOne("select * from #_product_brand where type = ? and id = ? and hienthi > 0 order by stt,id desc limit 1", array('san-pham', $row_detail['id_brand']));
 		$giakhuyenmai = $func->chuyendoitigia_pro_detail($row_detail,$pro_brand);
-
 		if ($lang == 'vi') {
 			$tigia = $row_detail['giado'] * str_replace(",", "", $pro_brand['tigia_brand']);
 			$tigia_gia = round($tigia, 2);
 		
 			if ($giakhuyenmai) {
-				if ($row_detail['gia']) {
-					$sale = abs(round(((($giakhuyenmai / $row_detail['gia']) * 100) - 100), 1));
-					$giagiam = $row_detail['gia'] - $giakhuyenmai;
-				} else {
-					$sale = abs(round(((($giakhuyenmai / $tigia_gia) * 100) - 100), 1));
-					$giagiam = $tigia_gia - $giakhuyenmai;
-				}
+				$sale = abs(round(((($giakhuyenmai / $row_detail['gia']) * 100) - 100), 1));
+				$giagiam = $row_detail['gia'] - $row_detail['giamoi'];
 				$str .= '
 				<span class="price-new-pro-detail">'.$func->format_money($giakhuyenmai).'</span>
 				';
@@ -3168,17 +3168,61 @@ class Functions
 					<span class="price-old-pro-detail">'.$func->format_money($row_detail['gia']).'</span>
 					';
 				}
-			} elseif (!empty($row_detail['giadomoi'])) {
+			} elseif (!empty($row_detail['giamoi']) || !empty($row_detail['giadomoi'])) {
 				
+				if ($row_detail['giamoi']) {
+					$sale = abs(round(((($row_detail['giamoi'] / $row_detail['gia']) * 100) - 100), 1));
+					$giagiam = $row_detail['gia'] - $row_detail['giamoi'];
+					$str .= '
+					<span class="price-new-pro-detail">'.$func->format_money($row_detail['giamoi']).'</span>
+					';
+					$str .= '<div class="all_sale_giagiam">';
+					$str .= '<span class="muc_sale">' .$lang == 'vi' ? "Giảm:" : "Discount:" .''.$sale.'%</span>';
+					$str .= '<span class="gia_giam">(<i class="fas fa-long-arrow-alt-down"></i> '.$func->format_money($giagiam).')</span>';
+					$str .= '</div>';
+					if ($tigia_gia) {
+						$str .= '
+						<span class="price-old-pro-detail">'.$func->format_money($tigia_gia).'></span>
+						';
+					} else {
+						$str .= '
+						<span class="price-old-pro-detail">'.$func->format_money($row_detail['gia']).'</span>
+						';
+					}
+
+				} else {
+					$tigia = $row_detail['giado'] * str_replace(",", "", $brand_sp['tigia_brand']);
+					$tigia_gia = round($tigia, 2);
+					$tigia_moi = $row_detail['giadomoi'] * str_replace(",", "", $brand_sp['tigia_brand']);
+					$tigia_gia_moi = round($tigia_moi, 2);
+					$sale = abs(round(((($tigia_gia_moi / $tigia_gia) * 100) - 100), 1));
+					$giagiam = $tigia_gia_moi  - $tigia_gia;
+
+					$str .= '
+					<span class="price-new-pro-detail">'.$func->format_money($tigia_gia_moi).'</span>
+					';
+					$str .= '<div class="all_sale_giagiam">';
+					$str .= '<span class="muc_sale">' .$lang == 'vi' ? "Giảm:" : "Discount:" .''.$sale.'%</span>';
+					$str .= '<span class="gia_giam">(<i class="fas fa-long-arrow-alt-down"></i> '.$func->format_money($giagiam).')</span>';
+					$str .= '</div>';
+					if ($tigia_gia) {
+						$str .= '
+						<span class="price-old-pro-detail">'.$func->format_money($tigia_gia).'></span>
+						';
+					} else {
+						$str .= '
+						<span class="price-old-pro-detail">'.$func->format_money($row_detail['gia']).'</span>
+						';
+					}
+				}
+
 				$tigiamoi = $row_detail['giadomoi'] * str_replace(",", "", $pro_brand['tigia_brand']);
 				$tigia_giamoi = round($tigiamoi, 2);
 			
-				$str .= '
-				<span class="price-new-pro-detail">'.$func->format_money($tigia_giamoi).'</span>
-				<span class="price-old-pro-detail">'.$func->format_money($tigia_gia).'</span>
-				';
+				
 				
 			} else {
+
 				if($row_detail['gia']){
 					$str .= '
 					<span class="price-new-pro-detail">'.$func->format_money($row_detail['gia']).'</span>
@@ -3198,6 +3242,8 @@ class Functions
 			}
 		} else {
 			if ($giakhuyenmai) {
+
+
 				$str .= '
 				<span class="price-new-pro-detail">'.$func->format_money_erou($giakhuyenmai).'</span>
 				<span class="price-old-pro-detail">'.$func->format_money_erou($row_detail['giado']) .'</span>

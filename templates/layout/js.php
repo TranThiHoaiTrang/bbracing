@@ -109,6 +109,7 @@ echo $js->getJs();
         });
     }
 
+
     if (typeof loginMessage !== 'undefined' && loginMessage !== '' && loginMessage !== null) {
         // console.log(loginMessage);
         var icontranfer = '';

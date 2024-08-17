@@ -211,6 +211,28 @@
 		/* Lấy tất cả sản phẩm */
 		$where = "";
 		$where = "a.type = ? and a.hienthi > 0 and id_brand > 0";
+
+		$arr_idbrand = explode("-",$_REQUEST['id_brand']);
+		$arr_idbrand = implode("|",$arr_idbrand);
+
+		$arr_idlist = explode("-",$_REQUEST['id_list']);
+		$arr_idlist = implode("|",$arr_idlist);
+
+		$arr_iddoday = explode("-",$_REQUEST['id_doday']);
+		$arr_iddoday = implode("|",$arr_iddoday);
+		// var_dump($arr_idbrand);
+		// var_dump($arr_idlist);
+
+		if ($arr_idbrand) {
+			$where .= " and id_brand REGEXP '" . $arr_idbrand . "'";
+		}
+		if ($arr_idlist) {
+			$where .= " and id_list REGEXP '" . $arr_idlist . "'";
+		}
+		if ($arr_iddoday) {
+			$where .= " and id_doday_onmybike REGEXP '" . $arr_iddoday . "'";
+		}
+
 		$params = array($type);
 
 		$curPage = $get_page;
@@ -224,6 +246,7 @@
         // }
 		$orderby = "ORDER BY stt,id ASC";
 		$sql = "select * from #_product a where $where $orderby $limit";
+		// var_dump($sql);
 		$product = $d->rawQuery($sql,$params);
 		$sqlNum = "select count(*) as 'num' from #_product a where $where $orderby";
 		$count = $d->rawQueryOne($sqlNum,$params);

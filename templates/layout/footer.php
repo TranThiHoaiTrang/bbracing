@@ -86,7 +86,7 @@
                     <div class="coppyright_gioithieu">
                         <div class="all_gioithieu_footer">
                             <?php foreach ($gioithieu1 as $v) { ?>
-                                <p><a href="<?= $v['tenkhongdauvi'] ?>"><?= $v['ten' . $lang] ?></a></p>
+                                <p><a href="<?= $v['tenkhongdau'.$lang] ?>"><?= $v['ten' . $lang] ?></a></p>
                             <?php } ?>
                             <p><a href="faqs">FAQs</a></p>
                         </div>

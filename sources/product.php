@@ -155,8 +155,32 @@
 
 		/* Lấy sản phẩm */
 		$where = "";
-		$where = "a.id_list = ? and a.type = ? and a.hienthi > 0";
-		$params = array($idl,$type);
+		$where = " a.type = ? and a.hienthi > 0";
+		$params = array($type);
+
+		$arr_idbrand = explode("-",$_REQUEST['id_brand']);
+		$arr_idbrand = implode("|",$arr_idbrand);
+
+		$arr_idlist = explode("-",$_REQUEST['id_list']);
+		$arr_idlist = implode("|",$arr_idlist);
+
+		$arr_iddoday = explode("-",$_REQUEST['id_doday']);
+		$arr_iddoday = implode("|",$arr_iddoday);
+		// var_dump($arr_idbrand);
+		// var_dump($arr_idlist);
+
+		if ($arr_idbrand) {
+			$where .= " and id_brand REGEXP '" . $arr_idbrand . "'";
+		}
+		if ($arr_idlist) {
+			$where .= " and id_list REGEXP '" . $arr_idlist . "'";
+		}
+		else{
+			$where .= " and a.id_list = '".$idl."'";
+		}
+		if ($arr_iddoday) {
+			$where .= " and id_doday_onmybike REGEXP '" . $arr_iddoday . "'";
+		}
 
 		$curPage = $get_page;
 		$per_page = 28;
@@ -167,8 +191,9 @@
         // } else {
         //     $orderby = "ORDER BY tenen ASC";
         // }
-		$orderby = "ORDER BY stt,id ASC";
+		$orderby = "ORDER BY stt ASC";
 		$sql = "select * from #_product a where $where $orderby $limit";
+		
 		$product = $d->rawQuery($sql,$params);
 		$sqlNum = "select count(*) as 'num' from #_product a where $where $orderby";
 		$count = $d->rawQueryOne($sqlNum,$params);
@@ -195,13 +220,34 @@
 		$where = "a.id_cat = ? and a.type = ? and a.hienthi > 0";
 		$params = array($idc,$type);
 
+		$arr_idbrand = explode("-",$_REQUEST['id_brand']);
+		$arr_idbrand = implode("|",$arr_idbrand);
+
+		$arr_idlist = explode("-",$_REQUEST['id_list']);
+		$arr_idlist = implode("|",$arr_idlist);
+
+		$arr_iddoday = explode("-",$_REQUEST['id_doday']);
+		$arr_iddoday = implode("|",$arr_iddoday);
+		// var_dump($arr_idbrand);
+		// var_dump($arr_idlist);
+
+		if ($arr_idbrand) {
+			$where .= " and id_brand REGEXP '" . $arr_idbrand . "'";
+		}
+		if ($arr_idlist) {
+			$where .= " and id_list REGEXP '" . $arr_idlist . "'";
+		}
+		if ($arr_iddoday) {
+			$where .= " and id_doday_onmybike REGEXP '" . $arr_iddoday . "'";
+		}
+
 		$curPage = $get_page;
 		$per_page = 28;
 		$startpoint = ($curPage * $per_page) - $per_page;
 		$limit = " limit ".$startpoint.",".$per_page;
-		$sql = "select * from #_product a where $where order by a.stt,a.id desc $limit";
+		$sql = "select * from #_product a where $where order by a.stt desc $limit";
 		$product = $d->rawQuery($sql,$params);
-		$sqlNum = "select count(*) as 'num' from #_product a where $where order by a.stt,a.id desc";
+		$sqlNum = "select count(*) as 'num' from #_product a where $where order by a.stt desc";
 		$count = $d->rawQueryOne($sqlNum,$params);
 		$total = $count['num'];
 		$url = $func->getCurrentPageURL();
@@ -256,9 +302,9 @@
 		$per_page = 28;
 		$startpoint = ($curPage * $per_page) - $per_page;
 		$limit = " limit ".$startpoint.",".$per_page;
-		$sql = "select * from #_product where $where order by stt,id desc $limit";
+		$sql = "select * from #_product where $where order by stt desc $limit";
 		$product = $d->rawQuery($sql,$params);
-		$sqlNum = "select count(*) as 'num' from #_product where $where order by stt,id desc";
+		$sqlNum = "select count(*) as 'num' from #_product where $where order by stt desc";
 		$count = $d->rawQueryOne($sqlNum,$params);
 		$total = $count['num'];
 		$url = $func->getCurrentPageURL();
@@ -317,9 +363,9 @@
 		$per_page = 28;
 		$startpoint = ($curPage * $per_page) - $per_page;
 		$limit = " limit ".$startpoint.",".$per_page;
-		$sql = "select * from #_product where $where order by stt,id desc $limit";
+		$sql = "select * from #_product where $where order by stt desc $limit";
 		$product = $d->rawQuery($sql,$params);
-		$sqlNum = "select count(*) as 'num' from #_product where $where order by stt,id desc";
+		$sqlNum = "select count(*) as 'num' from #_product where $where order by stt desc";
 		$count = $d->rawQueryOne($sqlNum,$params);
 		$total = $count['num'];
 		$url = $func->getCurrentPageURL();
@@ -387,8 +433,31 @@
 
 		/* Lấy sản phẩm */
 		$where = "";
-		$where = "id_brand = ? and type = ? and hienthi > 0";
-		$params = array($pro_brand['id'],$type);
+		$where = " type = ? and hienthi > 0";
+		$params = array($type);
+
+		$arr_idbrand = explode("-",$_REQUEST['id_brand']);
+		$arr_idbrand = implode("|",$arr_idbrand);
+
+		$arr_idlist = explode("-",$_REQUEST['id_list']);
+		$arr_idlist = implode("|",$arr_idlist);
+
+		$arr_iddoday = explode("-",$_REQUEST['id_doday']);
+		$arr_iddoday = implode("|",$arr_iddoday);
+		// var_dump($arr_idbrand);
+		// var_dump($arr_idlist);
+
+		if ($arr_idbrand) {
+			$where .= " and id_brand REGEXP '" . $arr_idbrand . "'";
+		}else{
+			$where .= " and id_brand = '" . $pro_brand['id'] . "'";
+		}
+		if ($arr_idlist) {
+			$where .= " and id_list REGEXP '" . $arr_idlist . "'";
+		}
+		if ($arr_iddoday) {
+			$where .= " and id_doday_onmybike REGEXP '" . $arr_iddoday . "'";
+		}
 
 		$curPage = $get_page;
 		$per_page = 28;
@@ -399,8 +468,9 @@
         // } else {
         //     $orderby = "ORDER BY tenen ASC";
         // }
-		$orderby = "ORDER BY stt,id ASC";
+		$orderby = "ORDER BY stt ASC";
 		$sql = "select * from #_product where $where $orderby $limit";
+		// var_dump("select * from #_product a where $where $orderby $limit");
 		$product = $d->rawQuery($sql,$params);
 		$sqlNum = "select count(*) as 'num' from #_product where $where $orderby";
 		$count = $d->rawQueryOne($sqlNum,$params);
@@ -442,8 +512,31 @@
 
 		/* Lấy sản phẩm */
 		$where = "";
-		$where = "id_doday_onmybike REGEXP ('".$pro_doday['id']."') and type = ? and hienthi > 0";
+		$where = " type = ? and hienthi > 0";
 		$params = array($type);
+
+		$arr_idbrand = explode("-",$_REQUEST['id_brand']);
+		$arr_idbrand = implode("|",$arr_idbrand);
+
+		$arr_idlist = explode("-",$_REQUEST['id_list']);
+		$arr_idlist = implode("|",$arr_idlist);
+
+		$arr_iddoday = explode("-",$_REQUEST['id_doday']);
+		$arr_iddoday = implode("|",$arr_iddoday);
+		// var_dump($arr_idbrand);
+		// var_dump($arr_idlist);
+
+		if ($arr_idbrand) {
+			$where .= " and id_brand REGEXP '" . $arr_idbrand . "'";
+		}
+		if ($arr_idlist) {
+			$where .= " and id_list REGEXP '" . $arr_idlist . "'";
+		}
+		if ($arr_iddoday) {
+			$where .= " and id_doday_onmybike REGEXP '" . $arr_iddoday . "'";
+		}else{
+			$where .= " and id_doday_onmybike REGEXP ('".$pro_doday['id']."') ";
+		}
 
 		$curPage = $get_page;
 		$per_page = 28;
@@ -457,6 +550,7 @@
 		// var_dump($where);
 		$orderby = "ORDER BY stt,id ASC";
 		$sql = "select * from #_product where $where $orderby $limit";
+		var_dump($sql);
 		$product = $d->rawQuery($sql,$params);
 		$sqlNum = "select count(*) as 'num' from #_product where $where $orderby";
 		$count = $d->rawQueryOne($sqlNum,$params);
@@ -513,7 +607,7 @@
         // } else {
         //     $orderby = "ORDER BY tenen ASC";
         // }
-		$orderby = "ORDER BY stt,id ASC";
+		$orderby = "ORDER BY stt ASC";
 		$sql = "select * from #_product where $where $orderby $limit";
 		// var_dump($sql,$params);
 		$product = $d->rawQuery($sql,$params);
@@ -576,7 +670,7 @@
         // } else {
         //     $orderby = "ORDER BY tenen ASC";
         // }
-		$orderby = "ORDER BY stt,id ASC";
+		$orderby = "ORDER BY stt ASC";
 		$sql = "select * from #_product where $where $orderby $limit";
 		// var_dump($sql,$params);
 		$product = $d->rawQuery($sql,$params);
@@ -624,6 +718,27 @@
 		$where = "a.type = ? and a.hienthi > 0";
 		$params = array($type);
 
+		$arr_idbrand = explode("-",$_REQUEST['id_brand']);
+		$arr_idbrand = implode("|",$arr_idbrand);
+
+		$arr_idlist = explode("-",$_REQUEST['id_list']);
+		$arr_idlist = implode("|",$arr_idlist);
+
+		$arr_iddoday = explode("-",$_REQUEST['id_doday']);
+		$arr_iddoday = implode("|",$arr_iddoday);
+		// var_dump($arr_idbrand);
+		// var_dump($arr_idlist);
+
+		if ($arr_idbrand) {
+			$where .= " and id_brand REGEXP '" . $arr_idbrand . "'";
+		}
+		if ($arr_idlist) {
+			$where .= " and id_list REGEXP '" . $arr_idlist . "'";
+		}
+		if ($arr_iddoday) {
+			$where .= " and id_doday_onmybike REGEXP '" . $arr_iddoday . "'";
+		}
+
 		$curPage = $get_page;
 		$per_page = 28;
 		$startpoint = ($curPage * $per_page) - $per_page;
@@ -633,7 +748,7 @@
         // } else {
         //     $orderby = "ORDER BY tenen ASC";
         // }
-		$orderby = "ORDER BY stt,id ASC";
+		$orderby = "ORDER BY stt ASC";
 		$sql = "select * from #_product a where $where $orderby $limit";
 		$product = $d->rawQuery($sql,$params);
 		$sqlNum = "select count(*) as 'num' from #_product a where $where $orderby";

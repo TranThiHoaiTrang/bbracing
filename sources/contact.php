@@ -303,7 +303,8 @@ if (isset($_POST['submit-contact'])) {
 		$redirect_url = $config_base;
 		$stt = false;
 	}
-	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+	$message_botro = '';
+	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }
 
 /* SEO */

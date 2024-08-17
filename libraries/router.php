@@ -72,7 +72,7 @@ else if (!isset($_SESSION['lang']) && !isset($match['params']['lang'])) $_SESSIO
 $lang = $_SESSION['lang'];
 
 /* Slug lang */
-$sluglang = 'tenkhongdauvi';
+$sluglang = 'tenkhongdau'.$lang;
 
 /* SEO Lang */
 $seolang = "vi";
@@ -130,7 +130,7 @@ if ($com != 'tim-kiem' && $com != 'account' && $com != 'sitemap') {
 		$url_com = (isset($v['com']) && $v['com'] != '') ? $v['com'] : '';
 
 		if ($url_tbl != '' && $url_tbl != 'static' && $url_tbl != 'photo') {
-			$row = $d->rawQueryOne("select id from #_$url_tbl where $sluglang = ? and type = ? and hienthi > 0 limit 0,1", array($com, $url_type));
+			$row = $d->rawQueryOne("select id from #_$url_tbl where tenkhongdauvi = ? or tenkhongdauen = ? and type = ? and hienthi > 0 limit 0,1", array($com, $com, $url_type));
 
 			if ($row['id']) {
 				$_GET[$url_field] = $row['id'];
@@ -140,7 +140,7 @@ if ($com != 'tim-kiem' && $com != 'account' && $com != 'sitemap') {
 		}
 	}
 }
-
+// var_dump($com);
 /* Switch coms */
 switch ($com) {
 	case 'lien-he':

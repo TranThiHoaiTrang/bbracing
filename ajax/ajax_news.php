@@ -41,7 +41,7 @@ $pagingItems = $pagingAjax->getAllPageLinks($countItems, $pageLink, $eShow);
 <?php if ($countItems) { ?>
 	<div class="content-main w-clear  ">
 		<?php foreach ($items as $k => $v) { ?>
-			<a href="<?= $v['tenkhongdauvi'] ?>">
+			<a href="<?= $v['tenkhongdau'.$lang] ?>">
 				<div class="tintuc_news">
 					<div class="img_tintuc_news">
 						<img src="<?= THUMBS ?>/660x478x1/<?= UPLOAD_NEWS_L . $v['photo'] ?>" alt="" width="330" height="239">

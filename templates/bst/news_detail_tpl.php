@@ -37,7 +37,7 @@
         <div class="content-main w-clear " style="margin-bottom: 20px;">
             <div class="owl-carousel owl-theme owl-dv">
                 <?php foreach ($news as $k => $v) { ?>
-                    <a href="<?= $v['tenkhongdauvi'] ?>">
+                    <a href="<?= $v['tenkhongdau'.$lang] ?>">
                         <div class="tintuc">
                             <div class="img_tintuc">
                                 <img src="<?= THUMBS ?>/690x450x1/<?= UPLOAD_NEWS_L . $v['photo'] ?>" alt="">

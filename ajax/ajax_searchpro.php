@@ -11,7 +11,7 @@ $eShow = '.all_sp_search';
 $catpro = (isset($_POST['catpro']) && $_POST['catpro'] > 0) ? htmlspecialchars($_POST['catpro']) : 0;
 $dodaylistpro = (isset($_POST['dodaylistpro']) && $_POST['dodaylistpro'] > 0) ? htmlspecialchars($_POST['dodaylistpro']) : 0;
 
-
+// var_dump($_POST['idbrand_list']);
 if ($_POST['idbrand_list']) {
     $idbrand_list = (isset($_POST['idbrand_list']) && $_POST['idbrand_list'] > 0) ? htmlspecialchars($_POST['idbrand_list']) : 0;
 } else {
@@ -214,7 +214,7 @@ if ($order_pr) {
         $orderby = 'order by stt,id desc';
     }
 }
-
+// var_dump("select * from #_product where type = 'san-pham' and hienthi > 0 $id_brand $id_brand_list $id_list_list $id_doday $id_vehicles_list $id_doday_list $id_list $id_cat $orderby");
 $sql = "select * from #_product where type = 'san-pham' and hienthi > 0 $id_brand $id_brand_list $id_list_list $id_doday $id_vehicles_list $id_doday_list $id_list $id_cat $orderby";
 $sqlCache = $sql . " limit $start, $pagingAjax->perpage";
 $product = $d->rawQuery($sqlCache);
@@ -228,7 +228,7 @@ $pagingItems = $pagingAjax->getAllPageLinks($countItems, $pageLink, $eShow);
 $sanpham = $d->rawQuery("select * from #_product where type = 'san-pham' and hienthi > 0 $id_brand $id_brand_list $id_list_list $id_vehicles_list $id_doday_list $id_doday $id_list $id_cat order by stt,id desc");
 
 // $arr_rong = [];
-// var_dump("select * from #_product where type = 'san-pham' and hienthi > 0 $id_brand $id_brand_list $id_list_list $id_doday $id_list $id_cat $orderby");
+// var_dump($order_pr);
 // var_dump(count($product));
 
 ?>
@@ -240,7 +240,7 @@ $sanpham = $d->rawQuery("select * from #_product where type = 'san-pham' and hie
         ?>
             <div class="sanpham_moi_all">
                 <div class="img_sp_moi">
-                    <a href="<?= $v['tenkhongdauvi'] ?>">
+                    <a href="<?= $v['tenkhongdau'.$lang] ?>">
                         <img width="300" height="197" data-sizes="auto" src="<?= THUMBS ?>/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" data-src="<?= THUMBS ?>/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="" sizes="308px">
                         <?php if ($v['id_khuyenmai']) { ?>
                             <img class="plabel_img" src="<?= UPLOAD_NEWS_L . $khuyenmai_sanpham_one['icon'] ?>" style="max-height: 80px; max-width: 80px; background: transparent; vertical-align: middle;position: absolute;left: 0px;top: 0px;">
@@ -250,7 +250,7 @@ $sanpham = $d->rawQuery("select * from #_product where type = 'san-pham' and hie
                 <div class="all_content_sp_moi">
                     <div class="top_all_content_sp_moi">
                         <div class="brand_sp"><?= $brand_sp['ten' . $lang] ?></div>
-                        <a href="<?= $v['tenkhongdauvi'] ?>">
+                        <a href="<?= $v['tenkhongdau'.$lang] ?>">
                             <div class="name_sp_moi text-split"><?= $v['ten' . $lang] ?></div>
                         </a>
                     </div>

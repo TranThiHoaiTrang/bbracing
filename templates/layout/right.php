@@ -4,7 +4,7 @@
         <ul class="tread">
             <?php foreach($tintuc as $v) {?>
             <li>
-                <h3><a href="<?= $v['tenkhongdauvi'] ?>"><?=$v['ten'.$lang]?></a></h3>
+                <h3><a href="<?= $v['tenkhongdau'.$lang] ?>"><?=$v['ten'.$lang]?></a></h3>
             </li>
             <?php } ?>
         </ul>

@@ -2,6 +2,7 @@
 include "ajax_config.php";
 
 $idlist_list = (isset($_POST['idlist_list']) && $_POST['idlist_list'] > 0) ? htmlspecialchars($_POST['idlist_list']) : 0;
+$idbrand_list = (isset($_POST['idbrand_list']) && $_POST['idbrand_list'] > 0) ? htmlspecialchars($_POST['idbrand_list']) : 0;
 $listpr = (isset($_POST['listpr']) && $_POST['listpr'] > 0) ? htmlspecialchars($_POST['listpr']) : 0;
 
 if ($idlist_list) {
@@ -11,22 +12,23 @@ elseif ($listpr) {
 	$id__list = "and id_list REGEXP '" . $listpr . "'";
 }
 
-// if ($lang == 'vi') {
-// 	$orderby = 'order by tenvi ASC';
-// } else {
-// 	$orderby = 'order by tenen ASC';
-// }
-$orderby = 'order by stt,id desc';
+if ($lang == 'vi') {
+	$orderby = 'order by tenvi ASC';
+} else {
+	$orderby = 'order by tenen ASC';
+}
+// $orderby = 'order by stt,id desc';
 $sql = "select * from #_product_brand where type = 'san-pham' and hienthi > 0 $id__list $orderby";
 $product = $d->rawQuery($sql);
 
 ?>
 <?php
 if ($product) {
+	$idbrand = explode("|",$idbrand_list);
 	foreach ($product as $b) {
 ?>
-		<li class="check_brand" data-idbrand="<?= $b['id'] ?>">
-			<div class="icon_check_brand"><i class="far fa-square"></i></div>
+		<li class="check_brand <?= in_array($b['id'],$idbrand)  == true ? 'active' : '' ?>" data-idbrand="<?= $b['id'] ?>">
+			<div class="icon_check_brand" style="z-index: -1;"><i class="<?= in_array($b['id'],$idbrand)  == true ? 'far fa-check-square' : 'far fa-square' ?>"></i></div>
 			<span><?= $b['ten' . $lang] ?></span>
 		</li>
 <?php }

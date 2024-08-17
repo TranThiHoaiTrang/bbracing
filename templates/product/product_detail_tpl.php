@@ -344,7 +344,7 @@
                                         <div class="tab-pane fade" id="pills-<?= $all_option_list[$i]['tenkhongdauvi'] ?>" role="tabpanel" aria-labelledby="pills-<?= $all_option_list[$i]['tenkhongdauvi'] ?>-tab">
                                             <div class="all_sp_option_li">
                                                 <?php foreach ($all_sp_product as $sp) { ?>
-                                                    <a href="<?= $sp['tenkhongdauvi'] ?>" target="_blank">
+                                                    <a href="<?= $sp['tenkhongdau'.$lang] ?>" target="_blank">
                                                         <div class="sp_option_li <?= $sp['id']==$row_detail['id'] ? 'active':'' ?>">
                                                             <div class="tenvi_option"><?= $sp['ten' . $lang] ?></div>
                                                             <div class="all_gia_sp_option">
@@ -550,7 +550,7 @@
                                     <ul>
                                         <?php foreach ($tintucbrand as $v) { ?>
                                             <li>
-                                                <a href="<?= $v['tenkhongdauvi'] ?>">
+                                                <a href="<?= $v['tenkhongdau'.$lang] ?>">
                                                     <div class="name_tintuc_noibat">
                                                         <span><?= $v['ten' . $lang] ?></span>
                                                     </div>
@@ -565,7 +565,7 @@
                                                 if ($v['id'] != $ttb['id']) {
                                         ?>
                                                     <li>
-                                                        <a href="<?= $v['tenkhongdauvi'] ?>">
+                                                        <a href="<?= $v['tenkhongdau'.$lang] ?>">
                                                             <div class="name_tintuc_noibat tt_nb">
                                                                 <span><?= $v['ten' . $lang] ?></span>
                                                             </div>
@@ -652,7 +652,7 @@
                                 $onmybike_list = $d->rawQuery("select * from #_product_doday_list where type = 'san-pham' and id_doday = '" . $v['id'] . "' and id REGEXP '" . $row_detail['id_doday_list_onmybike'] . "' and hienthi > 0 order by stt,id desc");
                             ?>
                                 <li>
-                                    <a href="<?= $v['tenkhongdauvi'] ?>"><?= $v['ten' . $lang] ?></a>
+                                    <a href="<?= $v['tenkhongdau'.$lang] ?>"><?= $v['ten' . $lang] ?></a>
                                     <ul>
                                         <?php foreach ($onmybike_list as $vl) { ?>
                                             <li>

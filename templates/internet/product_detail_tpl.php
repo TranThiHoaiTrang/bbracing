@@ -304,7 +304,7 @@
         <div class="loadkhung_product1 mainkhung_product">
             <?php foreach($product as $k=>$v){?>
             <div class="sanpham_noibat">
-                <a href="<?= $v['tenkhongdauvi'] ?>">
+                <a href="<?= $v['tenkhongdau'.$lang] ?>">
                     <div class="cell">
                         <img src="<?=THUMBS?>/210x210x1/<?=UPLOAD_PRODUCT_L.$v['photo']?>" alt="<?= $v['ten'.$lang] ?>"
                             width="210px" height="210px">

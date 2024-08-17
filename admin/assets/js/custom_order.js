@@ -58,6 +58,9 @@ jQuery(function ($) {
       // sorting via ajax
       //   console.log();
       var p = $("#p_nhomdanhmuc").val();
+      var id_list = $("#id_list").val();
+      var id_cat = $("#id_cat").val();
+      var id_brand = $("#id_brand").val();
       var limit = $("#limit_nhomdanhmuc").val();
       var table = $("#table_nhomdanhmuc").val();
       ajaxurl = "ajax/ajax_stt_update.php";
@@ -68,9 +71,13 @@ jQuery(function ($) {
           order: $("#the-list").sortable("serialize"),
           limit:limit,
           p:p,
+          id_list:id_list,
+          id_cat:id_cat,
+          id_brand:id_brand,
           table:table,
         },
         function (response) {
+          
           ui.item.find(".my-checkbox input").show().siblings("img").remove();
           $(
             "table.table_nhomdanhmuc tbody th, table.table_nhomdanhmuc tbody td"

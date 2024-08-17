@@ -865,6 +865,7 @@ div.menu_mobi, div.menu_mobi_add { display: none;}
 		width: 100%;
 		height: 100vh !important;
 		object-fit: cover;
+		max-height: 520px;
 	}
 	.header_wrap.active .header-cachtop,.header_wrap.active .header_center{
 		display: none;
@@ -965,13 +966,16 @@ div.menu_mobi, div.menu_mobi_add { display: none;}
 	.sanpham_moi_all{width: calc(100% / 3 - 7.5px);}
 	.slideshow a img {
 		width: 100%;
-		height: 700px !important;
+		height: 520px !important;
 		object-fit: cover;
 	}
 	.select_tong{min-width: auto;}
 	.menu ul.menu_cap_cha li.menulicha>a { font-size: 15px; padding: 0px 10px; }
 }
 @media(max-width:1024px){
+	.all_box{
+		grid-template-columns: repeat(2, 1fr);
+	}
 	.innerTopCenter{color: #fff;}
 	.slogan_header_mobile{background: #000;}
 	.header-cachtop{z-index: 0;}
@@ -1253,6 +1257,7 @@ div.menu_mobi, div.menu_mobi_add { display: none;}
 
 }
 @media(max-width:900px){
+	
 	.al_user_detail{flex-direction: column;}
 	.user_detail_left,.user_detail_right{width: 100%;}
 	.all_center_right_pro_detail{grid-template-columns: repeat(1, 1fr);}
@@ -1280,9 +1285,37 @@ div.menu_mobi, div.menu_mobi_add { display: none;}
 	.load_product .sanpham_moi_all:nth-child(2n){margin-right: 0;}
 	.innerTopright {
 		margin-right: 10px;
+		gap: 0;
 	}
 }
 @media(max-width:769px){
+	.check_vehicles span {
+		width: 100%;
+		display: block;
+		padding-left: 20px;
+	}
+	.check_vehicles {
+		position: relative;
+		z-index: 2;
+	}
+	.ngonngu_a{width: 85px;}
+	.tien_te .ngonngu_a,.tien_te .ul_ngonngu{width: 70px;}
+	.all_danhmuc_con li{
+		position: relative;
+		margin-left: 20px;
+		z-index: 2;
+		padding:8px 0 8px 0;
+	}
+	.icon_check_brand{
+		z-index: -5 !important;
+		position: absolute;
+		left: 0;
+	}
+	.all_danhmuc_con li span{
+		width: 100%;
+		display: block;
+		padding-left: 20px;
+	}
 	.all_danhmuc_sp {
 		display: flex;
 		flex-wrap: wrap;
@@ -1403,6 +1436,9 @@ div.menu_mobi, div.menu_mobi_add { display: none;}
 		width: 100%;
 		height: 250px !important;
 		object-fit: cover;
+	}
+	.header-cachtop.header_an {
+		z-index: 9;
 	}
 	.header-cachtop, .header_center, .header-height{
 		left: 0;
@@ -1563,6 +1599,11 @@ div.menu_mobi, div.menu_mobi_add { display: none;}
     .right_dv{ width: 100%; min-height: 400px; }
 }
 @media(max-width:500px){
+	.all_gia_spmoi .batch{font-size: 12px;}
+	span.giadel{margin-left: 0;}
+	.all_gia_spmoi{
+		flex-wrap: wrap;
+	}
 	.mainkhung_product .img_sp_moi img {
 		height: 137px !important;
 	}

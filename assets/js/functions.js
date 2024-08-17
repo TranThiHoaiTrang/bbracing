@@ -168,23 +168,23 @@ function onSearchsp() {
   }
 
   // var url = "https://bbracing.vn/tim-kiem-sp";
-  // var url = "http://bbracing.local/tim-kiem-sp";
-  var url = "https://trang.hdweb24h.com/bbracing/tim-kiem-sp";
+  var url = "http://bbracing.local/tim-kiem-sp";
+  // var url = "https://trang.hdweb24h.com/bbracing/tim-kiem-sp";
   var urlObject = new URL(url);
 
   // console.log($(".select_tenxe").find('.double_click.active').data('id'));
   // var searchParams = new URLSearchParams(url.search);
-  console.log(id_doday);
-  console.log(id_size);
-  console.log(id_list);
-  console.log(id_brand);
+  // console.log(id_doday);
+  // console.log(id_size);
+  // console.log(id_list);
+  // console.log(id_brand);
 
   var kiemtra =
     id_doday == undefined &&
     id_size == undefined &&
     id_list == undefined &&
     id_brand == undefined;
-  console.log(kiemtra);
+  // console.log(kiemtra);
   if (kiemtra == true) {
     modalNotify(LANG["no_select"]);
     return false;
@@ -224,7 +224,7 @@ function goToByScroll(id) {
 function update_cart(id = 0, code = "", quantity = 1, lang = "", tigia = 0) {
   if (id) {
     var ship = $(".price-ship").val();
-    console.log(lang);
+    // console.log(lang);
     $.ajax({
       type: "POST",
       url: "ajax/ajax_cart.php",
@@ -491,35 +491,38 @@ function click_thuonghieusanpham_mobile(com = "", id = 0) {
   });
 }
 
-function locthuonghiesanpham(idbrand_list = "", brandpro = "") {
+function locthuonghiesanpham(idbrand_list = "", idlist_list = "", brandpro = "") {
+  // log
   idbrand_list = idbrand_list;
+  idlist_list = idlist_list;
   brandpro = brandpro;
   $.ajax({
     url: "ajax/ajax_getsearch_thuonghieu.php",
     type: "POST",
     dataType: "html",
-    data: { idbrand_list: idbrand_list, brandpro: brandpro },
+    data: { idbrand_list: idbrand_list, idlist_list:idlist_list, brandpro: brandpro },
     success: function (result) {
       if (result != "") {
         $(".all_danhmuc_con_catalog").html(result);
-        click_locthuonghiesanpham();
+        // click_locthuonghiesanpham();
       }
     },
   });
 }
 
-function locbrandsanpham(idlist_list = "", listpr = "") {
+function locbrandsanpham(idlist_list = "",idbrand_list = "", listpr = "") {
+  idbrand_list = idbrand_list;
   idlist_list = idlist_list;
   listpr = listpr;
   $.ajax({
     url: "ajax/ajax_getsearch_brand.php",
     type: "POST",
     dataType: "html",
-    data: { idlist_list: idlist_list, listpr: listpr },
+    data: {idbrand_list: idbrand_list, idlist_list: idlist_list, listpr: listpr },
     success: function (result) {
       if (result != "") {
         $(".all_danhmuc_con_catalog").html(result);
-        click_locthuonghiesanpham();
+        // click_locthuonghiesanpham();
       }
     },
   });

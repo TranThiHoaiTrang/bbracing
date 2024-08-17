@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/firebase/php-jwt" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/google/apiclient" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/google/apiclient-services" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/google/auth" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/guzzlehttp/promises" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/guzzlehttp/psr7" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/monolog/monolog" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/paragonie/constant_time_encoding" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/paragonie/random_compat" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/phpseclib/phpseclib" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/psr/cache" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/psr/http-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/psr/http-factory" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/psr/http-message" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/psr/log" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/ralouphie/getallheaders" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" vcs="Git" />
+  </component>
+</project>

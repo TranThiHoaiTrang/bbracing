@@ -192,3 +192,7 @@
 127.0.0.1()--query--tables(delete from table_user_online where time < 1722219873) (09:34:33 29/07/2024)
 127.0.0.1()--query--tables(delete from table_counter where id < '31281') (09:34:46 29/07/2024)
 127.0.0.1()--query--tables(delete from table_user_online where time < 1722219886) (09:34:46 29/07/2024)
+127.0.0.1()--query--tables(delete from table_counter where id < '31283') (14:14:06 29/07/2024)
+127.0.0.1()--query--tables(delete from table_user_online where time < 1722236647) (14:14:07 29/07/2024)
+127.0.0.1()--query--tables(delete from table_counter where id < '31283') (14:14:36 29/07/2024)
+127.0.0.1()--query--tables(delete from table_user_online where time < 1722236676) (14:14:36 29/07/2024)

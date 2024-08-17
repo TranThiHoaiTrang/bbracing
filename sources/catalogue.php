@@ -213,6 +213,27 @@
 		$where = "a.type = ? and a.hienthi > 0 and id_list > 0";
 		$params = array($type);
 
+		$arr_idbrand = explode("-",$_REQUEST['id_brand']);
+		$arr_idbrand = implode("|",$arr_idbrand);
+
+		$arr_idlist = explode("-",$_REQUEST['id_list']);
+		$arr_idlist = implode("|",$arr_idlist);
+
+		$arr_iddoday = explode("-",$_REQUEST['id_doday']);
+		$arr_iddoday = implode("|",$arr_iddoday);
+		// var_dump($arr_idbrand);
+		// var_dump($arr_idlist);
+
+		if ($arr_idbrand) {
+			$where .= " and id_brand REGEXP '" . $arr_idbrand . "'";
+		}
+		if ($arr_idlist) {
+			$where .= " and id_list REGEXP '" . $arr_idlist . "'";
+		}
+		if ($arr_iddoday) {
+			$where .= " and id_doday_onmybike REGEXP '" . $arr_iddoday . "'";
+		}
+
 		$curPage = $get_page;
 		$per_page = 28;
 		$startpoint = ($curPage * $per_page) - $per_page;

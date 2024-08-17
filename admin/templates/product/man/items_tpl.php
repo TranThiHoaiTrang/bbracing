@@ -94,11 +94,16 @@ foreach ($quyen_all as $a) {
                 <option value="100" <?= $_REQUEST['limit'] == '100' ? 'selected' : '' ?>>100 sản phẩm</option>
                 <option value="150" <?= $_REQUEST['limit'] == '150' ? 'selected' : '' ?>>150 sản phẩm</option>
                 <option value="200" <?= $_REQUEST['limit'] == '200' ? 'selected' : '' ?>>200 sản phẩm</option>
+                <option value="500" <?= $_REQUEST['limit'] == '500' ? 'selected' : '' ?>>500 sản phẩm</option>
+                <option value="1000" <?= $_REQUEST['limit'] == '1000' ? 'selected' : '' ?>>1000 sản phẩm</option>
             </select>
         </div>
         <div class="card-body table-responsive p-0">
             <input type="hidden" name="limit" id="limit_nhomdanhmuc" value="<?= !empty($_REQUEST['limit']) ? $_REQUEST['limit'] : $per_page ?>">
             <input type="hidden" name="p" id="p_nhomdanhmuc" value="<?= $_REQUEST['p'] ?>">
+            <input type="hidden" name="p" id="id_list" value="<?= $_REQUEST['id_list'] ?>">
+            <input type="hidden" name="p" id="id_cat" value="<?= $_REQUEST['id_cat'] ?>">
+            <input type="hidden" name="p" id="id_brand" value="<?= $_REQUEST['id_brand'] ?>">
             <input type="hidden" name="table" id="table_nhomdanhmuc" value="product">
             <table class="table table-hover table_nhomdanhmuc">
                 <thead>
@@ -109,7 +114,7 @@ foreach ($quyen_all as $a) {
                                 <label for="selectall-checkbox" class="custom-control-label"></label>
                             </div>
                         </th>
-                        <th class="align-middle text-center" width="10%">STT</th>
+                        <!-- <th class="align-middle text-center" width="10%">STT</th> -->
                         <?php if (isset($config['product'][$type]['show_images']) && $config['product'][$type]['show_images'] == true) { ?>
                             <th class="align-middle">Hình</th>
                         <?php } ?>
@@ -155,9 +160,9 @@ foreach ($quyen_all as $a) {
                                         <label for="select-checkbox-<?= $items[$i]['id'] ?>" class="custom-control-label"></label>
                                     </div>
                                 </td>
-                                <td class="align-middle">
+                                <!-- <td class="align-middle">
                                     <input type="number" class="form-control form-control-mini m-auto update-stt" min="0" value="<?= $items[$i]['stt'] ?>" data-id="<?= $items[$i]['id'] ?>" data-table="product" readonly>
-                                </td>
+                                </td> -->
                                 <?php if (isset($config['product'][$type]['show_images']) && $config['product'][$type]['show_images'] == true) { ?>
                                     <td class="align-middle">
                                         <a href="<?= $linkEdit ?><?= $linkID ?>&id=<?= $items[$i]['id'] ?>" title="<?= $items[$i]['tenvi'] ?>"><img class="rounded img-preview" onerror="src='assets/images/noimage.png'" src="<?= THUMBS ?>/<?= $config['product'][$type]['thumb'] ?>/<?= UPLOAD_PRODUCT_L . $items[$i]['photo'] ?>" alt="<?= $items[$i]['tenvi'] ?>"></a>

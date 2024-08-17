@@ -14,10 +14,10 @@
                             <div class="menu">
                                 <ul class="menu_cap_cha d-flex justify-content-center">
                                     <li class="menulicha menu_ngang">
-                                        <a href="brand" title="Our Brand">Our Brand</a>
-                                        <?php if ($brand) { ?>
+                                        <a href="brand" title="<?= $lang == 'en' ? 'Our Brand' : 'Thương hiệu' ?>"><?= $lang == 'en' ? 'Our Brand' : 'Thương hiệu' ?></a>
+                                        <?php if ($brand_order) { ?>
                                             <ul class="menu_cap_con">
-                                                <?php foreach ($brand as $c => $cat) { ?>
+                                                <?php foreach ($brand_order as $c => $cat) { ?>
                                                     <li>
                                                         <a title="<?= $cat['ten' . $lang] ?>" href="<?= $cat[$sluglang] ?>">
                                                             <span><?= $cat['ten' . $lang] ?></span>
@@ -49,14 +49,22 @@
                                         <?php } ?>
                                     </li>
                                     <li class="menulicha menu_ngang">
-                                        <a href="catalogue" title="Catalog">Catalog</a>
+                                        <a href="catalogue" title="<?= $lang == 'en' ? 'Catalog' : 'Danh mục sản phẩm' ?>"><?= $lang == 'en' ? 'Catalog' : 'Danh mục sản phẩm' ?></a>
                                         <?php if ($splistmenu) { ?>
                                             <?php
-                                            $nhomdanhmuc = $d->rawQuery("select * from #_product_nhomdanhmuc where type = 'san-pham' and hienthi > 0 order by stt,id desc ");
+                                            if ($lang == 'vi') {
+                                                $nhomdanhmuc = $d->rawQuery("select * from #_product_nhomdanhmuc where type = 'san-pham' and hienthi > 0 order by tenvi ASC ");
+                                            } else {
+                                                $nhomdanhmuc = $d->rawQuery("select * from #_product_nhomdanhmuc where type = 'san-pham' and hienthi > 0 order by tenen ASC ");
+                                            }
                                             ?>
                                             <ul class="menu_cap_con">
                                                 <?php for ($i = 0; $i < count($nhomdanhmuc); $i++) {
-                                                    $danhmuc_moi = $d->rawQuery("select * from #_product_list where type = 'san-pham' and id_nhomdanhmuc = '" . $nhomdanhmuc[$i]['id'] . "' and hienthi > 0 and noibat > 0 order by stt,id desc");
+                                                    if ($lang == 'vi') {
+                                                        $danhmuc_moi = $d->rawQuery("select * from #_product_list where type = 'san-pham' and id_nhomdanhmuc = '" . $nhomdanhmuc[$i]['id'] . "' and hienthi > 0 and noibat > 0 order by tenvi ASC");
+                                                    } else {
+                                                        $danhmuc_moi = $d->rawQuery("select * from #_product_list where type = 'san-pham' and id_nhomdanhmuc = '" . $nhomdanhmuc[$i]['id'] . "' and hienthi > 0 and noibat > 0 order by tenen ASC");
+                                                    }
                                                 ?>
                                                     <li>
                                                         <a href="<?= $nhomdanhmuc[$i]['tenkhongdauvi'] ?>" target="_blank" class="dm_cha_red"><?= $nhomdanhmuc[$i]['ten' . $lang] ?></a>
@@ -110,10 +118,10 @@
                                         <?php } ?>
                                     </li>
                                     <li class="menulicha menu_ngang">
-                                        <a href="vehicles" title="Vehicles">Vehicles</a>
-                                        <?php if ($vehicles) { ?>
+                                        <a href="vehicles" title="<?= $lang == 'en' ? 'Vehicles' : 'Thương hiệu xe' ?>"><?= $lang == 'en' ? 'Vehicles' : 'Thương hiệu xe' ?></a>
+                                        <?php if ($thuonghieuxe_order) { ?>
                                             <ul class="menu_cap_con">
-                                                <?php foreach ($vehicles as $c => $cat) { ?>
+                                                <?php foreach ($thuonghieuxe_order as $c => $cat) { ?>
                                                     <li>
                                                         <a title="<?= $cat['ten' . $lang] ?>" href="<?= $cat[$sluglang] ?>">
                                                             <span><?= $cat['ten' . $lang] ?></span>
@@ -145,7 +153,7 @@
                                         <?php } ?>
                                     </li>
                                     <li class="menulicha menu_ngang">
-                                        <div class="menu_span" title="<?= tintuc ?>"><?= tintuc ?></div>
+                                        <a href="tin-tuc" class="menu_span" title="<?= tintuc ?>"><?= tintuc ?></a>
                                         <?php if ($ttlistmenu) { ?>
                                             <ul class="menu_cap_con">
                                                 <?php foreach ($ttlistmenu as $c => $cat) { ?>
@@ -170,8 +178,8 @@
                                         <?php } ?>
                                     </li>
                                     <li class="menulicha menu_ngang">
-                                        <div class="menu_span" title="<?= lienhe ?>"><?= lienhe ?></div>
-                                        <ul class="menu_cap_con menu_Cap_con_lh">
+                                        <a href="officail" class="menu_span" title="<?= lienhe ?>"><?= lienhe ?></a>
+                                        <!-- <ul class="menu_cap_con menu_Cap_con_lh">
                                             <li>
                                                 <a href="officail" title="BBRacing" class="double_click" data-duongdan="officail">
                                                     <span>BBRacing</span>
@@ -182,11 +190,11 @@
                                                     <span><?= $lang == 'vi' ? 'Đăng ký đại lý' : 'Dealers' ?></span>
                                                 </a>
                                             </li>
-                                            <!-- <li>
+                                            <li>
                                                 <a title="<?= $lang == 'vi' ? 'Tra cứu bảo hành' : 'Warranty Check' ?>" href="bao-hanh">
                                                     <span><?= $lang == 'vi' ? 'Tra cứu bảo hành' : 'Warranty Check' ?></span>
                                                 </a>
-                                            </li> -->
+                                            </li>
                                         </ul>
                                         <div class="all_menu_brand_cap_con all_menu_brand_cap_con_tintuc">
                                             <ul class="brand_cap_con">
@@ -200,13 +208,16 @@
                                                         <span><?= $lang == 'vi' ? 'Đăng ký đại lý' : 'Dealers' ?></span>
                                                     </a>
                                                 </li>
-                                                <!-- <li>
+                                                <li>
                                                 <a title="<?= $lang == 'vi' ? 'Tra cứu bảo hành' : 'Warranty Check' ?>" href="bao-hanh">
                                                     <span><?= $lang == 'vi' ? 'Tra cứu bảo hành' : 'Warranty Check' ?></span>
                                                 </a>
-                                            </li> -->
+                                            </li>
                                             </ul>
-                                        </div>
+                                        </div> -->
+                                    </li>
+                                    <li class="menulicha menu_ngang">
+                                        <a href="account/dai-ly" class="menu_span" title="<?= $lang == 'vi' ? 'Đăng ký đại lý' : 'Dealers' ?>"><?= $lang == 'vi' ? 'Đăng ký đại lý' : 'Dealers' ?></a>
                                     </li>
                                 </ul>
                             </div>
@@ -216,16 +227,70 @@
                     <div class="all_inner_thongtin">
                         <div class="innerTopright">
                             <div class="ngon_ngu">
-                                <ul class="d-flex">
+                                <div class="all_ngonngu">
+                                    <?php if ($lang == 'vi') { ?>
+                                        <div class="ngonngu_a">
+                                            <img src="./assets/images/vi.jpg" alt="" width="14">
+                                            Vietnam
+                                            <i class="fas fa-angle-down"></i>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div class="ngonngu_a">
+                                            <img src="./assets/images/en.jpg" alt="" width="14">
+                                            English
+                                            <i class="fas fa-angle-down"></i>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                                <div class="ul_ngonngu">
+                                    <div class=" <?= $lang == 'vi' ? 'active' : '' ?>">
+                                        <a href="./ngon-ngu?lang=vi">
+                                            <img src="./assets/images/vi.jpg" alt="" width="14">
+                                            Vietnam
+                                        </a>
+                                    </div>
+                                    <div class=" <?= $lang == 'en' ? 'active' : '' ?>">
+                                        <a href="./ngon-ngu?lang=en">
+                                            <img src="./assets/images/en.jpg" alt="" width="14">
+                                            English
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- <ul class="d-flex">
                                     <li class=" <?= $lang == 'vi' ? 'active' : '' ?>"><a href="./ngon-ngu?lang=vi">VI</a></li>
                                     <li class=" <?= $lang == 'en' ? 'active' : '' ?>"><a href="./ngon-ngu?lang=en">EN</a></li>
-                                </ul>
+                                </ul> -->
                             </div>
                             <div class="ngon_ngu tien_te">
-                                <ul class="d-flex">
+                                <div class="all_ngonngu">
+                                    <?php if ($lang == 'vi') { ?>
+                                        <div class="ngonngu_a">
+                                            VND
+                                            <i class="fas fa-angle-down"></i>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div class="ngonngu_a">
+                                            EURO
+                                            <i class="fas fa-angle-down"></i>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                                <div class="ul_ngonngu">
+                                    <div class=" <?= $lang == 'vi' ? 'active' : '' ?>">
+                                        <a href="./ngon-ngu?lang=vi">
+                                            VND
+                                        </a>
+                                    </div>
+                                    <div class=" <?= $lang == 'en' ? 'active' : '' ?>">
+                                        <a href="./ngon-ngu?lang=en">
+                                            EURO
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- <ul class="d-flex">
                                     <li class=" <?= $lang == 'vi' ? 'active' : '' ?>"><a href="./ngon-ngu?lang=vi">VND</a></li>
                                     <li class=" <?= $lang == 'en' ? 'active' : '' ?>"><a href="./ngon-ngu?lang=en">EURO</a></li>
-                                </ul>
+                                </ul> -->
                             </div>
                         </div>
                     </div>
@@ -235,12 +300,12 @@
         </div>
         <div class="header_center header_an">
             <div class="d-flex flex-wrap align-items-center logo_header_mobile">
-                <?php if($deviceType=='mobile') {?>
+                <?php if ($deviceType == 'mobile') { ?>
                     <a class="header_logo" href=""><img onerror="this.src='<?= THUMBS ?>/0x100x2/assets/images/noimage.png';" src="<?= UPLOAD_PHOTO_L . $logo_mobile['photo'] ?>" /></a>
-                <?php }else{ ?>
+                <?php } else { ?>
                     <a class="header_logo" href=""><img onerror="this.src='<?= THUMBS ?>/0x100x2/assets/images/noimage.png';" src="<?= UPLOAD_PHOTO_L . $logo['photo'] ?>" /></a>
                 <?php } ?>
-                
+
                 <div class="frm_timkiem frm_timkiem_des">
                     <input type="text" class="input" id="keyword2" placeholder="<?= timkiem ?>" onkeypress="doEnter(event,'keyword2');">
                     <button type="submit" value="" class="btnSearch" onclick="onSearch('keyword2');">
@@ -456,18 +521,18 @@
                 <div class="select_tong select_loaisanpham">
                     <div class="option_select">
                         <span>
-                            <?= $lang == 'vi' ? 'Loại Sản Phẩm' : 'Product type' ?>
+                            <?= $lang == 'vi' ? 'Loại Sản Phẩm' : 'CATALOG ' ?>
                         </span>
                         <i class="fas fa-sort-down"></i>
                     </div>
 
                     <ul class="results__options results__options__danhmuc">
-                        <!-- <li class="double_click" data-duongdan="catalogue" data-id="0"><?= $lang == 'vi' ? 'Loại sản phẩm' : 'Product type' ?></li> -->
+                        <!-- <li class="double_click" data-duongdan="catalogue" data-id="0"><?= $lang == 'vi' ? 'Loại sản phẩm' : 'CATALOG' ?></li> -->
                         <?php foreach ($nhomdanhmuc_menu as $n) {
                             if ($lang == 'vi') {
-                                $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = ? and id_nhomdanhmuc = '" . $n['id'] . "' and hienthi > 0 and noibat > 0 order by stt,id desc", array('san-pham'));
+                                $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = ? and id_nhomdanhmuc = '" . $n['id'] . "' and hienthi > 0 and noibat > 0 order by tenvi ASC", array('san-pham'));
                             } else {
-                                $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = ? and id_nhomdanhmuc = '" . $n['id'] . "' and hienthi > 0 and noibat > 0 order by stt,id desc", array('san-pham'));
+                                $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = ? and id_nhomdanhmuc = '" . $n['id'] . "' and hienthi > 0 and noibat > 0 order by tenen ASC", array('san-pham'));
                             }
                         ?>
                             <li>
@@ -482,9 +547,9 @@
 
                         <?php
                         if ($lang == 'vi') {
-                            $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = ? and id_nhomdanhmuc = '" . $nhomdanhmuc_menu2['id'] . "' and hienthi > 0 and noibat > 0 order by stt,id desc", array('san-pham'));
+                            $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = ? and id_nhomdanhmuc = '" . $nhomdanhmuc_menu2['id'] . "' and hienthi > 0 and noibat > 0 order by tenvi ASC", array('san-pham'));
                         } else {
-                            $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = ? and id_nhomdanhmuc = '" . $nhomdanhmuc_menu2['id'] . "' and hienthi > 0 and noibat > 0 order by stt,id desc", array('san-pham'));
+                            $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = ? and id_nhomdanhmuc = '" . $nhomdanhmuc_menu2['id'] . "' and hienthi > 0 and noibat > 0 order by tenen ASC", array('san-pham'));
                         }
                         $col_danhmuc = ceil(count($sp_list_ndm) / 6);
                         ?>
@@ -512,14 +577,14 @@
                 <div class="select_tong select_thuonghieusanpham">
                     <div class="option_select">
                         <span>
-                            <?= $lang == 'vi' ? 'Thương Hiệu Sản Phẩm' : 'Product brands' ?>
+                            <?= $lang == 'vi' ? 'Thương Hiệu Sản Phẩm' : 'BRAND' ?>
                         </span>
                         <i class="fas fa-sort-down"></i>
                     </div>
 
                     <ul class="results__options results__options_li ul_select_thuonghieusanpham">
-                        <li class="double_click" data-duongdan="brand" data-id="0" data-idlist="0"><?= $lang == 'vi' ? 'Thương hiệu sản phẩm' : 'Product brands' ?></li>
-                        <?php foreach ($brand as $v) { ?>
+                        <li class="double_click" data-duongdan="brand" data-id="0" data-idlist="0"><?= $lang == 'vi' ? 'Thương hiệu sản phẩm' : 'BRAND' ?></li>
+                        <?php foreach ($brand_order as $v) { ?>
                             <li class="double_click" data-duongdan="<?= $v['tenkhongdauvi'] ?>" data-id="<?= $v['id'] ?>" data-idlist="<?= $v['id_list'] ?>"><?= $v['ten' . $lang] ?></li>
                         <?php } ?>
                     </ul>
@@ -528,29 +593,29 @@
                 <div class="select_tong select_thuonghieuxe">
                     <div class="option_select">
                         <span>
-                            <?= $lang == 'vi' ? 'Thương Hiệu Xe' : 'Vehicle brand' ?>
+                            <?= $lang == 'vi' ? 'Thương Hiệu Xe' : 'BIKE' ?>
                         </span>
                         <i class="fas fa-sort-down"></i>
                     </div>
 
                     <ul class="results__options results__options_li">
-                        <li class="double_click" data-duongdan="vehicles" data-id="0"><?= $lang == 'vi' ? 'Thương hiệu xe' : 'Vehicle brand' ?></li>
-                        <?php foreach ($thuonghieuxe as $v) { ?>
+                        <li class="double_click" data-duongdan="vehicles" data-id="0"><?= $lang == 'vi' ? 'Thương hiệu xe' : 'BIKE' ?></li>
+                        <?php foreach ($thuonghieuxe_order as $v) { ?>
                             <li class="double_click" data-duongdan="<?= $v['tenkhongdauvi'] ?>" data-id="<?= $v['id'] ?>"><?= $v['ten' . $lang] ?></li>
                         <?php } ?>
                     </ul>
                 </div>
 
                 <div class="select_tong select_tenxe">
-                    <!-- <option selected value="0"><?= $lang == 'vi' ? 'Tên xe' : 'Vehicle name' ?></option> -->
+                    <!-- <option selected value="0"><?= $lang == 'vi' ? 'Tên xe' : 'MODEL YEAR' ?></option> -->
                     <div class="option_select">
                         <span>
-                            <?= $lang == 'vi' ? 'Tên Xe' : 'Vehicle name' ?>
+                            <?= $lang == 'vi' ? 'Tên Xe' : 'MODEL YEAR' ?>
                         </span>
                         <i class="fas fa-sort-down"></i>
                     </div>
                     <ul class="results__options results__options_li">
-                        <li class="double_click" data-duongdan="vehicles" data-id="0"><?= $lang == 'vi' ? 'Tên xe' : 'Vehicle name' ?></li>
+                        <li class="double_click" data-duongdan="vehicles" data-id="0"><?= $lang == 'vi' ? 'Tên xe' : 'MODEL YEAR' ?></li>
                     </ul>
                 </div>
 

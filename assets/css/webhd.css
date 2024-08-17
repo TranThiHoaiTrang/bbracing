@@ -106,7 +106,7 @@ span.title-info-top i {
   transform: translateY(-50%);
 }
 .tien_te {
-  margin-left: 50px;
+  margin-left: 0;
 }
 .tien_te ul li:nth-child(2) {
   padding-right: 0;
@@ -301,6 +301,7 @@ button.search_sp {
   width: max-content;
   margin: auto;
 }
+.title_sp_nb a{color: #fff;}
 .title_sp_nb span:nth-child(2) {
   color: #ef1820;
 }
@@ -1140,6 +1141,7 @@ a.btn_sptheomau {
 }
 .tien_te i {
   font-weight: 300;
+  font-size: 10px;
 }
 .tien_te li.active i {
   font-weight: 500;
@@ -1692,6 +1694,8 @@ div#questions .strong {
 .all_danhmuc_con li {
   margin: 5px 0;
   padding: 8px 0 8px 20px;
+  margin-left: 20px;
+  position: relative;
 }
 .all_danhmuc_con li:hover,
 .all_danhmuc_con li.active {
@@ -2542,4 +2546,7 @@ span.count-cart {
 }
 .all_onmybike>ul>li:last-child{
   border: 1px solid #cdcdcd;
+}
+.modal-header .close{
+  padding: 5px !important;
 }

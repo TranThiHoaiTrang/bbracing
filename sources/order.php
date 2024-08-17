@@ -16,6 +16,8 @@ $httt = $d->rawQuery("select ten$lang, mota$lang, id from #_news where type = ? 
 
 if (isset($_POST['thanhtoan'])) {
 
+echo '<script>var thongbaodathang = true;</script>';
+
 	// if ($_POST['payments'] == 'paypal' || $_POST['payments'] == 'visa' || $_POST['payments'] == 'master_card') {
 
 	// 	// For test payments we want to enable the sandbox mode. If you want to put live
@@ -773,7 +775,7 @@ if (isset($_POST['thanhtoan'])) {
 		"dataEmail" => array(
 			"name" => $hoten,
 			"email" => $email,
-			"emailCC" => 'ecommerce@bbracing.vn'
+			// "emailCC" => 'ecommerce@bbracing.vn'
 		)
 	);
 	$subject = "Order information from " . $setting['ten' . $lang];
@@ -791,6 +793,7 @@ if (isset($_POST['thanhtoan'])) {
 	// $func->transfer($thongtin, $config_base);
 	$login_message = $thongtin;
 	$redirect_url = $config_base;
-	$stt = false;
-	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";</script>";
+	$stt = true;
+	$message_botro = '';
+	echo "<script>var loginMessage = " . json_encode($login_message) . "; var redirectUrl = " . json_encode($redirect_url) . ";var stt = " . json_encode($stt) . ";var message_botro = " . json_encode($message_botro) . ";</script>";
 }

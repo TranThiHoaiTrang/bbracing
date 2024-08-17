@@ -1263,7 +1263,7 @@
                     ?>
                         <div class="sanpham_lienket">
                             <div class="img_sp_lienket">
-                                <a href="<?= $v['tenkhongdauvi'] ?>">
+                                <a href="<?= $v['tenkhongdau'.$lang] ?>">
                                     <img width="300" height="197" data-sizes="auto" src="<?= WATERMARK ?>/product/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" data-src="<?= WATERMARK ?>/product/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="" sizes="308px">
                                     <?php if ($v['id_khuyenmai']) { ?>
                                         <img class="plabel_img" src="<?= UPLOAD_NEWS_L . $khuyenmai_sanpham_one['icon'] ?>" style="max-height: 50px; max-width: 50px; background: transparent; vertical-align: middle;position: absolute;left: 0px;top: 0px;">
@@ -1461,7 +1461,7 @@
                                     <?php } ?>
 
                                 </div>
-                                <a href="<?= $v['tenkhongdauvi'] ?>" class="btn_splk">
+                                <a href="<?= $v['tenkhongdau'.$lang] ?>" class="btn_splk">
                                     <?= $lang == 'vi' ? 'Chi tiết' : 'Details' ?>
                                     <i class="fas fa-angle-right"></i>
                                 </a>

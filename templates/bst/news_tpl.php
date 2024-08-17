@@ -16,7 +16,7 @@
             <div class="content-main w-clear loadkhung_product1">
                 <?php foreach ($news as $k => $v) { ?>
                     <div class="itemAlbums">
-                        <a href="<?= $v['tenkhongdauvi'] ?>" title="<?= $v['ten' . $lang] ?>">
+                        <a href="<?= $v['tenkhongdau'.$lang] ?>" title="<?= $v['ten' . $lang] ?>">
                             <img src="<?= THUMBS ?>/600x800x1/<?= UPLOAD_NEWS_L . $v['photo'] ?>" alt="<?= $v['ten' . $lang] ?>" width="400" height="533">
                             <span><?= $v['ten' . $lang] ?></span>
                         </a>

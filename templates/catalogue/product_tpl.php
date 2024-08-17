@@ -11,7 +11,11 @@ if ($pro_brand['icon']) {
 }
 
 
-$brand_list = $d->rawQuery("select * from #_product_brand where type = 'san-pham' and id_list REGEXP '" . $idl . "' and hienthi > 0 order by stt,id desc ");
+if ($lang == 'vi') {
+    $brand_list = $d->rawQuery("select * from #_product_brand where type = 'san-pham' and id_list REGEXP '" . $idl . "' and hienthi > 0 order by tenvi ASC ");
+} else {
+    $brand_list = $d->rawQuery("select * from #_product_brand where type = 'san-pham' and id_list REGEXP '" . $idl . "' and hienthi > 0 order by tenen ASC ");
+}
 ?>
 <div class="all_banner">
     <div class="fixwidth">
@@ -32,75 +36,88 @@ $brand_list = $d->rawQuery("select * from #_product_brand where type = 'san-pham
         <div class="all_sp_row">
             <div class="col_sp_1">
                 <div class="all_fillter all_fillter_des">
-                    <div class="all_hide_fillter">
-                        <div class="hide_fillter">
-                            <span><?= $lang == 'vi' ? 'Ẩn bộ lọc' : 'Hide fillter' ?> </span>
-                            <div class="icon_danhmuc">
-                                <i class="fas fa-minus"></i>
+                    <?php if ($deviceType != 'mobile') { ?>
+                        <div class="all_hide_fillter">
+                            <div class="hide_fillter">
+                                <span><?= $lang == 'vi' ? 'Ẩn bộ lọc' : 'Hide fillter' ?> </span>
+                                <div class="icon_danhmuc">
+                                    <i class="fas fa-minus"></i>
+                                </div>
+                            </div>
+                            <div class="all_fillter_danhmuc">
+                                <?php if (!empty($idl)) { ?>
+                                    <div class="all_brand_sp">
+                                        <?php foreach ($brand_list as $b) { ?>
+                                            <a href="<?= $b['tenkhongdauvi'] ?>">
+                                                <div class="title_brand">
+                                                    <span><?= $b['ten' . $lang] ?></span>
+                                                </div>
+                                            </a>
+                                        <?php } ?>
+                                    </div>
+                                <?php } elseif (!empty($idd)) { ?>
+                                    <div class="all_brand_sp">
+                                        <?php foreach ($thuonghieuxe_order as $b) { ?>
+                                            <a href="<?= $b['tenkhongdauvi'] ?>">
+                                                <div class="title_brand">
+                                                    <span><?= $b['ten' . $lang] ?></span>
+                                                </div>
+                                            </a>
+                                        <?php } ?>
+                                    </div>
+                                <?php } else { ?>
+
+                                    <div class="all_brand_sp">
+                                        <div class="title_brand">
+                                            <span>Catalog</span>
+                                            <div class="icon_danhmuc">
+                                                <i class="fas fa-minus"></i>
+                                            </div>
+                                        </div>
+                                        <div class="danhmuc_tong">
+                                            <ul class="all_danhmuc_con all_danhmuc_con_scroll">
+                                                <?php
+                                                $arr_idlist = explode("-", $_REQUEST['id_list']);
+                                                foreach ($splistmenu_order as $b) { ?>
+                                                    <li class="check_idlist check_idlist_dm <?= in_array($b['id'], $arr_idlist) ? 'active' : '' ?>" data-idlist="<?= $b['id'] ?>">
+                                                        <div class="icon_check_brand" style="z-index: -1;"><i class="<?= in_array($b['id'], $arr_idlist) ? 'far fa-check-square' : 'far fa-square' ?>"></i></div>
+                                                        <span><?= $b['ten' . $lang] ?></span>
+                                                    </li>
+                                                <?php } ?>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="all_brand_sp">
+                                        <div class="title_brand">
+                                            <span>Brand</span>
+                                            <div class="icon_danhmuc">
+                                                <i class="fas fa-minus"></i>
+                                            </div>
+                                        </div>
+                                        <div class="danhmuc_tong">
+                                            <ul class="all_danhmuc_con all_danhmuc_con_scroll all_danhmuc_con_catalog">
+                                                <?php
+                                                $arr_idbrand = explode("-", $_REQUEST['id_brand']);
+                                                if ($_REQUEST['id_list']) {
+                                                    $arr_idlist = explode("-", $_REQUEST['id_list']);
+                                                    $arr_idlist = implode("|", $arr_idlist);
+                                                    $brand_order = $d->rawQuery("select * from #_product_brand where type = 'san-pham' and id_list REGEXP '" . $arr_idlist . "' and hienthi > 0 order by tenvi ASC");
+                                                } else {
+                                                    $brand_order = $brand_order;
+                                                }
+                                                foreach ($brand_order as $b) { ?>
+                                                    <li class="check_brand <?= in_array($b['id'], $arr_idbrand) ? 'active' : '' ?> " data-idbrand="<?= $b['id'] ?>">
+                                                        <div class="icon_check_brand" style="z-index: -1;"><i class="<?= in_array($b['id'], $arr_idbrand) ? 'far fa-check-square' : 'far fa-square' ?>"></i></div>
+                                                        <span><?= $b['ten' . $lang] ?></span>
+                                                    </li>
+                                                <?php } ?>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </div>
-                        <div class="all_fillter_danhmuc">
-                            <?php if (!empty($idl)) { ?>
-                                <div class="all_brand_sp">
-                                    <?php foreach ($brand_list as $b) { ?>
-                                        <a href="<?= $b['tenkhongdauvi'] ?>">
-                                            <div class="title_brand">
-                                                <span><?= $b['ten' . $lang] ?></span>
-                                            </div>
-                                        </a>
-                                    <?php } ?>
-                                </div>
-                            <?php } elseif (!empty($idd)) { ?>
-                                <div class="all_brand_sp">
-                                    <?php foreach ($vehicles as $b) { ?>
-                                        <a href="<?= $b['tenkhongdauvi'] ?>">
-                                            <div class="title_brand">
-                                                <span><?= $b['ten' . $lang] ?></span>
-                                            </div>
-                                        </a>
-                                    <?php } ?>
-                                </div>
-                            <?php } else { ?>
-
-                                <div class="all_brand_sp">
-                                    <div class="title_brand">
-                                        <span>Catalog</span>
-                                        <div class="icon_danhmuc">
-                                            <i class="fas fa-minus"></i>
-                                        </div>
-                                    </div>
-                                    <div class="danhmuc_tong">
-                                        <ul class="all_danhmuc_con all_danhmuc_con_scroll">
-                                            <?php foreach ($splistmenu as $b) { ?>
-                                                <li class="check_idlist check_idlist_dm" data-idlist="<?= $b['id'] ?>">
-                                                    <div class="icon_check_brand"><i class="far fa-square"></i></div>
-                                                    <span><?= $b['ten' . $lang] ?></span>
-                                                </li>
-                                            <?php } ?>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="all_brand_sp">
-                                    <div class="title_brand">
-                                        <span>Brand</span>
-                                        <div class="icon_danhmuc">
-                                            <i class="fas fa-minus"></i>
-                                        </div>
-                                    </div>
-                                    <div class="danhmuc_tong">
-                                        <ul class="all_danhmuc_con all_danhmuc_con_scroll all_danhmuc_con_catalog">
-                                            <?php foreach ($brand as $b) { ?>
-                                                <li class="check_brand" data-idbrand="<?= $b['id'] ?>">
-                                                    <div class="icon_check_brand"><i class="far fa-square"></i></div>
-                                                    <span><?= $b['ten' . $lang] ?></span>
-                                                </li>
-                                            <?php } ?>
-                                        </ul>
-                                    </div>
-                                </div>
-                            <?php } ?>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
             <div class="col_sp_2">
@@ -140,102 +157,115 @@ $brand_list = $d->rawQuery("select * from #_product_brand where type = 'san-pham
                                 </span>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary btn_loc_sp" data-toggle="modal" data-target="#loc_sp">
-                            <span><?= $lang == 'vi' ? 'Lọc' : 'Filter' ?></span>
-                            <i class="fas fa-filter"></i>
-                        </button>
-                        <div class="modal fade" id="loc_sp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="padding: 6px 16px;">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true" style="font-size: 25px;">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="all_fillter_danhmuc">
-                                            <?php if (!empty($idl)) { ?>
-                                                <div class="all_brand_sp">
-                                                    <?php foreach ($brand_list as $b) { ?>
-                                                        <a href="<?= $b['tenkhongdauvi'] ?>">
-                                                            <div class="title_brand">
-                                                                <span><?= $b['ten' . $lang] ?></span>
-                                                            </div>
-                                                        </a>
-                                                    <?php } ?>
-                                                </div>
-                                            <?php } elseif (!empty($idd)) { ?>
-                                                <div class="all_brand_sp">
-                                                    <?php foreach ($vehicles as $b) { ?>
-                                                        <a href="<?= $b['tenkhongdauvi'] ?>">
-                                                            <div class="title_brand">
-                                                                <span><?= $b['ten' . $lang] ?></span>
-                                                            </div>
-                                                        </a>
-                                                    <?php } ?>
-                                                </div>
-                                            <?php } else { ?>
+                        <?php if ($deviceType == 'mobile') { ?>
+                            <button type="button" class="btn btn-primary btn_loc_sp" data-toggle="modal" data-target="#loc_sp">
+                                <span><?= $lang == 'vi' ? 'Lọc' : 'Filter' ?></span>
+                                <i class="fas fa-filter"></i>
+                            </button>
+                            <div class="modal fade" id="loc_sp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header" style="padding: 6px 16px;height: 36px;">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: fixed;right: 10px;margin: 0;top: 0;z-index: 3;opacity: 1;">
+                                                <span aria-hidden="true" style="font-size: 25px;">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="all_fillter_danhmuc">
+                                                <?php if (!empty($idl)) { ?>
+                                                    <div class="all_brand_sp">
+                                                        <?php foreach ($brand_list as $b) { ?>
+                                                            <a href="<?= $b['tenkhongdauvi'] ?>">
+                                                                <div class="title_brand">
+                                                                    <span><?= $b['ten' . $lang] ?></span>
+                                                                </div>
+                                                            </a>
+                                                        <?php } ?>
+                                                    </div>
+                                                <?php } elseif (!empty($idd)) { ?>
+                                                    <div class="all_brand_sp">
+                                                        <?php foreach ($thuonghieuxe_order as $b) { ?>
+                                                            <a href="<?= $b['tenkhongdauvi'] ?>">
+                                                                <div class="title_brand">
+                                                                    <span><?= $b['ten' . $lang] ?></span>
+                                                                </div>
+                                                            </a>
+                                                        <?php } ?>
+                                                    </div>
+                                                <?php } else { ?>
 
-                                                <div class="all_brand_sp">
-                                                    <div class="title_brand">
-                                                        <span>Catalog</span>
-                                                        <div class="icon_danhmuc">
-                                                            <i class="fas fa-minus"></i>
+                                                    <div class="all_brand_sp">
+                                                        <div class="title_brand">
+                                                            <span>Catalog</span>
+                                                            <div class="icon_danhmuc">
+                                                                <i class="fas fa-minus"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="danhmuc_tong">
+                                                            <ul class="all_danhmuc_con all_danhmuc_con_scroll">
+                                                                <?php
+                                                                $arr_idlist = explode("-", $_REQUEST['id_list']);
+                                                                foreach ($splistmenu_order as $b) { ?>
+                                                                    <li class="check_idlist check_idlist_dm <?= in_array($b['id'], $arr_idlist) ? 'active' : '' ?>" data-idlist="<?= $b['id'] ?>">
+                                                                        <div class="icon_check_brand" style="z-index: -1;"><i class="<?= in_array($b['id'], $arr_idlist) ? 'far fa-check-square' : 'far fa-square' ?>"></i></div>
+                                                                        <span><?= $b['ten' . $lang] ?></span>
+                                                                    </li>
+                                                                <?php } ?>
+                                                            </ul>
                                                         </div>
                                                     </div>
-                                                    <div class="danhmuc_tong">
-                                                        <ul class="all_danhmuc_con all_danhmuc_con_scroll">
-                                                            <?php foreach ($splistmenu as $b) { ?>
-                                                                <li class="check_idlist check_idlist_dm" data-idlist="<?= $b['id'] ?>">
-                                                                    <div class="icon_check_brand"><i class="far fa-square"></i></div>
-                                                                    <span><?= $b['ten' . $lang] ?></span>
-                                                                </li>
-                                                            <?php } ?>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="all_brand_sp">
-                                                    <div class="title_brand">
-                                                        <span>Brand</span>
-                                                        <div class="icon_danhmuc">
-                                                            <i class="fas fa-minus"></i>
+                                                    <div class="all_brand_sp">
+                                                        <div class="title_brand">
+                                                            <span>Brand</span>
+                                                            <div class="icon_danhmuc">
+                                                                <i class="fas fa-minus"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="danhmuc_tong">
+                                                            <ul class="all_danhmuc_con all_danhmuc_con_scroll all_danhmuc_con_catalog">
+                                                                <?php
+                                                                $arr_idbrand = explode("-", $_REQUEST['id_brand']);
+                                                                if ($_REQUEST['id_list']) {
+                                                                    $arr_idlist = explode("-", $_REQUEST['id_list']);
+                                                                    $arr_idlist = implode("|", $arr_idlist);
+                                                                    $brand_order = $d->rawQuery("select * from #_product_brand where type = 'san-pham' and id_list REGEXP '" . $arr_idlist . "' and hienthi > 0 order by tenvi ASC");
+                                                                } else {
+                                                                    $brand_order = $brand_order;
+                                                                }
+                                                                foreach ($brand_order as $b) { ?>
+                                                                    <li class="check_brand <?= in_array($b['id'], $arr_idbrand) ? 'active' : '' ?> " data-idbrand="<?= $b['id'] ?>">
+                                                                        <div class="icon_check_brand" style="z-index: -1;"><i class="<?= in_array($b['id'], $arr_idbrand) ? 'far fa-check-square' : 'far fa-square' ?>"></i></div>
+                                                                        <span><?= $b['ten' . $lang] ?></span>
+                                                                    </li>
+                                                                <?php } ?>
+                                                            </ul>
                                                         </div>
                                                     </div>
-                                                    <div class="danhmuc_tong">
-                                                        <ul class="all_danhmuc_con all_danhmuc_con_scroll all_danhmuc_con_catalog">
-                                                            <?php foreach ($brand as $b) { ?>
-                                                                <li class="check_brand" data-idbrand="<?= $b['id'] ?>">
-                                                                    <div class="icon_check_brand"><i class="far fa-square"></i></div>
-                                                                    <span><?= $b['ten' . $lang] ?></span>
-                                                                </li>
-                                                            <?php } ?>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="all_brand_sp">
-                                                    <div class="title_brand active">
-                                                        <span>Vehicles</span>
-                                                        <div class="icon_danhmuc">
-                                                            <i class="fas fa-plus"></i>
+                                                    <div class="all_brand_sp">
+                                                        <div class="title_brand active">
+                                                            <span>Vehicles</span>
+                                                            <div class="icon_danhmuc">
+                                                                <i class="fas fa-plus"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="danhmuc_tong" style="display: none;">
+                                                            <ul class="all_danhmuc_con all_danhmuc_con_scroll">
+                                                                <?php foreach ($thuonghieuxe_order as $b) { ?>
+                                                                    <li class="check_vehicles" data-idvehicles="<?= $b['id'] ?>">
+                                                                        <div class="icon_check_brand" style="z-index: 0;"><i class="far fa-square"></i></div>
+                                                                        <span><?= $b['ten' . $lang] ?></span>
+                                                                    </li>
+                                                                <?php } ?>
+                                                            </ul>
                                                         </div>
                                                     </div>
-                                                    <div class="danhmuc_tong" style="display: none;">
-                                                        <ul class="all_danhmuc_con all_danhmuc_con_scroll">
-                                                            <?php foreach ($vehicles as $b) { ?>
-                                                                <li class="check_vehicles" data-idvehicles="<?= $b['id'] ?>">
-                                                                    <div class="icon_check_brand"><i class="far fa-square"></i></div>
-                                                                    <span><?= $b['ten' . $lang] ?></span>
-                                                                </li>
-                                                            <?php } ?>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            <?php } ?>
+                                                <?php } ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
                 <?php if (isset($product) && count($product) > 0) { ?>
@@ -249,7 +279,7 @@ $brand_list = $d->rawQuery("select * from #_product_brand where type = 'san-pham
                                 <div class="sanpham_moi_all">
                                     <div class="img_sp_moi">
                                         <!-- <div class="owl-carousel owl-theme auto_imgsanpham"> -->
-                                        <a href="<?= $v['tenkhongdauvi'] ?>">
+                                        <a href="<?= $v['tenkhongdau' . $lang] ?>">
                                             <img width="300" height="197" data-sizes="auto" src="<?= THUMBS ?>/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" data-src="<?= THUMBS ?>/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="" sizes="308px">
                                             <?php if ($v['id_khuyenmai']) { ?>
                                                 <img class="plabel_img" src="<?= UPLOAD_NEWS_L . $khuyenmai_sanpham_one['icon'] ?>" style="max-height: 80px; max-width: 80px; background: transparent; vertical-align: middle;position: absolute;left: 0px;top: 0px;">
@@ -262,7 +292,7 @@ $brand_list = $d->rawQuery("select * from #_product_brand where type = 'san-pham
                                             <a href="<?= $brand_sp['tenkhongdauvi'] ?>">
                                                 <div class="brand_sp"><?= $brand_sp['ten' . $lang] ?></div>
                                             </a>
-                                            <a href="<?= $v['tenkhongdauvi'] ?>">
+                                            <a href="<?= $v['tenkhongdau' . $lang] ?>">
                                                 <div class="name_sp_moi text-split"><?= $v['ten' . $lang] ?></div>
                                             </a>
                                         </div>
@@ -407,7 +437,7 @@ $brand_list = $d->rawQuery("select * from #_product_brand where type = 'san-pham
                         <ul>
                             <?php foreach ($tintuc as $v) { ?>
                                 <li>
-                                    <a href="<?= $v['tenkhongdauvi'] ?>">
+                                    <a href="<?= $v['tenkhongdau' . $lang] ?>">
                                         <div class="name_tintuc_noibat">
                                             <span><?= $lang == 'vi' ? 'Tin mới nhất' : 'Latest news' ?>: </span>
                                             <span><?= $v['ten' . $lang] ?></span>

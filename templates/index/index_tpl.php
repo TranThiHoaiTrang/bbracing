@@ -1,3 +1,15 @@
+<?php
+// $all_sp = $d->rawQuery("select * from #_product where type = 'san-pham' and hienthi > 0 order by stt ASC");
+// // var_dump($all_sp);
+// $stt = 0;
+// foreach($all_sp as $v){
+//     $stt+=1;
+//     var_dump($stt);
+//     $d->rawQuery("update #_product set stt = '".$stt."' where type = 'san-pham' and id = '".$v['id']."'");
+//     // $stt++;
+// }
+?>
+
 <div class="wrap_slide_boloc" id="<?= $deviceType == 'mobile' ? 'banner_sp_moi_mobile' : 'banner_sp_moi' ?>">
     <div class="all_search_border all_search_border_mobile">
         <div class="all_search">
@@ -5,26 +17,26 @@
             <div class="select_tong select_loaisanpham select_mobile">
                 <div class="option_select" data-toggle="modal" data-target="#loc_loaisp_sp">
                     <span>
-                        <?= $lang == 'vi' ? 'Loại Sản Phẩm' : 'Product type' ?>
+                        <?= $lang == 'vi' ? 'Loại Sản Phẩm' : 'CATALOG ' ?>
                     </span>
                     <i class="fas fa-sort-down"></i>
                 </div>
                 <div class="modal fade" id="loc_loaisp_sp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
-                            <div class="modal-header" style="padding: 6px 16px;">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <div class="modal-header" style="padding: 6px 16px;height: 36px;z-index: 999;">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: fixed;right: 10px;margin: 0;top: 10px;z-index: 3;opacity: 1;">
                                     <span aria-hidden="true" style="font-size: 25px;">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body" style="padding: 0;">
                                 <ul class="results__options results__options__danhmuc" id="ul_select_loaisanpham">
-                                    <!-- <li class="double_click" data-duongdan="catalogue" data-id="0"><?= $lang == 'vi' ? 'Loại sản phẩm' : 'Product type' ?></li> -->
+                                    <!-- <li class="double_click" data-duongdan="catalogue" data-id="0"><?= $lang == 'vi' ? 'Loại sản phẩm' : 'CATALOG ' ?></li> -->
                                     <?php foreach ($nhomdanhmuc_menu as $n) {
                                         if ($lang == 'vi') {
-                                            $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = ? and id_nhomdanhmuc = '" . $n['id'] . "' and hienthi > 0 and noibat > 0 order by stt,id desc", array('san-pham'));
+                                            $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = ? and id_nhomdanhmuc = '" . $n['id'] . "' and hienthi > 0 and noibat > 0 order by tenvi ASC", array('san-pham'));
                                         } else {
-                                            $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = ? and id_nhomdanhmuc = '" . $n['id'] . "' and hienthi > 0 and noibat > 0 order by stt,id desc", array('san-pham'));
+                                            $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = ? and id_nhomdanhmuc = '" . $n['id'] . "' and hienthi > 0 and noibat > 0 order by tenen ASC", array('san-pham'));
                                         }
                                     ?>
                                         <li>
@@ -38,9 +50,9 @@
                                     <?php } ?>
                                     <?php
                                     if ($lang == 'vi') {
-                                        $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = ? and id_nhomdanhmuc = '" . $nhomdanhmuc_menu2['id'] . "' and hienthi > 0 and noibat > 0 order by stt,id desc", array('san-pham'));
+                                        $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = ? and id_nhomdanhmuc = '" . $nhomdanhmuc_menu2['id'] . "' and hienthi > 0 and noibat > 0 order by tenvi ASC", array('san-pham'));
                                     } else {
-                                        $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = ? and id_nhomdanhmuc = '" . $nhomdanhmuc_menu2['id'] . "' and hienthi > 0 and noibat > 0 order by stt,id desc", array('san-pham'));
+                                        $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = ? and id_nhomdanhmuc = '" . $nhomdanhmuc_menu2['id'] . "' and hienthi > 0 and noibat > 0 order by tenen ASC", array('san-pham'));
                                     }
                                     // $col_danhmuc = ceil(count($sp_list_ndm) / 6);
                                     ?>
@@ -72,22 +84,22 @@
             <div class="select_tong select_thuonghieusanpham select_mobile">
                 <div class="option_select" data-toggle="modal" data-target="#loc_thuonghieu_sp">
                     <span>
-                        <?= $lang == 'vi' ? 'Thương Hiệu Sản Phẩm' : 'Product brands' ?>
+                        <?= $lang == 'vi' ? 'Thương Hiệu Sản Phẩm' : 'BRAND' ?>
                     </span>
                     <i class="fas fa-sort-down"></i>
                 </div>
                 <div class="modal fade" id="loc_thuonghieu_sp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
-                            <div class="modal-header" style="padding: 6px 16px;">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true" style="font-size: 25px;">&times;</span>
-                                </button>
-                            </div>
+                        <div class="modal-header" style="padding: 6px 16px;height: 36px;z-index: 999;">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: fixed;right: 10px;margin: 0;top: 10px;z-index: 3;opacity: 1;">
+                                                <span aria-hidden="true" style="font-size: 25px;">&times;</span>
+                                            </button>
+                                        </div>
                             <div class="modal-body" style="padding: 0;">
                                 <ul class="results__options results__options_li" id="ul_select_thuonghieusanpham">
-                                    <li class="double_click" data-duongdan="brand" data-id="0" data-idlist="0"><?= $lang == 'vi' ? 'Thương hiệu sản phẩm' : 'Product brands' ?></li>
-                                    <?php foreach ($brand as $v) { ?>
+                                    <li class="double_click" data-duongdan="brand" data-id="0" data-idlist="0"><?= $lang == 'vi' ? 'Thương hiệu sản phẩm' : 'BRAND' ?></li>
+                                    <?php foreach ($brand_order as $v) { ?>
                                         <li class="double_click" data-duongdan="<?= $v['tenkhongdauvi'] ?>" data-id="<?= $v['id'] ?>" data-idlist="<?= $v['id_list'] ?>"><?= $v['ten' . $lang] ?></li>
                                     <?php } ?>
                                 </ul>
@@ -100,22 +112,22 @@
             <div class="select_tong select_thuonghieuxe select_mobile">
                 <div class="option_select" data-toggle="modal" data-target="#loc_thuonghieu_xe">
                     <span>
-                        <?= $lang == 'vi' ? 'Thương Hiệu Xe' : 'Vehicle brand' ?>
+                        <?= $lang == 'vi' ? 'Thương Hiệu Xe' : 'BIKE' ?>
                     </span>
                     <i class="fas fa-sort-down"></i>
                 </div>
                 <div class="modal fade" id="loc_thuonghieu_xe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
-                            <div class="modal-header" style="padding: 6px 16px;">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <div class="modal-header" style="padding: 6px 16px;height: 36px;z-index: 999;">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: fixed;right: 10px;margin: 0;top: 10px;z-index: 3;opacity: 1;">
                                     <span aria-hidden="true" style="font-size: 25px;">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body" style="padding: 0;">
                                 <ul class="results__options results__options_li" id="ul_select_thuonghieuxe">
-                                    <li class="double_click" data-duongdan="vehicles" data-id="0"><?= $lang == 'vi' ? 'Thương hiệu xe' : 'Vehicle brand' ?></li>
-                                    <?php foreach ($thuonghieuxe as $v) { ?>
+                                    <li class="double_click" data-duongdan="vehicles" data-id="0"><?= $lang == 'vi' ? 'Thương hiệu xe' : 'BIKE' ?></li>
+                                    <?php foreach ($thuonghieuxe_order as $v) { ?>
                                         <li class="double_click" data-duongdan="<?= $v['tenkhongdauvi'] ?>" data-id="<?= $v['id'] ?>"><?= $v['ten' . $lang] ?></li>
                                     <?php } ?>
                                 </ul>
@@ -126,24 +138,24 @@
             </div>
 
             <div class="select_tong select_tenxe select_mobile">
-                <!-- <option selected value="0"><?= $lang == 'vi' ? 'Tên xe' : 'Vehicle name' ?></option> -->
+                <!-- <option selected value="0"><?= $lang == 'vi' ? 'Tên xe' : 'MODEL YEAR' ?></option> -->
                 <div class="option_select" data-toggle="modal" data-target="#loc_tenxe">
                     <span>
-                        <?= $lang == 'vi' ? 'Tên Xe' : 'Vehicle name' ?>
+                        <?= $lang == 'vi' ? 'Tên Xe' : 'MODEL YEAR' ?>
                     </span>
                     <i class="fas fa-sort-down"></i>
                 </div>
                 <div class="modal fade" id="loc_tenxe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
-                            <div class="modal-header" style="padding: 6px 16px;">
+                            <div class="modal-header" style="padding: 6px 16px;height: 36px;z-index: 999;">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true" style="font-size: 25px;">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body" style="padding: 0;">
                                 <ul class="results__options results__options_li" id="ul_select_tenxe">
-                                    <li class="double_click" data-duongdan="vehicles" data-id="0"><?= $lang == 'vi' ? 'Tên xe' : 'Vehicle name' ?></li>
+                                    <li class="double_click" data-duongdan="vehicles" data-id="0"><?= $lang == 'vi' ? 'Tên xe' : 'MODEL YEAR' ?></li>
                                 </ul>
                             </div>
                         </div>
@@ -161,7 +173,7 @@
     </div>
 </div>
 <!-- </?php var_dump($_SESSION[$login_member]) ?> -->
-<div class="wrap_bottom wrap_bottom_sp" id="<?= $deviceType == 'mobile' ? 'banner_sp_moi_mobile' : 'banner_sp_moi' ?>">
+<div class="wrap_bottom wrap_bottom_sp" id="<?= $deviceType == 'mobile' ? 'banner_sp_moi_mobile' : 'banner_sp_moi' ?>" style="    padding-top: 10px;">
     <div class="all_wrap_bottom">
         <div class="wrap_center wrap_center_sp">
             <div class="fixwidth">
@@ -192,7 +204,7 @@
                                     foreach ($sanpham_list as $v) {
                                     ?>
                                         <div class="danhmuc_sp">
-                                            <a href="<?= $v['tenkhongdauvi'] ?>">
+                                            <a href="<?= $v['tenkhongdau' . $lang] ?>">
                                                 <img width="450" height="200" data-sizes="auto" src="<?= THUMBS ?>/450x200x2/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" data-src="<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="" sizes="200">
                                                 <div class="name_danhmuc_sp"><?= $v['ten' . $lang] ?></div>
                                             </a>
@@ -220,7 +232,7 @@
                                 foreach ($sanpham_list as $v) {
                                 ?>
                                     <div class="danhmuc_sp">
-                                        <a href="<?= $v['tenkhongdauvi'] ?>">
+                                        <a href="<?= $v['tenkhongdau' . $lang] ?>">
                                             <img width="465" height="269" data-sizes="auto" src="<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" data-src="<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="" sizes="308px">
                                             <div class="name_danhmuc_sp"><?= $v['ten' . $lang] ?></div>
                                         </a>
@@ -241,8 +253,10 @@
             <div class="all_title_sp_nb all_title_sp_khuyenmai_mobile">
                 <div class="title_sp_nb <?= $deviceType == 'mobile' ? 'title_sp_nb_mb' : 'title_sp_nb' ?>">
                     <p class="control-sp prev-sp transition"><i class="fas fa-angle-double-left"></i></p>
-                    <span><?= $lang == 'vi' ? 'Sản phẩm' : 'Product'  ?></span>
-                    <span class="<?= $deviceType == 'mobile' ? 'span_title_sp_nb' : '' ?>"><?= $lang == 'vi' ? 'Khuyến mãi' : 'Sale'  ?></span>
+                    <a href="san-pham-khuyenmai">
+                        <span><?= $lang == 'vi' ? 'Sản phẩm' : 'Product'  ?></span>
+                        <span class="<?= $deviceType == 'mobile' ? 'span_title_sp_nb' : '' ?>"><?= $lang == 'vi' ? 'Khuyến mãi' : 'Sale'  ?></span>
+                    </a>
                     <p class="control-sp next-sp transition"><i class="fas fa-angle-double-right"></i></i></p>
                 </div>
             </div>
@@ -273,7 +287,7 @@
 
                                     <div class="sanpham_moi_all">
                                         <div class="img_sp_moi">
-                                            <a href="<?= $v['tenkhongdauvi'] ?>"><img width="300" height="197" data-sizes="auto" src="<?= THUMBS ?>/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" data-src="<?= THUMBS ?>/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="" sizes="308px"></a>
+                                            <a href="<?= $v['tenkhongdau' . $lang] ?>"><img width="300" height="197" data-sizes="auto" src="<?= THUMBS ?>/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" data-src="<?= THUMBS ?>/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="" sizes="308px"></a>
                                             <?php if ($v['id_khuyenmai']) { ?>
                                                 <img class="plabel_img" src="<?= UPLOAD_NEWS_L . $khuyenmai_sanpham_one['icon'] ?>" style="max-height: 80px; max-width: 80px; background: transparent; vertical-align: middle;position: absolute;left: 0px;top: 0px;">
                                             <?php } ?>
@@ -283,7 +297,7 @@
                                                 <a href="<?= $brand_sp['tenkhongdauvi'] ?>">
                                                     <div class="brand_sp"><?= $brand_sp['ten' . $lang] ?></div>
                                                 </a>
-                                                <a href="<?= $v['tenkhongdauvi'] ?>">
+                                                <a href="<?= $v['tenkhongdau' . $lang] ?>">
                                                     <div class="name_sp_moi text-split"><?= $v['ten' . $lang] ?></div>
                                                 </a>
                                             </div>
@@ -401,7 +415,7 @@
                                     ?>
                                         <div class="sanpham_moi_all">
                                             <div class="img_sp_moi">
-                                                <a href="<?= $v['tenkhongdauvi'] ?>"><img width="300" height="197" data-sizes="auto" src="<?= THUMBS ?>/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" data-src="<?= THUMBS ?>/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="" sizes="308px"></a>
+                                                <a href="<?= $v['tenkhongdau' . $lang] ?>"><img width="300" height="197" data-sizes="auto" src="<?= THUMBS ?>/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" data-src="<?= THUMBS ?>/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="" sizes="308px"></a>
                                                 <?php if ($v['id_khuyenmai']) { ?>
                                                     <img class="plabel_img" src="<?= UPLOAD_NEWS_L . $khuyenmai_sanpham_one['icon'] ?>" style="max-height: 80px; max-width: 80px; background: transparent; vertical-align: middle;position: absolute;left: 0px;top: 0px;">
                                                 <?php } ?>
@@ -411,7 +425,7 @@
                                                 <a href="<?= $brand_sp['tenkhongdauvi'] ?>">
                                                     <div class="brand_sp"><?= $brand_sp['ten' . $lang] ?></div>
                                                 </a>
-                                                <a href="<?= $v['tenkhongdauvi'] ?>">
+                                                <a href="<?= $v['tenkhongdau' . $lang] ?>">
                                                     <div class="name_sp_moi text-split"><?= $v['ten' . $lang] ?></div>
                                                 </a>
                                                 <div class="masp_pro masp_pro_hethang">
@@ -546,7 +560,7 @@
                         <?php foreach ($event as $v) { ?>
                             <div class="event">
                                 <div class="img_event">
-                                    <a href="<?= $v['tenkhongdauvi'] ?>">
+                                    <a href="<?= $v['tenkhongdau' . $lang] ?>">
                                         <img src="<?= THUMBS ?>/800x325x1/<?= UPLOAD_NEWS_L . $v['photo'] ?>" alt="" width="600" height="244">
                                     </a>
                                 </div>
@@ -555,7 +569,7 @@
                                     <div class="name_event_news"><?= $v['ten' . $lang] ?></div>
                                     <div class="motangan_event_news"><?= htmlspecialchars_decode($v['motangan' . $lang]) ?></div>
                                     <div class="mota_event_news"><?= htmlspecialchars_decode($v['mota' . $lang]) ?></div>
-                                    <a href="<?= $v['tenkhongdauvi'] ?>">
+                                    <a href="<?= $v['tenkhongdau' . $lang] ?>">
                                         <div class="xemthem_sp">
                                             <span>Xem thêm</span>
                                             <img src="./assets/images/right.png" alt="">
@@ -594,7 +608,7 @@
 
                             <div class="tintuc">
                                 <div class="img_tintuc">
-                                    <a href="<?= $v['tenkhongdauvi'] ?>">
+                                    <a href="<?= $v['tenkhongdau' . $lang] ?>">
                                         <img src="<?= THUMBS ?>/660x478x1/<?= UPLOAD_NEWS_L . $v['photo'] ?>" alt="" width="330" height="239">
                                     </a>
                                 </div>
@@ -603,7 +617,7 @@
                                         <i class="fas fa-calendar-alt"></i>
                                         <span><?= date("d M Y", $v['ngaytao']) ?></span>
                                     </div>
-                                    <a href="<?= $v['tenkhongdauvi'] ?>">
+                                    <a href="<?= $v['tenkhongdau' . $lang] ?>">
                                         <div class="name_tintuc"><?= $v['ten' . $lang] ?></div>
                                     </a>
                                     <div class="mota_tintuc"><?= htmlspecialchars_decode($v['mota' . $lang]) ?></div>

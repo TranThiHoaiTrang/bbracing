@@ -10,7 +10,7 @@ if ($com == 'thuonghieuxe') {
         $row_size = $d->rawQuery("select * from #_product_doday_list where id_doday = ? and type = ? ", array($id, 'san-pham'));
     }
 ?>
-    <li class="double_click" data-duongdan="vehicles" data-id="0"><?= $lang == 'vi' ? 'Thương hiệu xe' : 'Vehicle brand' ?></li>
+    <li class="double_click" data-duongdan="vehicles" data-id="0"><?= $lang == 'vi' ? 'Tên xe' : 'MODEL YEAR' ?></li>
     <?php foreach ($row_size as $v) { ?>
         <li class="double_click" data-duongdan="<?= $v['tenkhongdauvi'] ?>" data-id="<?= $v['id'] ?>"><?= $v['ten' . $lang] ?></li>
     <?php } ?>
@@ -28,11 +28,16 @@ if ($com == 'thuonghieuxe') {
     }
 
 ?>
-    <li class="double_click" data-duongdan="brand" data-id="0">Thương hiệu sản phẩm</li>
+    <li class="double_click" data-duongdan="brand" data-id="0"><?= $lang == 'vi' ? 'Thương Hiệu Sản Phẩm' : 'BRAND' ?></li>
     <?php foreach ($row_brand as $v) { ?>
         <li class="double_click <?= ($v['id'] == $id_loaisanpham) ? 'active' : '' ?>" data-duongdan="<?= $v['tenkhongdauvi'] ?>" data-id="<?= $v['id'] ?>" data-idlist="<?= $v['id_list'] ?>"><?= $v['ten' . $lang] ?></li>
     <?php } ?>
 <?php } elseif ($com == 'thuonghieusanpham') {
+    if ($lang == 'vi') {
+        $nhomdanhmuc_menu = $d->rawQuery("select * from #_product_nhomdanhmuc where type = ? and hienthi > 0 order by tenvi ASC", array('san-pham'));
+    } else {
+        $nhomdanhmuc_menu = $d->rawQuery("select * from #_product_nhomdanhmuc where type = ? and hienthi > 0 order by tenen ASC", array('san-pham'));
+    }
     $nhomdanhmuc_menu = $d->rawQuery("select * from #_product_nhomdanhmuc where type = ? and hienthi > 0 order by stt,id desc", array('san-pham'));
     if ($id != 0) {
         $row_list = $d->rawQueryOne("select id_list from #_product_brand where id = ? and type = ? limit 0,1", array($id, 'san-pham'));
@@ -51,7 +56,12 @@ if ($com == 'thuonghieuxe') {
 ?>
     <!-- <li class="double_click" data-duongdan="catalogue" data-id="0">Loại sản phẩm</li> -->
     <?php foreach ($nhomdanhmuc_menu as $n) {
-        $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = 'san-pham' and id_nhomdanhmuc = '" . $n['id'] . "' and id_brand REGEXP (" . $id . ") and hienthi > 0 and noibat > 0 order by stt,id desc");
+        if ($lang == 'vi') {
+            $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = 'san-pham' and id_nhomdanhmuc = '" . $n['id'] . "' and id_brand REGEXP (" . $id . ") and hienthi > 0 and noibat > 0 order by tenvi ASC");
+        } else {
+            $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = 'san-pham' and id_nhomdanhmuc = '" . $n['id'] . "' and id_brand REGEXP (" . $id . ") and hienthi > 0 and noibat > 0 order by tenen ASC");
+        }
+        // $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = 'san-pham' and id_nhomdanhmuc = '" . $n['id'] . "' and id_brand REGEXP (" . $id . ") and hienthi > 0 and noibat > 0 order by stt,id desc");
     ?>
         <?php if (count($sp_list_ndm)) { ?>
             <li>

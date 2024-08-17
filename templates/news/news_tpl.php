@@ -19,7 +19,7 @@ $tintuc_list = $d->rawQuery("select * from #_news_list where type = ? and hienth
             <?php foreach ($news as $k => $v) { ?>
                 <div class="event">
                     <div class="img_event">
-                        <a href="<?= $v['tenkhongdauvi'] ?>">
+                        <a href="<?= $v['tenkhongdau'.$lang] ?>">
                             <img src="<?= THUMBS ?>/800x325x1/<?= UPLOAD_NEWS_L . $v['photo'] ?>" alt="" width="600" height="244">
                         </a>
                     </div>
@@ -27,7 +27,7 @@ $tintuc_list = $d->rawQuery("select * from #_news_list where type = ? and hienth
                         <div class="name_event_news"><?= $v['ten' . $lang] ?></div>
                         <div class="motangan_event_news"><?= htmlspecialchars_decode($v['motangan' . $lang]) ?></div>
                         <div class="mota_event_news"><?= htmlspecialchars_decode($v['mota' . $lang]) ?></div>
-                        <a href="<?= $v['tenkhongdauvi'] ?>">
+                        <a href="<?= $v['tenkhongdau'.$lang] ?>">
                             <div class="xemthem_sp">
                                 <span>Xem thêm</span>
                                 <img src="./assets/images/right.png" alt="">
@@ -93,12 +93,12 @@ $tintuc_list = $d->rawQuery("select * from #_news_list where type = ? and hienth
 
                                 <div class="tintuc_news">
                                     <div class="img_tintuc_news">
-                                        <a href="<?= $v['tenkhongdauvi'] ?>">
+                                        <a href="<?= $v['tenkhongdau'.$lang] ?>">
                                             <img src="<?= THUMBS ?>/660x478x1/<?= UPLOAD_NEWS_L . $v['photo'] ?>" alt="" width="330" height="239">
                                         </a>
                                     </div>
                                     <div class="content_news">
-                                        <a href="<?= $v['tenkhongdauvi'] ?>">
+                                        <a href="<?= $v['tenkhongdau'.$lang] ?>">
                                             <div class="name_news"><?= $v['ten' . $lang] ?></div>
                                         </a>
                                         <div class="time_tintuc">

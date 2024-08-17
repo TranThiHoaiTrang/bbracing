@@ -83,7 +83,7 @@ $tg_conlai = $thoigiancongno - $today;
                                 </div>
                                 <label for="basic-url">Email *</label>
                                 <div class="input-cart">
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="<?= !empty($row_detail['email']) ? $row_detail['email'] : ''  ?>" required />
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email"  value="<?= !empty($row_detail['email']) ? $row_detail['email'] : ''  ?>" required />
                                 </div>
                                 <label for="basic-url"><?= dienthoai ?> *</label>
                                     <div class="input-cart">
@@ -513,7 +513,7 @@ $tg_conlai = $thoigiancongno - $today;
                             <input type="hidden" class="kichthuoc-total" name="kichthuoc-total" value="<?= $cart->get_kichthuoc_total() ?>">
                         </div>
                         <div class="all_thanhtoan_cart">
-                            <input type="submit" class="btn-cart btn btn-lg btn-block" name="thanhtoan" value="<?= $lang == 'vi' ? 'Tôi xác nhận đơn hàng của tôi' : 'I confirm my order' ?>" disabled>
+                            <input type="submit" class="btn-cart btn btn-lg btn-block" name="thanhtoan" value="<?= $lang == 'vi' ? 'Tôi xác nhận đơn hàng của tôi' : 'I confirm my order' ?>">
                             <i class="fas fa-angle-double-right"></i>
                         </div>
 

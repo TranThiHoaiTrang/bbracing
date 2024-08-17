@@ -75,6 +75,7 @@ foreach ($quyen_all as $a) {
         <div class="card-body table-responsive p-0">
             <input type="hidden" name="limit" id="limit_nhomdanhmuc" value="<?= !empty($_REQUEST['limit']) ? $_REQUEST['limit'] : $per_page ?>">
             <input type="hidden" name="p" id="p_nhomdanhmuc" value="<?= $_REQUEST['p'] ?>">
+            <input type="hidden" name="p" id="id_list" value="<?= $_REQUEST['id_list'] ?>">
             <input type="hidden" name="table" id="table_nhomdanhmuc" value="product_cat">
             <table class="table table-hover table_nhomdanhmuc">
                 <thead>

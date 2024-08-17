@@ -41,12 +41,12 @@ $news = $d->rawQuery("select * from #_news where type = '$type' $where $id_brand
         <?php foreach ($news as $k => $v) { ?>
             <div class="tintuc_news">
                 <div class="img_tintuc_news">
-                    <a href="<?= $v['tenkhongdauvi'] ?>">
+                    <a href="<?= $v['tenkhongdau'.$lang] ?>">
                         <img src="<?= THUMBS ?>/660x478x1/<?= UPLOAD_NEWS_L . $v['photo'] ?>" alt="" width="330" height="239">
                     </a>
                 </div>
                 <div class="content_news">
-                    <a href="<?= $v['tenkhongdauvi'] ?>">
+                    <a href="<?= $v['tenkhongdau'.$lang] ?>">
                         <div class="name_news"><?= $v['ten' . $lang] ?></div>
                     </a>
                     <div class="time_tintuc">

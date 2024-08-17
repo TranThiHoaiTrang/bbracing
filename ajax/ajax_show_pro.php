@@ -164,12 +164,12 @@ if ($order_pr) {
     } elseif ($order_pr == 'giacao') {
         $orderby = "ORDER BY gia DESC";
     } else {
-        // if ($lang == 'vi') {
-        //     $orderby = "ORDER BY tenvi ASC";
-        // } else {
-        //     $orderby = "ORDER BY tenen ASC";
-        // }
-        $orderby = 'order by stt,id desc';
+        if ($lang == 'vi') {
+            $orderby = "ORDER BY tenvi ASC";
+        } else {
+            $orderby = "ORDER BY tenen ASC";
+        }
+        // $orderby = 'order by stt,id desc';
     }
 } elseif ($order_p) {
     if ($order_p == 'adenz') {
@@ -189,12 +189,12 @@ if ($order_pr) {
     } elseif ($order_p == 'giacao') {
         $orderby = "ORDER BY gia DESC";
     } else {
-        // if ($lang == 'vi') {
-        //     $orderby = "ORDER BY tenvi ASC";
-        // } else {
-        //     $orderby = "ORDER BY tenen ASC";
-        // }
-        $orderby = 'order by stt,id desc';
+        if ($lang == 'vi') {
+            $orderby = "ORDER BY tenvi ASC";
+        } else {
+            $orderby = "ORDER BY tenen ASC";
+        }
+        // $orderby = 'order by stt,id desc';
     }
 }
 

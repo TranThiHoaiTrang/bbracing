@@ -8,14 +8,14 @@ if (isset($_GET['keyword'])) {
 
 	if ($tukhoa) {
 
-		$product_test = $d->rawQuery("select * from #_product where  masp = '$tukhoa' order by stt,id desc ");
+		$product_test = $d->rawQuery("select * from #_product where  masp LIKE '$tukhoa%' order by stt,id desc ");
 
 		if ($product_test) {
 			$curPage = $get_page;
 			$per_page = 24;
 			$startpoint = ($curPage * $per_page) - $per_page;
 			$limit = " limit " . $startpoint . "," . $per_page;
-			$sql = "select * from #_product where  masp = '$tukhoa' order by stt,id desc $limit";
+			$sql = "select * from #_product where  masp LIKE '$tukhoa%' order by stt,id desc $limit";
 			$product = $d->rawQuery($sql);
 			// if($lang == 'vi'){
 			// 	$orderby = "order by tenvi ASC";
@@ -23,7 +23,7 @@ if (isset($_GET['keyword'])) {
 			// 	$orderby = "order by tenen ASC";
 			// }
 			$orderby = "ORDER BY stt,id ASC";
-			$sqlNum = "select count(*) as 'num' from #_product where masp = '$tukhoa' $orderby";
+			$sqlNum = "select count(*) as 'num' from #_product where masp LIKE '$tukhoa%' $orderby";
 			$count = $d->rawQueryOne($sqlNum, $params);
 			$total = $count['num'];
 			$url = $func->getCurrentPageURL();
@@ -32,21 +32,31 @@ if (isset($_GET['keyword'])) {
 			$where = ' ( 1=1';
 			$tukhoa_sp = preg_split("/[\s,-]+/", $tukhoa);
 
-			if($lang == 'vi'){
+			if ($lang == 'vi') {
 				foreach ($tukhoa_sp as $k) {
-					$tk_m = str_split($k, 3);
-					$where .= " and (tenvi LIKE CONCAT('%', '" . $k . "', '%'))";
-					// foreach ($tk_m as $tk) {
-					// 	$where .= " and (slugvi LIKE CONCAT('%', '" . $tk . "', '%'))";
+					$tk_m = str_split($k, 4);
+					// $all_tk = implode('|',$tk_m);
+					// var_dump($tukhoa_sp);
+					$where .= " and (slugvi LIKE CONCAT('%', '" . $k . "', '%'))";
+					// foreach($tk_m as $tk){
+					//     // var_dump($tk);
+					//     $where .= " and (slugvi LIKE CONCAT('%', '" . $tk . "', '%'))";
+					//     // $where .= " and (slugvi LIKE '%$tk%' or slugen LIKE '%$tk%')";
 					// }
+	
 				}
-			}else{
+			} else {
 				foreach ($tukhoa_sp as $k) {
-					$tk_m = str_split($k, 3);
-					$where .= " and (tenvi LIKE CONCAT('%', '" . $k . "', '%'))";
-					// foreach ($tk_m as $tk) {
-					// 	$where .= " and (slugen LIKE CONCAT('%', '" . $tk . "', '%'))";
+					$tk_m = str_split($k, 4);
+					// $all_tk = implode('|',$tk_m);
+					// var_dump($all_tk);
+					$where .= " and (slugen LIKE CONCAT('%', '" . $k . "', '%'))";
+					// foreach($tk_m as $tk){
+					//     // var_dump($tk);
+					//     $where .= " and (slugen LIKE CONCAT('%', '" . $tk . "', '%'))";
+					//     // $where .= " and (slugvi LIKE '%$tk%' or slugen LIKE '%$tk%')";
 					// }
+	
 				}
 			}
 			

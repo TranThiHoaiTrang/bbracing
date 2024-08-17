@@ -5,10 +5,10 @@ if (!empty($_POST["keyword"])) {
     $tukhoa = htmlspecialchars($_POST['keyword']);
     // $tukhoa = $func->url_title($tukhoa, ' ');
 
-    $product_test = $d->rawQuery("select * from #_product where  masp = '$tukhoa' order by stt,id desc ");
+    $product_test = $d->rawQuery("select * from #_product where  masp LIKE '$tukhoa%' order by stt,id desc ");
 
     if ($product_test) {
-        $where .= "  masp = '$tukhoa'";
+        $where .= "  masp LIKE '$tukhoa%'";
     } else {
         $where = ' ( 1=1';
         $tukhoa_sp = preg_split("/[\s,-]+/", $tukhoa);
@@ -18,7 +18,7 @@ if (!empty($_POST["keyword"])) {
                 $tk_m = str_split($k, 4);
                 // $all_tk = implode('|',$tk_m);
                 // var_dump($tukhoa_sp);
-                $where .= " and (tenvi LIKE CONCAT('%', '" . $k . "', '%'))";
+                $where .= " and (slugvi LIKE CONCAT('%', '" . $k . "', '%'))";
                 // foreach($tk_m as $tk){
                 //     // var_dump($tk);
                 //     $where .= " and (slugvi LIKE CONCAT('%', '" . $tk . "', '%'))";
@@ -31,7 +31,7 @@ if (!empty($_POST["keyword"])) {
                 $tk_m = str_split($k, 4);
                 // $all_tk = implode('|',$tk_m);
                 // var_dump($all_tk);
-                $where .= " and (tenen LIKE CONCAT('%', '" . $k . "', '%'))";
+                $where .= " and (slugen LIKE CONCAT('%', '" . $k . "', '%'))";
                 // foreach($tk_m as $tk){
                 //     // var_dump($tk);
                 //     $where .= " and (slugen LIKE CONCAT('%', '" . $tk . "', '%'))";
@@ -48,7 +48,7 @@ if (!empty($_POST["keyword"])) {
     // $where .= " or slugvi LIKE '%$tukhoa%' or slugen LIKE '%$tukhoa%'";
     // var_dump($where);
     $data = $d->rawQuery("select * from #_product where type = 'san-pham' and $where ");
-    // var_dump("select * from #_product where masp LIKE '%$tukhoa%' $where and type = 'san-pham'");
+    // var_dump("select * from #_product where type = 'san-pham' and $where ");
 
     if (!empty($data)) { ?>
         <ul id="country-list">
@@ -56,7 +56,7 @@ if (!empty($_POST["keyword"])) {
             foreach ($data as $v) {
             ?>
                 <li class="country_sanpham">
-                    <a href="<?= $v['tenkhongdauvi'] ?>">
+                    <a href="<?= $v['tenkhongdau'.$lang] ?>">
                         <!-- <img src="<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="<?= $v['ten' . $lang] ?>"> -->
                         <span><?= $v['ten' . $lang] ?></span>
                     </a>
