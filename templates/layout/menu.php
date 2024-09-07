@@ -14,7 +14,7 @@
                             <div class="menu">
                                 <ul class="menu_cap_cha d-flex justify-content-center">
                                     <li class="menulicha menu_ngang">
-                                        <a href="brand" title="<?= $lang == 'en' ? 'Our Brand' : 'Thương hiệu' ?>"><?= $lang == 'en' ? 'Our Brand' : 'Thương hiệu' ?></a>
+                                        <a href="brand" title="<?= $lang == 'en' ? 'Our Brand' : 'Thương Hiệu' ?>"><?= $lang == 'en' ? 'Our Brand' : 'Thương Hiệu' ?></a>
                                         <?php if ($brand_order) { ?>
                                             <ul class="menu_cap_con">
                                                 <?php foreach ($brand_order as $c => $cat) { ?>
@@ -49,7 +49,7 @@
                                         <?php } ?>
                                     </li>
                                     <li class="menulicha menu_ngang">
-                                        <a href="catalogue" title="<?= $lang == 'en' ? 'Catalog' : 'Danh mục sản phẩm' ?>"><?= $lang == 'en' ? 'Catalog' : 'Danh mục sản phẩm' ?></a>
+                                        <a href="catalogue" title="<?= $lang == 'en' ? 'Catalog' : 'Sản Phẩm' ?>"><?= $lang == 'en' ? 'Catalog' : 'Sản Phẩm' ?></a>
                                         <?php if ($splistmenu) { ?>
                                             <?php
                                             if ($lang == 'vi') {
@@ -118,7 +118,7 @@
                                         <?php } ?>
                                     </li>
                                     <li class="menulicha menu_ngang">
-                                        <a href="vehicles" title="<?= $lang == 'en' ? 'Vehicles' : 'Thương hiệu xe' ?>"><?= $lang == 'en' ? 'Vehicles' : 'Thương hiệu xe' ?></a>
+                                        <a href="vehicles" title="<?= $lang == 'en' ? 'Vehicles' : 'Hãng Xe' ?>"><?= $lang == 'en' ? 'Vehicles' : 'Hãng Xe' ?></a>
                                         <?php if ($thuonghieuxe_order) { ?>
                                             <ul class="menu_cap_con">
                                                 <?php foreach ($thuonghieuxe_order as $c => $cat) { ?>
@@ -217,7 +217,7 @@
                                         </div> -->
                                     </li>
                                     <li class="menulicha menu_ngang">
-                                        <a href="account/dai-ly" class="menu_span" title="<?= $lang == 'vi' ? 'Đăng ký đại lý' : 'Dealers' ?>"><?= $lang == 'vi' ? 'Đăng ký đại lý' : 'Dealers' ?></a>
+                                        <a href="account/dai-ly" class="menu_span" title="<?= $lang == 'vi' ? 'Đại Lý' : 'Dealers' ?>"><?= $lang == 'vi' ? 'Đại Lý' : 'Dealers' ?></a>
                                     </li>
                                 </ul>
                             </div>
@@ -501,6 +501,12 @@
                                 <span><?= $v['ten' . $lang] ?></span>
                             </div>
                         <?php } ?>
+                        <div class="innerTopCenter ">
+                            <span>
+                                <?= $slogan_chuong_trinh['ten' . $lang] ?>
+                                <a href="san-pham-khuyenmai"><?= $lang == 'vi' ? 'MUA NGAY' : 'BUY NOW' ?></a>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -512,6 +518,12 @@
                         <span><?= $v['ten' . $lang] ?></span>
                     </div>
                 <?php } ?>
+                <div class="innerTopCenter ">
+                    <span>
+                        <?= $slogan_chuong_trinh['ten' . $lang] ?>
+                        <a href="san-pham-khuyenmai"><?= $lang == 'vi' ? 'MUA NGAY' : 'BUY NOW' ?></a>
+                    </span>
+                </div>
             </div>
         </div>
 
@@ -521,13 +533,13 @@
                 <div class="select_tong select_loaisanpham">
                     <div class="option_select">
                         <span>
-                            <?= $lang == 'vi' ? 'Loại Sản Phẩm' : 'CATALOG ' ?>
+                            <?= $lang == 'vi' ? 'Sản Phẩm' : 'CATALOG ' ?>
                         </span>
                         <i class="fas fa-sort-down"></i>
                     </div>
 
                     <ul class="results__options results__options__danhmuc">
-                        <!-- <li class="double_click" data-duongdan="catalogue" data-id="0"><?= $lang == 'vi' ? 'Loại sản phẩm' : 'CATALOG' ?></li> -->
+                        <!-- <li class="double_click" data-duongdan="catalogue" data-id="0"><?= $lang == 'vi' ? 'Sản Phẩm' : 'CATALOG' ?></li> -->
                         <?php foreach ($nhomdanhmuc_menu as $n) {
                             if ($lang == 'vi') {
                                 $sp_list_ndm = $d->rawQuery("select * from #_product_list where type = ? and id_nhomdanhmuc = '" . $n['id'] . "' and hienthi > 0 and noibat > 0 order by tenvi ASC", array('san-pham'));
@@ -577,13 +589,13 @@
                 <div class="select_tong select_thuonghieusanpham">
                     <div class="option_select">
                         <span>
-                            <?= $lang == 'vi' ? 'Thương Hiệu Sản Phẩm' : 'BRAND' ?>
+                            <?= $lang == 'vi' ? 'Thương Hiệu' : 'BRAND' ?>
                         </span>
                         <i class="fas fa-sort-down"></i>
                     </div>
 
                     <ul class="results__options results__options_li ul_select_thuonghieusanpham">
-                        <li class="double_click" data-duongdan="brand" data-id="0" data-idlist="0"><?= $lang == 'vi' ? 'Thương hiệu sản phẩm' : 'BRAND' ?></li>
+                        <li class="double_click" data-duongdan="brand" data-id="0" data-idlist="0"><?= $lang == 'vi' ? 'Thương Hiệu' : 'BRAND' ?></li>
                         <?php foreach ($brand_order as $v) { ?>
                             <li class="double_click" data-duongdan="<?= $v['tenkhongdauvi'] ?>" data-id="<?= $v['id'] ?>" data-idlist="<?= $v['id_list'] ?>"><?= $v['ten' . $lang] ?></li>
                         <?php } ?>
@@ -593,13 +605,13 @@
                 <div class="select_tong select_thuonghieuxe">
                     <div class="option_select">
                         <span>
-                            <?= $lang == 'vi' ? 'Thương Hiệu Xe' : 'BIKE' ?>
+                            <?= $lang == 'vi' ? 'Hãng Xe' : 'BIKE' ?>
                         </span>
                         <i class="fas fa-sort-down"></i>
                     </div>
 
                     <ul class="results__options results__options_li">
-                        <li class="double_click" data-duongdan="vehicles" data-id="0"><?= $lang == 'vi' ? 'Thương hiệu xe' : 'BIKE' ?></li>
+                        <li class="double_click" data-duongdan="vehicles" data-id="0"><?= $lang == 'vi' ? 'Hãng Xe' : 'BIKE' ?></li>
                         <?php foreach ($thuonghieuxe_order as $v) { ?>
                             <li class="double_click" data-duongdan="<?= $v['tenkhongdauvi'] ?>" data-id="<?= $v['id'] ?>"><?= $v['ten' . $lang] ?></li>
                         <?php } ?>

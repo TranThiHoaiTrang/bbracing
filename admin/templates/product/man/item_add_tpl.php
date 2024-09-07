@@ -474,7 +474,16 @@ if ((isset($config['product'][$type]['dropdown']) && $config['product'][$type]['
 							<div class="form-group-category">
 								<?php if (isset($config['product'][$type]['option']) && $config['product'][$type]['option'] == true) { ?>
 									<div class="form-group ">
-										<label class="d-block" for="id_option">Option:</label>
+										<div class="d-flex align-items-center justify-content-between" for="id_option" style="margin-bottom: 10px;">
+											<span style="font-weight: 600;">Option:</span>
+											<div>
+												<label for="hienthi_option" class="d-inline-block align-middle mb-0 mr-2">Ẩn option:</label>
+												<div class="custom-control custom-checkbox d-inline-block align-middle">
+													<input type="checkbox" class="custom-control-input hienthi_option-checkbox" name="data[hienthi_option]" id="hienthi_option-checkbox" <?= (!isset($item['hienthi_option']) || $item['hienthi_option'] == 1) ? 'checked' : '' ?>>
+													<label for="hienthi_option-checkbox" class="custom-control-label"></label>
+												</div>
+											</div>
+										</div>
 										<?= get_option(@$item['id']) ?>
 									</div>
 								<?php } ?>
@@ -487,30 +496,32 @@ if ((isset($config['product'][$type]['dropdown']) && $config['product'][$type]['
 
 								<?php if (isset($item['id_option_list'])) { ?>
 									<?php
-									$temps_option = $d->rawQueryOne("select id_option_list, danhsach_option from #_product where id = ? and type = ? limit 0,1", array($id, $type));
+									$temps_option = $d->rawQueryOne("select id_option, id_option_list, danhsach_option from #_product where id = ? and type = ? limit 0,1", array($id, $type));
 									$all_id_option = explode('|', $temps_option['id_option_list']);
 									$all_danhsach_option = explode('/', $temps_option['danhsach_option']);
-									// var_dump(count($all_id_option));
-									for($i=0;$i<count($all_id_option);$i++) {
+									// var_dump($temps_option);
+									for ($i = 0; $i < count($all_id_option); $i++) {
 										$danhsach_option = explode(',', $all_danhsach_option[$i]);
 										$id_sp = explode('|', $danhsach_option[1]);
 
 										$where = '';
 										foreach ($id_sp as $tk) {
-											$where .= "'$tk'".',';
+											$where .= "'$tk'" . ',';
 										}
 
-										$all_sp_product = $d->rawQuery("select tenvi,id from #_product where id IN (".substr($where,0,-1).")");
+										$all_sp_product = $d->rawQuery("select tenvi,id from #_product where id IN (" . substr($where, 0, -1) . ")");
 										// var_dump("select tenvi,id from #_product where id REGEXP (".substr($where,0,-1).")");
 										$id_option_list = $all_id_option[$i];
-										$option_list = $d->rawQueryOne("select tenvi from #_product_option_list where id = '$id_option_list' limit 0,1");
+										$option_list = $d->rawQueryOne("select tenvi, id, id_option from #_product_option_list where id = '$id_option_list' limit 0,1");
+										$option_cha = $d->rawQueryOne("select tenvi from #_product_option where id = '".$option_list['id_option']."' limit 0,1");
+										// var_dump($option_list['id']);
 									?>
 										<div class="form-group ">
-											<label class="d-block" for="id_option_list">DS <?= $option_list['tenvi'] ?>:</label>
-											<select class="danhsach_option" name="danhsach_option_<?=$all_id_option[$i]['id']?>[]" class="form-control select2" multiple>
+											<label class="d-block" for="id_option_list">DS <?= $option_cha['tenvi'] ?> (<?= $option_list['tenvi'] ?>):</label>
+											<select class="danhsach_option" name="danhsach_option_<?= $option_list['id'] ?>[]" class="form-control select2" multiple>
 												<option value="0"> Chọn Sản phẩm</option>
-												<?php foreach($all_sp_product as $v) {?>
-												<option value="<?= $v['id'] ?>" selected="selected"> <?= $v['tenvi'] ?></option>
+												<?php foreach ($all_sp_product as $v) { ?>
+													<option value="<?= $v['id'] ?>" selected="selected"> <?= $v['tenvi'] ?></option>
 												<?php } ?>
 											</select>
 										</div>
@@ -553,10 +564,10 @@ if ((isset($config['product'][$type]['dropdown']) && $config['product'][$type]['
 									<label for="hienthi-checkbox" class="custom-control-label"></label>
 								</div>
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="stt" class="d-inline-block align-middle mb-0 mr-2">Số thứ tự:</label>
 								<input type="number" class="form-control form-control-mini d-inline-block align-middle" min="0" name="data[stt]" id="stt" placeholder="Số thứ tự" value="<?= isset($item['stt']) ? $item['stt'] : 1 ?>">
-							</div>
+							</div> -->
 							<div class="row">
 								<?php if (isset($config['product'][$type]['ma']) && $config['product'][$type]['ma'] == true) { ?>
 									<div class="form-group col-md-6">

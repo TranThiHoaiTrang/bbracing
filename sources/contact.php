@@ -271,7 +271,6 @@ if (isset($_POST['submit-contact'])) {
 					"dataEmail" => array(
 						"name" => $emailer->getEmail('tennguoigui'),
 						"email" => $emailer->getEmail('emailnguoigui'),
-						// "emailCC" => 'tranhoaitrang3001@gmail.com'
 						"emailCC" => 'ecommerce@bbracing.vn'
 					)
 				);

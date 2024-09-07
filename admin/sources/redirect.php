@@ -142,10 +142,11 @@
 		{
 			/* Lấy dữ liệu */
 			$row = $d->rawQueryOne("select * from #_redirections where id = ? limit 0,1",array($id));
-
+			
 			if($row['id'])
 			{
-				$d->rawQuery("delete from #_redirect where id = ?",array($id));
+				// var_dump($d->rawQuery("delete from #_redirections where id = ?",array($id)));die();
+				$d->rawQuery("delete from #_redirections where id = ?",array($id));
 
 				$func->redirect("index.php?com=redirect&act=man&type=".$type."&p=".$curPage);
 			}

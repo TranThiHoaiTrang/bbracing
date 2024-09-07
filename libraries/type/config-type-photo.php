@@ -166,6 +166,15 @@
     $config['photo']['photo_static'][$nametype]['thumb'] = '1600x437x1';
     $config['photo']['photo_static'][$nametype]['img_type'] = '.jpg|.gif|.png|.jpeg|.gif|.JPG|.PNG|.JPEG|.Png|.GIF';
 
+    $nametype = "banner_sp_khuyenmai";
+    $config['photo']['photo_static'][$nametype]['title_main'] = "Banner sản phẩm khuyến mãi";
+    $config['photo']['photo_static'][$nametype]['images'] = true;
+    $config['photo']['photo_static'][$nametype]['background'] = true;
+    $config['photo']['photo_static'][$nametype]['width'] = 1366;
+    $config['photo']['photo_static'][$nametype]['height'] = 350;
+    $config['photo']['photo_static'][$nametype]['thumb'] = '1366x350x1';
+    $config['photo']['photo_static'][$nametype]['img_type'] = '.jpg|.gif|.png|.jpeg|.gif|.JPG|.PNG|.JPEG|.Png|.GIF';
+
        /* Video */
     $nametype = "video";
     $config['photo']['photo_static'][$nametype]['title_main'] = "Video";

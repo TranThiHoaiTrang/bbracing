@@ -91,4 +91,9 @@
     $config['static'][$nametype]['width'] = 1600;
     $config['static'][$nametype]['height'] = 400; 
     $config['static'][$nametype]['img_type'] = '.jpg|.gif|.png|.jpeg|.gif|.JPG|.PNG|.JPEG|.Png|.GIF';
+
+    $nametype = "slogan_chuong_trinh";
+    $config['static'][$nametype]['title_main'] = "Slogan chương trình";
+    $config['static'][$nametype]['tieude'] = true;
+    $config['static'][$nametype]['link_youtube'] = false;
 ?>

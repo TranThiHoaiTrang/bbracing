@@ -1,7 +1,0 @@
-127.0.0.1()--query--tables(delete from table_user_online where time < 1716429815) (09:13:35 23/05/2024)
-127.0.0.1()--query--tables(delete from table_user_online where time < 1716429816) (09:13:36 23/05/2024)
-127.0.0.1(webhd)--query--tables(delete from table_user_online where time < 1716429935) (09:15:35 23/05/2024)
-127.0.0.1(webhd)--update--setting([["","id","=","18"]]) (09:15:42 23/05/2024)
-127.0.0.1(webhd)--query--tables(delete from table_seo where idmuc =  and com = 'setting' and act = 'capnhat' and type = 'setting') (09:15:42 23/05/2024)
-127.0.0.1(webhd)--insert--seo(8179) (09:15:42 23/05/2024)
-127.0.0.1(webhd)--query--tables(delete from table_user_online where time < 1716429944) (09:15:44 23/05/2024)

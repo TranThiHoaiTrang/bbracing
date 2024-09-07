@@ -117,13 +117,13 @@ if (isset($config['product'][$type]['images_brand']) && $config['product'][$type
                                 <?php } ?>
 
                                 <?php if (isset($config['product'][$type]['tigia_brand']) && $config['product'][$type]['tigia_brand'] == true) { ?>
-									<div class="form-group col-md-6">
-										<label class="d-block" for="tigia_brand">Tỉ giá brand:</label>
-										<div class="input-group">
-											<input type="text" class="form-control" name="data[tigia_brand]" id="tigia_brand" placeholder="Tỉ giá brand" value="<?= @$item['tigia_brand'] ?>">
-										</div>
-									</div>
-								<?php } ?>
+                                    <div class="form-group col-md-6">
+                                        <label class="d-block" for="tigia_brand">Tỉ giá brand:</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="data[tigia_brand]" id="tigia_brand" placeholder="Tỉ giá brand" value="<?= @$item['tigia_brand'] ?>">
+                                        </div>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -159,6 +159,12 @@ if (isset($config['product'][$type]['images_brand']) && $config['product'][$type
                                 include TEMPLATE . LAYOUT . "image1.php";
                                 ?>
                             </div>
+                        </div>
+                    <?php } ?>
+                    <?php if (isset($config['product'][$type]['link_banner_brand']) && $config['product'][$type]['link_banner_brand'] == true) { ?>
+                        <div class="form-group">
+                            <label for="link_banner">Link banner:</label>
+                            <input type="text" class="form-control for-seo" name="data[link_banner]" id="link_banner" placeholder="Link banner" value="<?= @$item['link_banner'] ?>">
                         </div>
                     <?php } ?>
                 </div>

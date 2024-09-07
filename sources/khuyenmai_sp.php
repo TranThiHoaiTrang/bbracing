@@ -152,21 +152,58 @@
 
 		/* Lấy tất cả sản phẩm */
 		$where = "";
-		$where = "a.type = ? and a.hienthi > 0  and a.hot > 0 ";
+		$where = "a.type = ? and a.hienthi > 0 ";
 		$params = array($type);
 
 		$curPage = $get_page;
 		$per_page = 25;
 		$startpoint = ($curPage * $per_page) - $per_page;
 		$limit = " limit ".$startpoint.",".$per_page;
-		// if ($lang == 'vi') {
-        //     $orderby = "ORDER BY tenvi ASC";
-        // } else {
-        //     $orderby = "ORDER BY tenen ASC";
-        // }
+
+		if ($lang == 'vi') {
+            $where .= " and giamoi > 0";
+        } else {
+            $where .= " and giadomoi > 0";
+        }
+		if($_REQUEST['id_brand']){
+			$arr_idbrand = explode("-",$_REQUEST['id_brand']);
+			$arr_idbrand = implode("|",$arr_idbrand);
+		}
+		if($_REQUEST['id_list']){
+			$arr_idlist = explode("-",$_REQUEST['id_list']);
+			$arr_idlist = implode("|",$arr_idlist);
+		}
+		if($_REQUEST['id_doday']){
+			$arr_iddoday = explode("-",$_REQUEST['id_doday']);
+			$arr_iddoday = implode("|",$arr_iddoday);
+		}
+		// var_dump($arr_idbrand);
+		// var_dump($arr_idlist);
+
+		if ($arr_idbrand) {
+			$where .= " and id_brand REGEXP '" . $arr_idbrand . "'";
+		}
+		if ($arr_idlist) {
+			$where .= " and id_list REGEXP '" . $arr_idlist . "'";
+		}
+		if ($arr_iddoday) {
+			$where .= " and id_doday_onmybike REGEXP '" . $arr_iddoday . "'";
+		}
+
 		$orderby = "ORDER BY stt,id ASC";
 		$sql = "select * from #_product a where $where $orderby $limit";
+		$sql_id_brand = "select DISTINCT id_brand from #_product a where $where $orderby $limit";
+		$sql_id_list = "select DISTINCT id_list from #_product a where $where $orderby $limit";
+		// var_dump($sql);
 		$product = $d->rawQuery($sql,$params);
+		$product_id_brand = $d->rawQuery($sql_id_brand,$params);
+		$product_id_list = $d->rawQuery($sql_id_list,$params);
+
+		$ar_id_brands = array_column($product_id_brand, 'id_brand');
+        $tong_ar_idbrand = implode('|', $ar_id_brands);
+
+		$ar_id_lists = array_column($product_id_list, 'id_list');
+
 		$sqlNum = "select count(*) as 'num' from #_product a where $where $orderby";
 		$count = $d->rawQueryOne($sqlNum,$params);
 		$total = $count['num'];

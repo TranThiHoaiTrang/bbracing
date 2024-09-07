@@ -133,6 +133,12 @@ if (isset($config['product'][$type]['images_doday']) && $config['product'][$type
                         </div>
                     </div>
                 <?php } ?>
+                <?php if (isset($config['product'][$type]['link_banner_doday']) && $config['product'][$type]['link_banner_doday'] == true) { ?>
+                    <div class="form-group">
+                        <label for="link_banner">Link banner:</label>
+                        <input type="text" class="form-control for-seo" name="data[link_banner]" id="link_banner" placeholder="Link banner" value="<?= @$item['link_banner'] ?>">
+                    </div>
+                <?php } ?>
             </div>
         </div>
         <?php if (isset($config['product'][$type]['seo_doday']) && $config['product'][$type]['seo_doday'] == true) { ?>

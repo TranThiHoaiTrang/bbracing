@@ -28,7 +28,7 @@ if ($com == 'thuonghieuxe') {
     }
 
 ?>
-    <li class="double_click" data-duongdan="brand" data-id="0"><?= $lang == 'vi' ? 'Thương Hiệu Sản Phẩm' : 'BRAND' ?></li>
+    <li class="double_click" data-duongdan="brand" data-id="0"><?= $lang == 'vi' ? 'Thương Hiệu' : 'BRAND' ?></li>
     <?php foreach ($row_brand as $v) { ?>
         <li class="double_click <?= ($v['id'] == $id_loaisanpham) ? 'active' : '' ?>" data-duongdan="<?= $v['tenkhongdauvi'] ?>" data-id="<?= $v['id'] ?>" data-idlist="<?= $v['id_list'] ?>"><?= $v['ten' . $lang] ?></li>
     <?php } ?>

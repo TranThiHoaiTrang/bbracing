@@ -11,33 +11,55 @@ if (!empty($_POST["keyword"])) {
         $where .= "  masp LIKE '$tukhoa%'";
     } else {
         $where = ' ( 1=1';
-        $tukhoa_sp = preg_split("/[\s,-]+/", $tukhoa);
+        $tukhoa_sp = $func->changeTitle($tukhoa);
+        // var_dump($tukhoa_sp);
+        $tukhoa_sp = preg_split("/[\s,-]+/", $tukhoa_sp);
+
 
         if ($lang == 'vi') {
-            foreach ($tukhoa_sp as $k) {
-                $tk_m = str_split($k, 4);
-                // $all_tk = implode('|',$tk_m);
-                // var_dump($tukhoa_sp);
-                $where .= " and (slugvi LIKE CONCAT('%', '" . $k . "', '%'))";
-                // foreach($tk_m as $tk){
-                //     // var_dump($tk);
-                //     $where .= " and (slugvi LIKE CONCAT('%', '" . $tk . "', '%'))";
-                //     // $where .= " and (slugvi LIKE '%$tk%' or slugen LIKE '%$tk%')";
-                // }
-
+            if (strpos($tukhoa, ' ') !== false) {
+                $i = 1;
+                foreach ($tukhoa_sp as $k) {
+                    $tk_m = str_split($k, 4);
+                    if ($i > 1) {
+                        $where .= " and (tenkhongdauvi LIKE CONCAT('%', '-" . $k . "', '%'))";
+                    } else {
+                        $where .= " and (tenkhongdauvi LIKE CONCAT('%', '" . $k . "-', '%'))";
+                    }
+                    $i++;
+                }
+            } else {
+                foreach ($tukhoa_sp as $k) {
+                    $tk_m = str_split($k, 4);
+                    $where .= " and (slugvi LIKE CONCAT('%', '" . $k . "', '%'))";
+                }
             }
         } else {
-            foreach ($tukhoa_sp as $k) {
-                $tk_m = str_split($k, 4);
-                // $all_tk = implode('|',$tk_m);
-                // var_dump($all_tk);
-                $where .= " and (slugen LIKE CONCAT('%', '" . $k . "', '%'))";
-                // foreach($tk_m as $tk){
-                //     // var_dump($tk);
-                //     $where .= " and (slugen LIKE CONCAT('%', '" . $tk . "', '%'))";
-                //     // $where .= " and (slugvi LIKE '%$tk%' or slugen LIKE '%$tk%')";
-                // }
 
+            if (strpos($tukhoa, ' ') !== false) {
+                $i = 1;
+                foreach ($tukhoa_sp as $k) {
+                    $tk_m = str_split($k, 4);
+                    if ($i > 1) {
+                        $where .= " and (tenkhongdauen LIKE CONCAT('%', '-" . $k . "', '%'))";
+                    } else {
+                        $where .= " and (tenkhongdauen LIKE CONCAT('%', '" . $k . "-', '%'))";
+                    }
+                    $i++;
+                }
+            } else {
+                foreach ($tukhoa_sp as $k) {
+                    $tk_m = str_split($k, 4);
+                    // $all_tk = implode('|',$tk_m);
+                    // var_dump($all_tk);
+                    $where .= " and (slugen LIKE CONCAT('%', '" . $k . "', '%'))";
+                    // foreach($tk_m as $tk){
+                    //     // var_dump($tk);
+                    //     $where .= " and (slugen LIKE CONCAT('%', '" . $tk . "', '%'))";
+                    //     // $where .= " and (slugvi LIKE '%$tk%' or slugen LIKE '%$tk%')";
+                    // }
+    
+                }
             }
         }
 
@@ -48,7 +70,7 @@ if (!empty($_POST["keyword"])) {
     // $where .= " or slugvi LIKE '%$tukhoa%' or slugen LIKE '%$tukhoa%'";
     // var_dump($where);
     $data = $d->rawQuery("select * from #_product where type = 'san-pham' and $where ");
-    // var_dump("select * from #_product where type = 'san-pham' and $where ");
+    //var_dump("select * from #_product where type = 'san-pham' and $where ");
 
     if (!empty($data)) { ?>
         <ul id="country-list">
@@ -56,7 +78,7 @@ if (!empty($_POST["keyword"])) {
             foreach ($data as $v) {
             ?>
                 <li class="country_sanpham">
-                    <a href="<?= $v['tenkhongdau'.$lang] ?>">
+                    <a href="<?= $v['tenkhongdau' . $lang] ?>">
                         <!-- <img src="<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="<?= $v['ten' . $lang] ?>"> -->
                         <span><?= $v['ten' . $lang] ?></span>
                     </a>

@@ -439,17 +439,70 @@
 	/* Save man */
 	function save_item()
 	{
-		global $d, $strUrl, $func, $curPage, $config, $com, $act, $type;
+		global $d, $config_base, $strUrl, $func, $curPage, $config, $com, $act, $type;
 
 		if(empty($_POST)) $func->transfer("Không nhận được dữ liệu", "index.php?com=product&act=man&type=".$type.$strUrl, false);
 
 		/* Post dữ liệu */
+$id = (isset($_POST['id'])) ? htmlspecialchars($_POST['id']) : 0;
 		$data = (isset($_POST['data'])) ? $_POST['data'] : null;
 		if($data)
 		{
 			foreach($data as $column => $value)
 			{
 				$data[$column] = htmlspecialchars($value);
+			}
+
+if($id){
+				$sp = $d->rawQueryOne("select * from #_product where id = '$id' and type = '$type'");
+				
+				if(($data['tenvi'] != $sp['tenvi']) || ($_POST['slugvi'] != $sp['tenkhongdauvi'])){
+					// var_dump("aaa");
+					$data_redirec['old_url'] = $config_base.$sp['tenkhongdauvi'];
+
+					if(isset($_POST['slugvi'])) $data_redirec['new_url'] = $config_base.$func->changeTitle(htmlspecialchars($_POST['slugvi']));
+					else $data_redirec['new_url'] = (isset($data['tenvi'])) ? $config_base.$func->changeTitle($data['tenvi']) : '';
+	
+					$data_redirec['ngaytao'] = time();
+					$data_redirec['hienthi'] = 1;
+
+					$sp_redirec_delete = $d->rawQuery("select * from #_redirections where new_url = '".$data_redirec['old_url']."'");
+					$sp_redirec = $d->rawQuery("select * from #_redirections where new_url = '".$data_redirec['new_url']."'");
+
+					if($sp_redirec_delete){
+						foreach($sp_redirec_delete as $v){
+							$d->rawQuery("delete from #_redirections where id = ?",array($v['id']));
+						}
+					}
+					if(isset($sp_redirec)){
+						// var_dump($sp_redirec);
+						$d->insert('redirections',$data_redirec);
+					}
+					
+				}
+				
+				if(($data['tenen'] != $sp['tenen']) || ($_POST['slugen'] != $sp['tenkhongdauen'])){
+					$data_redirec['old_url'] = $config_base.$sp['tenkhongdauen'];
+
+					if(isset($_POST['slugen'])) $data_redirec['new_url'] = $config_base.$func->changeTitle(htmlspecialchars($_POST['slugen']));
+					else $data_redirec['new_url'] = (isset($data['tenen'])) ? $config_base.$func->changeTitle($data['tenen']) : '';
+	
+					$data_redirec['ngaytao'] = time();
+					$data_redirec['hienthi'] = 1;
+					
+					$sp_redirec_delete = $d->rawQuery("select * from #_redirections where new_url = '".$data_redirec['old_url']."'");
+					$sp_redirec = $d->rawQuery("select * from #_redirections where new_url = '".$data_redirec['new_url']."'");
+
+					if($sp_redirec_delete){
+						foreach($sp_redirec_delete as $v){
+							$d->rawQuery("delete from #_redirections where id = ?",array($v['id']));
+						}
+					}
+					if(!isset($sp_redirec)){
+						$d->insert('redirections',$data_redirec);
+					}
+				}
+				
 			}
 
 			if(isset($_POST['slugvi'])) $data['tenkhongdauvi'] = $func->changeTitle(htmlspecialchars($_POST['slugvi']));
@@ -504,17 +557,19 @@
 			$data['soluongkho'] = (isset($data['soluongkho']) && $data['soluongkho'] != '') ? $data['soluongkho'] : 0;
 			$data['cothemua'] = (isset($data['cothemua']) && $data['cothemua'] != '') ? $data['cothemua'] : 0;
 			$data['hienthi'] = (isset($data['hienthi'])) ? 1 : 0;
+			$data['hienthi_option'] = (isset($data['hienthi_option'])) ? 1 : 0;
 			$data['type'] = $type;
 
 			
 			$all_sanpham = $d->rawQueryOne("select id_option_list from #_product where id = ? and type = ? limit 0,1", array($_POST['id'], $type));
 			$all_id_option = explode('|', $all_sanpham['id_option_list']);
+			// var_dump($all_id_option);
 			$result = '';
 			$danhsach_option = '';
 			foreach($all_id_option as $m){
 				$danhsach_option = $m.',';
 				$danhsach_option .= implode("|", $_POST['danhsach_option_'.$m]);
-				// var_dump($danhsach_option);
+				// var_dump($_POST['danhsach_option_'.$m]);
 				$result .= $danhsach_option.'/';
 			}
 			$result = substr($result,0,-1);
@@ -525,7 +580,7 @@
 
 		// var_dump($data);die();
 		$savehere = (isset($_POST['save-here'])) ? true : false;
-		$id = (isset($_POST['id'])) ? htmlspecialchars($_POST['id']) : 0;
+		
 
 		/* Post seo */
 		if(isset($config['product'][$type]['seo']) && $config['product'][$type]['seo'] == true)

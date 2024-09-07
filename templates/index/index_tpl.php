@@ -17,7 +17,7 @@
             <div class="select_tong select_loaisanpham select_mobile">
                 <div class="option_select" data-toggle="modal" data-target="#loc_loaisp_sp">
                     <span>
-                        <?= $lang == 'vi' ? 'Loại Sản Phẩm' : 'CATALOG ' ?>
+                        <?= $lang == 'vi' ? 'Sản Phẩm' : 'CATALOG ' ?>
                     </span>
                     <i class="fas fa-sort-down"></i>
                 </div>
@@ -84,21 +84,21 @@
             <div class="select_tong select_thuonghieusanpham select_mobile">
                 <div class="option_select" data-toggle="modal" data-target="#loc_thuonghieu_sp">
                     <span>
-                        <?= $lang == 'vi' ? 'Thương Hiệu Sản Phẩm' : 'BRAND' ?>
+                        <?= $lang == 'vi' ? 'Thương Hiệu' : 'BRAND' ?>
                     </span>
                     <i class="fas fa-sort-down"></i>
                 </div>
                 <div class="modal fade" id="loc_thuonghieu_sp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
-                        <div class="modal-header" style="padding: 6px 16px;height: 36px;z-index: 999;">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: fixed;right: 10px;margin: 0;top: 10px;z-index: 3;opacity: 1;">
-                                                <span aria-hidden="true" style="font-size: 25px;">&times;</span>
-                                            </button>
-                                        </div>
+                            <div class="modal-header" style="padding: 6px 16px;height: 36px;z-index: 999;">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: fixed;right: 10px;margin: 0;top: 10px;z-index: 3;opacity: 1;">
+                                    <span aria-hidden="true" style="font-size: 25px;">&times;</span>
+                                </button>
+                            </div>
                             <div class="modal-body" style="padding: 0;">
                                 <ul class="results__options results__options_li" id="ul_select_thuonghieusanpham">
-                                    <li class="double_click" data-duongdan="brand" data-id="0" data-idlist="0"><?= $lang == 'vi' ? 'Thương hiệu sản phẩm' : 'BRAND' ?></li>
+                                    <li class="double_click" data-duongdan="brand" data-id="0" data-idlist="0"><?= $lang == 'vi' ? 'Thương Hiệu' : 'BRAND' ?></li>
                                     <?php foreach ($brand_order as $v) { ?>
                                         <li class="double_click" data-duongdan="<?= $v['tenkhongdauvi'] ?>" data-id="<?= $v['id'] ?>" data-idlist="<?= $v['id_list'] ?>"><?= $v['ten' . $lang] ?></li>
                                     <?php } ?>
@@ -112,7 +112,7 @@
             <div class="select_tong select_thuonghieuxe select_mobile">
                 <div class="option_select" data-toggle="modal" data-target="#loc_thuonghieu_xe">
                     <span>
-                        <?= $lang == 'vi' ? 'Thương Hiệu Xe' : 'BIKE' ?>
+                        <?= $lang == 'vi' ? 'Hãng Xe' : 'BIKE' ?>
                     </span>
                     <i class="fas fa-sort-down"></i>
                 </div>
@@ -126,7 +126,7 @@
                             </div>
                             <div class="modal-body" style="padding: 0;">
                                 <ul class="results__options results__options_li" id="ul_select_thuonghieuxe">
-                                    <li class="double_click" data-duongdan="vehicles" data-id="0"><?= $lang == 'vi' ? 'Thương hiệu xe' : 'BIKE' ?></li>
+                                    <li class="double_click" data-duongdan="vehicles" data-id="0"><?= $lang == 'vi' ? 'Hãng xe' : 'BIKE' ?></li>
                                     <?php foreach ($thuonghieuxe_order as $v) { ?>
                                         <li class="double_click" data-duongdan="<?= $v['tenkhongdauvi'] ?>" data-id="<?= $v['id'] ?>"><?= $v['ten' . $lang] ?></li>
                                     <?php } ?>
@@ -173,7 +173,7 @@
     </div>
 </div>
 <!-- </?php var_dump($_SESSION[$login_member]) ?> -->
-<div class="wrap_bottom wrap_bottom_sp" id="<?= $deviceType == 'mobile' ? 'banner_sp_moi_mobile' : 'banner_sp_moi' ?>" style="    padding-top: 10px;">
+<!-- <div class="wrap_bottom wrap_bottom_sp" id="<?= $deviceType == 'mobile' ? 'banner_sp_moi_mobile' : 'banner_sp_moi' ?>" style="    padding-top: 10px;">
     <div class="all_wrap_bottom">
         <div class="wrap_center wrap_center_sp">
             <div class="fixwidth">
@@ -245,9 +245,9 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
-<div class="wrap_bottom" id="<?= $deviceType == 'mobile' ? 'banner_sp_moi_mobile' : 'banner_sp_moi' ?>" style="padding-top: 0;">
+<div class="wrap_bottom" id="<?= $deviceType == 'mobile' ? 'banner_sp_moi_mobile' : 'banner_sp_moi' ?>" style="">
     <div class="all_wrap_bottom">
         <div class="fixwidth">
             <div class="all_title_sp_nb all_title_sp_khuyenmai_mobile">
@@ -261,20 +261,20 @@
                 </div>
             </div>
             <div class="row wrap_center wrap_center_km">
-                <div class="col-md-4 col_title_sp">
+                <div class="col-md-3 col_title_sp">
                     <div class="all_title_sp_khuyenmai">
                         <div class="title_sp_km">
-                            <span><?= $lang == 'vi' ? 'Sản phẩm' : 'Product'  ?></span>
-                            <span><?= $lang == 'vi' ? 'Khuyến mãi' : 'Sale'  ?></span>
+                            <span><?= $lang == 'vi' ? 'Sản phẩm' : 'PROMOTIONAL'  ?></span>
+                            <span><?= $lang == 'vi' ? 'Khuyến mãi' : 'PRODUCTS'  ?></span>
                         </div>
                         <div class="mota_spkm"><?= htmlspecialchars_decode($sp_khuyenmai['mota' . $lang]) ?></div>
                         <div class="noidung_spkm"><?= htmlspecialchars_decode($sp_khuyenmai['noidung' . $lang]) ?></div>
                         <div class="xemtatca_sp">
-                            <a href="san-pham-khuyenmai"><?= $lang == 'vi' ? 'Xem tất cả' : 'See all' ?></a>
+                            <a href="san-pham-khuyenmai"><?= $lang == 'vi' ? 'Xem tất cả' : 'View all' ?></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <div class="box-scroll box-scroll_mobile">
                         <div class="owl-carousel owl-theme auto_sanpham">
                             <?php
@@ -337,7 +337,7 @@
                                                                     <?php } else { ?>
                                                                         <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
                                                                             <!-- <i class="fas fa-shopping-cart"></i> -->
-                                                                            <img src="./assets/images/cart_pro.svg" width="16" alt="">
+                                                                            <img src="./assets/images/cart_pro.svg" width="15" alt="">
                                                                         </a>
                                                                     <?php } ?>
 
@@ -350,7 +350,7 @@
                                                                     <?php } else { ?>
                                                                         <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
                                                                             <!-- <i class="fas fa-shopping-cart"></i> -->
-                                                                            <img src="./assets/images/cart_pro.svg" width="16" alt="">
+                                                                            <img src="./assets/images/cart_pro.svg" width="15" alt="">
                                                                         </a>
                                                                     <?php } ?>
                                                                 <?php } ?>
@@ -361,12 +361,12 @@
                                                                 <?php if ($v['gia'] <= 0) { ?>
                                                                     <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
                                                                         <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
-                                                                        <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
+                                                                        <img src="./assets/images/cart_pro_het.svg" width="15" alt="">
                                                                     </a>
                                                                 <?php } else { ?>
                                                                     <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
                                                                         <!-- <i class="fas fa-shopping-cart"></i> -->
-                                                                        <img src="./assets/images/cart_pro.svg" width="16" alt="">
+                                                                        <img src="./assets/images/cart_pro.svg" width="15" alt="">
                                                                     </a>
                                                                 <?php } ?>
 
@@ -379,7 +379,7 @@
                                                                 <?php } else { ?>
                                                                     <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
                                                                         <!-- <i class="fas fa-shopping-cart"></i> -->
-                                                                        <img src="./assets/images/cart_pro.svg" width="16" alt="">
+                                                                        <img src="./assets/images/cart_pro.svg" width="15" alt="">
                                                                     </a>
                                                                 <?php } ?>
                                                             <?php } ?>
@@ -399,7 +399,7 @@
                     <div class="box-scroll">
                         <?php
                         $sanpham_giamoi_cal = $d->rawQuery("select * from #_product where type = ? and hienthi > 0 and hot > 0 order by stt,id desc", array('san-pham'));
-                        $col_giamoi = ceil(count($sanpham_giamoi_cal) / 6);
+                        $col_giamoi = ceil(count($sanpham_giamoi_cal) / 4);
                         ?>
                         <!-- <p class="control-sp prev-sp transition"><i class="fas fa-chevron-left"></i></p> -->
                         <div class="owl-carousel owl-theme auto_sanpham">
@@ -407,8 +407,8 @@
                             for ($i = 0; $i < $col_giamoi; $i++) { ?>
                                 <div class="all_box">
                                     <?php
-                                    $sanpham_giamoi = $d->rawQuery("select * from #_product where type = ? and hienthi > 0 and hot > 0 order by stt,id desc limit $j,6", array('san-pham'));
-                                    $j += 6;
+                                    $sanpham_giamoi = $d->rawQuery("select * from #_product where type = ? and hienthi > 0 and hot > 0 order by stt,id desc limit $j,4", array('san-pham'));
+                                    $j += 4;
                                     foreach ($sanpham_giamoi as $v) {
                                         $khuyenmai_sanpham_one = $d->rawQueryOne("select discount,icon from #_news where type = 'khuyenmai' and id = '" . $v['id_khuyenmai'] . "' and hienthi > 0 order by stt,id desc limit 1");
                                         $brand_sp = $d->rawQueryOne("select * from #_product_brand where type = ? and id = ? and hienthi > 0 order by stt,id desc limit 1", array('san-pham', $v['id_brand']));
@@ -458,12 +458,12 @@
                                                                     <?php if ($v['gia'] <= 0) { ?>
                                                                         <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
                                                                             <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
-                                                                            <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
+                                                                            <img src="./assets/images/cart_pro_het.svg" width="15" alt="">
                                                                         </a>
                                                                     <?php } else { ?>
                                                                         <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
                                                                             <!-- <i class="fas fa-shopping-cart"></i> -->
-                                                                            <img src="./assets/images/cart_pro.svg" width="16" alt="">
+                                                                            <img src="./assets/images/cart_pro.svg" width="15" alt="">
                                                                         </a>
                                                                     <?php } ?>
 
@@ -471,12 +471,12 @@
                                                                     <?php if ($v['giado'] <= 0) { ?>
                                                                         <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
                                                                             <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
-                                                                            <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
+                                                                            <img src="./assets/images/cart_pro_het.svg" width="15" alt="">
                                                                         </a>
                                                                     <?php } else { ?>
                                                                         <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
                                                                             <!-- <i class="fas fa-shopping-cart"></i> -->
-                                                                            <img src="./assets/images/cart_pro.svg" width="16" alt="">
+                                                                            <img src="./assets/images/cart_pro.svg" width="15" alt="">
                                                                         </a>
                                                                     <?php } ?>
                                                                 <?php } ?>
@@ -492,7 +492,7 @@
                                                                 <?php } else { ?>
                                                                     <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
                                                                         <!-- <i class="fas fa-shopping-cart"></i> -->
-                                                                        <img src="./assets/images/cart_pro.svg" width="16" alt="">
+                                                                        <img src="./assets/images/cart_pro.svg" width="15" alt="">
                                                                     </a>
                                                                 <?php } ?>
 
@@ -500,12 +500,12 @@
                                                                 <?php if ($v['giado'] <= 0) { ?>
                                                                     <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
                                                                         <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
-                                                                        <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
+                                                                        <img src="./assets/images/cart_pro_het.svg" width="15" alt="">
                                                                     </a>
                                                                 <?php } else { ?>
                                                                     <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
                                                                         <!-- <i class="fas fa-shopping-cart"></i> -->
-                                                                        <img src="./assets/images/cart_pro.svg" width="16" alt="">
+                                                                        <img src="./assets/images/cart_pro.svg" width="15" alt="">
                                                                     </a>
                                                                 <?php } ?>
                                                             <?php } ?>
@@ -526,6 +526,280 @@
         </div>
     </div>
 </div>
+
+<?php if ($sp_banchay) { ?>
+    <div class="wrap_bottom" id="<?= $deviceType == 'mobile' ? 'banner_sp_moi_mobile' : 'banner_sp_moi' ?>" style="padding-top: 0px;">
+        <div class="all_wrap_bottom">
+            <div class="fixwidth">
+                <div class="fixwidth">
+                    <div class="all_title_sp_nb">
+
+                        <div class="title_sp_nb <?= $deviceType == 'mobile' ? 'title_sp_nb_mb' : 'title_sp_nb' ?>">
+                            <p class="control-sp prev-spmoi transition"><i class="fas fa-angle-double-left"></i></p>
+                            <span><?= $lang == 'vi' ? 'SẢN PHẨM' : 'Best'  ?></span>
+                            <span class="<?= $deviceType == 'mobile' ? 'span_title_sp_nb' : '' ?>"><?= $lang == 'vi' ? 'BÁN CHẠY' : 'Seller'  ?></span>
+                            <p class="control-sp next-spmoi transition"><i class="fas fa-angle-double-right"></i></i></p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="box-scroll-sp-index ">
+                    <div class="owl-carousel owl-theme owl-spmoi">
+                        <?php
+                        foreach ($sp_banchay as $v) {
+                            $khuyenmai_sanpham_one = $d->rawQueryOne("select discount,icon from #_news where type = 'khuyenmai' and id = '" . $v['id_khuyenmai'] . "' and hienthi > 0 order by stt,id desc limit 1");
+                            $brand_sp = $d->rawQueryOne("select * from #_product_brand where type = ? and id = ? and hienthi > 0 order by stt,id desc limit 1", array('san-pham', $v['id_brand']));
+                        ?>
+                            <div class="sanpham_moi_all" style="width: 100%;">
+                                <div class="img_sp_moi">
+                                    <a href="<?= $v['tenkhongdau' . $lang] ?>"><img width="300" height="197" data-sizes="auto" src="<?= THUMBS ?>/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" data-src="<?= THUMBS ?>/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="" sizes="308px"></a>
+                                    <?php if ($v['id_khuyenmai']) { ?>
+                                        <img class="plabel_img" src="<?= UPLOAD_NEWS_L . $khuyenmai_sanpham_one['icon'] ?>" style="max-height: 80px; max-width: 80px; background: transparent; vertical-align: middle;position: absolute;left: 0px;top: 0px;">
+                                    <?php } ?>
+                                </div>
+                                <div class="all_content_sp_moi">
+                                    <div class="top_all_content_sp_moi">
+                                        <a href="<?= $brand_sp['tenkhongdauvi'] ?>">
+                                            <div class="brand_sp"><?= $brand_sp['ten' . $lang] ?></div>
+                                        </a>
+                                        <a href="<?= $v['tenkhongdau' . $lang] ?>">
+                                            <div class="name_sp_moi text-split"><?= $v['ten' . $lang] ?></div>
+                                        </a>
+                                    </div>
+                                    <div class="bottom_all_content_sp_moi">
+                                        <div class="masp_pro masp_pro_hethang">
+                                            <span>
+                                                <span>P/N:</span>
+                                                <span><?= $v['masp'] ?></span>
+                                            </span>
+                                            <?php if ($v['cothemua'] <= 0) { ?>
+                                                <span class="hethang_sp"><?= $lang == 'vi' ? 'Hết hàng' : 'Out of stock' ?></span>
+                                            <?php } elseif ($v['soluongkho'] <= 0) { ?>
+                                                <span class="hethang_sp"><?= $lang == 'vi' ? 'Hết hàng' : 'Out of stock' ?></span>
+                                            <?php } ?>
+                                        </div>
+                                        <div class="all_gia_giohang">
+                                            <div class="all_gia_spmoi">
+                                                <?= $func->chuyendoitigia($v) ?>
+                                            </div>
+                                            <div class="giohang_sp">
+                                                <input type="hidden" name="cannang" class="cannang" value="<?= $v['cannang'] ?>">
+                                                <input type="hidden" name="kichthuoc" class="kichthuoc" value="<?= $v['kichthuoc'] ?>">
+                                                <input type="hidden" name="color_detail" class="color_detail" value="<?= $v['id_mau'] ?>">
+                                                <?php if ($v['soluongkho'] <= 0) { ?>
+                                                    <?php if ($v['cothemua'] <= 0) { ?>
+                                                        <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
+                                                            <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
+                                                            <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
+                                                        </a>
+                                                    <?php } else { ?>
+                                                        <?php if ($lang == 'vi') { ?>
+                                                            <?php if ($v['gia'] <= 0) { ?>
+                                                                <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
+                                                                    <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
+                                                                    <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
+                                                                </a>
+                                                            <?php } else { ?>
+                                                                <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
+                                                                    <!-- <i class="fas fa-shopping-cart"></i> -->
+                                                                    <img src="./assets/images/cart_pro.svg" width="15" alt="">
+                                                                </a>
+                                                            <?php } ?>
+
+                                                        <?php } else { ?>
+                                                            <?php if ($v['giado'] <= 0) { ?>
+                                                                <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
+                                                                    <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
+                                                                    <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
+                                                                </a>
+                                                            <?php } else { ?>
+                                                                <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
+                                                                    <!-- <i class="fas fa-shopping-cart"></i> -->
+                                                                    <img src="./assets/images/cart_pro.svg" width="15" alt="">
+                                                                </a>
+                                                            <?php } ?>
+                                                        <?php } ?>
+
+                                                    <?php } ?>
+                                                <?php } else { ?>
+                                                    <?php if ($lang == 'vi') { ?>
+                                                        <?php if ($v['gia'] <= 0) { ?>
+                                                            <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
+                                                                <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
+                                                                <img src="./assets/images/cart_pro_het.svg" width="15" alt="">
+                                                            </a>
+                                                        <?php } else { ?>
+                                                            <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
+                                                                <!-- <i class="fas fa-shopping-cart"></i> -->
+                                                                <img src="./assets/images/cart_pro.svg" width="15" alt="">
+                                                            </a>
+                                                        <?php } ?>
+
+                                                    <?php } else { ?>
+                                                        <?php if ($v['giado'] <= 0) { ?>
+                                                            <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
+                                                                <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
+                                                                <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
+                                                            </a>
+                                                        <?php } else { ?>
+                                                            <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
+                                                                <!-- <i class="fas fa-shopping-cart"></i> -->
+                                                                <img src="./assets/images/cart_pro.svg" width="15" alt="">
+                                                            </a>
+                                                        <?php } ?>
+                                                    <?php } ?>
+                                                <?php } ?>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+
+<?php if ($sp_moi) { ?>
+    <div class="wrap_bottom" id="<?= $deviceType == 'mobile' ? 'banner_sp_moi_mobile' : 'banner_sp_moi' ?>" style="padding-top: 0px;">
+        <div class="all_wrap_bottom">
+            <div class="fixwidth">
+                <div class="fixwidth">
+                    <div class="all_title_sp_nb">
+
+                        <div class="title_sp_nb <?= $deviceType == 'mobile' ? 'title_sp_nb_mb' : 'title_sp_nb' ?>">
+                            <p class="control-sp prev-spmoi transition"><i class="fas fa-angle-double-left"></i></p>
+                            <span><?= $lang == 'vi' ? 'SẢN PHẨM' : 'NEW'  ?></span>
+                            <span class="<?= $deviceType == 'mobile' ? 'span_title_sp_nb' : '' ?>"><?= $lang == 'vi' ? 'MỚI' : 'Products'  ?></span>
+                            <p class="control-sp next-spmoi transition"><i class="fas fa-angle-double-right"></i></i></p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="box-scroll-sp-index ">
+                    <div class="owl-carousel owl-theme owl-spmoi">
+                        <?php
+                        foreach ($sp_moi as $v) {
+                            $khuyenmai_sanpham_one = $d->rawQueryOne("select discount,icon from #_news where type = 'khuyenmai' and id = '" . $v['id_khuyenmai'] . "' and hienthi > 0 order by stt,id desc limit 1");
+                            $brand_sp = $d->rawQueryOne("select * from #_product_brand where type = ? and id = ? and hienthi > 0 order by stt,id desc limit 1", array('san-pham', $v['id_brand']));
+                        ?>
+                            <div class="sanpham_moi_all" style="width: 100%;">
+                                <div class="img_sp_moi">
+                                    <a href="<?= $v['tenkhongdau' . $lang] ?>"><img width="300" height="197" data-sizes="auto" src="<?= THUMBS ?>/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" data-src="<?= THUMBS ?>/600x395x1/<?= UPLOAD_PRODUCT_L . $v['photo'] ?>" alt="" sizes="308px"></a>
+                                    <?php if ($v['id_khuyenmai']) { ?>
+                                        <img class="plabel_img" src="<?= UPLOAD_NEWS_L . $khuyenmai_sanpham_one['icon'] ?>" style="max-height: 80px; max-width: 80px; background: transparent; vertical-align: middle;position: absolute;left: 0px;top: 0px;">
+                                    <?php } ?>
+                                </div>
+                                <div class="all_content_sp_moi">
+                                    <div class="top_all_content_sp_moi">
+                                        <a href="<?= $brand_sp['tenkhongdauvi'] ?>">
+                                            <div class="brand_sp"><?= $brand_sp['ten' . $lang] ?></div>
+                                        </a>
+                                        <a href="<?= $v['tenkhongdau' . $lang] ?>">
+                                            <div class="name_sp_moi text-split"><?= $v['ten' . $lang] ?></div>
+                                        </a>
+                                    </div>
+                                    <div class="bottom_all_content_sp_moi">
+                                        <div class="masp_pro masp_pro_hethang">
+                                            <span>
+                                                <span>P/N:</span>
+                                                <span><?= $v['masp'] ?></span>
+                                            </span>
+                                            <?php if ($v['cothemua'] <= 0) { ?>
+                                                <span class="hethang_sp"><?= $lang == 'vi' ? 'Hết hàng' : 'Out of stock' ?></span>
+                                            <?php } elseif ($v['soluongkho'] <= 0) { ?>
+                                                <span class="hethang_sp"><?= $lang == 'vi' ? 'Hết hàng' : 'Out of stock' ?></span>
+                                            <?php } ?>
+                                        </div>
+                                        <div class="all_gia_giohang">
+                                            <div class="all_gia_spmoi">
+                                                <?= $func->chuyendoitigia($v) ?>
+                                            </div>
+                                            <div class="giohang_sp">
+                                                <input type="hidden" name="cannang" class="cannang" value="<?= $v['cannang'] ?>">
+                                                <input type="hidden" name="kichthuoc" class="kichthuoc" value="<?= $v['kichthuoc'] ?>">
+                                                <input type="hidden" name="color_detail" class="color_detail" value="<?= $v['id_mau'] ?>">
+                                                <?php if ($v['soluongkho'] <= 0) { ?>
+                                                    <?php if ($v['cothemua'] <= 0) { ?>
+                                                        <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
+                                                            <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
+                                                            <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
+                                                        </a>
+                                                    <?php } else { ?>
+                                                        <?php if ($lang == 'vi') { ?>
+                                                            <?php if ($v['gia'] <= 0) { ?>
+                                                                <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
+                                                                    <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
+                                                                    <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
+                                                                </a>
+                                                            <?php } else { ?>
+                                                                <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
+                                                                    <!-- <i class="fas fa-shopping-cart"></i> -->
+                                                                    <img src="./assets/images/cart_pro.svg" width="15" alt="">
+                                                                </a>
+                                                            <?php } ?>
+
+                                                        <?php } else { ?>
+                                                            <?php if ($v['giado'] <= 0) { ?>
+                                                                <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
+                                                                    <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
+                                                                    <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
+                                                                </a>
+                                                            <?php } else { ?>
+                                                                <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
+                                                                    <!-- <i class="fas fa-shopping-cart"></i> -->
+                                                                    <img src="./assets/images/cart_pro.svg" width="15" alt="">
+                                                                </a>
+                                                            <?php } ?>
+                                                        <?php } ?>
+
+                                                    <?php } ?>
+                                                <?php } else { ?>
+                                                    <?php if ($lang == 'vi') { ?>
+                                                        <?php if ($v['gia'] <= 0) { ?>
+                                                            <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
+                                                                <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
+                                                                <img src="./assets/images/cart_pro_het.svg" width="15" alt="">
+                                                            </a>
+                                                        <?php } else { ?>
+                                                            <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
+                                                                <!-- <i class="fas fa-shopping-cart"></i> -->
+                                                                <img src="./assets/images/cart_pro.svg" width="15" alt="">
+                                                            </a>
+                                                        <?php } ?>
+
+                                                    <?php } else { ?>
+                                                        <?php if ($v['giado'] <= 0) { ?>
+                                                            <a href="<?= $config_base ?>" onclick="event.preventDefault();" class="muangay1">
+                                                                <!-- <i class="fas fa-shopping-cart cart_hethang"></i> -->
+                                                                <img src="./assets/images/cart_pro_het.svg" width="16" alt="">
+                                                            </a>
+                                                        <?php } else { ?>
+                                                            <a data-toggle="modal" class="muangay1 addcart" data-action="addnow" data-lang="<?= $lang ?>" data-id_vip="<?= $_SESSION[$login_member]['id_vip'] ?>" data-tigia="<?= $optsetting['tigia'] ?>" data-id="<?= $v['id'] ?>" href="#popup-detail">
+                                                                <!-- <i class="fas fa-shopping-cart"></i> -->
+                                                                <img src="./assets/images/cart_pro.svg" width="15" alt="">
+                                                            </a>
+                                                        <?php } ?>
+                                                    <?php } ?>
+                                                <?php } ?>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
 
 <?php if ($optsetting['link_youtube']) { ?>
     <div class="wrap_bottom" style="padding: 0px;">

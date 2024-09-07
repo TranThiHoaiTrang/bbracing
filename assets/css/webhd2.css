@@ -715,6 +715,9 @@ td.title_dongia_chuathue {
 }
 .all_center_right_title_pro_detail {
   width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .btn:focus,
 .btn.focus {
@@ -1662,6 +1665,7 @@ ul#pills-tab-option-list {
   border: 1px solid #a9a9a9;
   width: 100%;
   border-radius: 5px;
+  padding: 12px 8px;
 }
 #pills-tab-option-list .nav-link.active, #pills-tab-option-list .show > .nav-link {
   background-color: #fff;
@@ -1691,8 +1695,8 @@ ul#pills-tab-idop {
   grid-gap: 10px;
 }
 #pills-tab-idop .nav-link{
-  background: #f00;
-  border-color: #fff;
+  background: #fff;
+  border-color: #f00;
   border: 1px solid #a9a9a9;
   width: 100%;
   border-radius: 5px;
@@ -1748,7 +1752,8 @@ ul#pills-tab-idop {
   background-color: #fff;
   border: 1px solid #a9a9a9;
   border-radius: 5px;
-  padding: 8px;
+  padding: 0 8px;
+  min-height: 69px;
 }
 .sp_option_li.active{
   border: 1px solid green;

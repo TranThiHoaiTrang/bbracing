@@ -247,6 +247,59 @@ NN_FRAMEWORK.OwlPage = function () {
     });
   }
 
+  if ($(".owl-spmoi").exists()) {
+    $(".owl-spmoi").owlCarousel({
+      rewind: true,
+      autoplay: true,
+      loop: false,
+      lazyLoad: false,
+      mouseDrag: true,
+      touchDrag: true,
+      smartSpeed: 250,
+      autoplaySpeed: 1000,
+      nav: false,
+      dots: true,
+      responsiveClass: true,
+      responsiveRefreshRate: 200,
+      responsive: {
+        0: {
+          items: 1,
+          margin: 10,
+        },
+        340: {
+          items: 2,
+          margin: 10,
+        },
+        450: {
+          items: 2,
+          margin: 10,
+        },
+        800: {
+          items: 3,
+          margin: 10,
+        },
+        1000: {
+          items: 4,
+          margin: 10,
+        },
+        1025: {
+          items: 5,
+          margin: 10,
+        },
+        1450: {
+          items: 6,
+          margin: 10,
+        },
+      },
+    });
+    $(".prev-spmoi").click(function () {
+      $(".owl-spmoi").trigger("prev.owl.carousel");
+    });
+    $(".next-spmoi").click(function () {
+      $(".owl-spmoi").trigger("next.owl.carousel");
+    });
+  }
+
   if ($(".owl-dv").exists()) {
     $(".owl-dv").owlCarousel({
       rewind: true,
@@ -384,7 +437,7 @@ NN_FRAMEWORK.OwlPage = function () {
   if ($(".auto_slogan").exists()) {
     $(".auto_slogan").owlCarousel({
       rewind: true,
-      autoplay: false,
+      autoplay: true,
       loop: true,
       lazyLoad: false,
       mouseDrag: true,
@@ -449,7 +502,7 @@ NN_FRAMEWORK.OwlPage = function () {
           margin: 10,
         },
         350: {
-          items: 1,
+          items: 2,
           margin: 10,
         },
         450: {
@@ -1461,6 +1514,7 @@ NN_FRAMEWORK.Cart = function () {
     var brandpro = $("input[name=id_brand]").val();
     var dodaypro = $("input[name=id_doday]").val();
     var dodaylistpro = $("input[name=id_doday_list]").val();
+    var com = $("input[name=com]").val();
 
     // console.log("a");
     var idbrand_list = "";var idbrand_list_url="";
@@ -1508,7 +1562,7 @@ NN_FRAMEWORK.Cart = function () {
     // console.log("aaa");
     // console.log(listpr);
 
-    console.log(idlist_list_url);
+    // console.log(idlist_list_url);
     
     if (listpr) {
       urlObject.searchParams.set("id_list", listpr);
@@ -1579,6 +1633,7 @@ NN_FRAMEWORK.Cart = function () {
         idbrand_list: idbrand_list,
         idlist_list: idlist_list,
         vehicles_list: vehicles_list,
+        com: com,
       },
       success: function (result) {
         if (result != "") {

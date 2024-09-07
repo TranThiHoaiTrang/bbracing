@@ -30,33 +30,52 @@ if (isset($_GET['keyword'])) {
 			$paging = $func->pagination($total, $per_page, $curPage, $url);
 		} else {
 			$where = ' ( 1=1';
-			$tukhoa_sp = preg_split("/[\s,-]+/", $tukhoa);
+			$tukhoa_sp = $func->changeTitle($tukhoa);
+			$tukhoa_sp = preg_split("/[\s,-]+/", $tukhoa_sp);
 
 			if ($lang == 'vi') {
-				foreach ($tukhoa_sp as $k) {
-					$tk_m = str_split($k, 4);
-					// $all_tk = implode('|',$tk_m);
-					// var_dump($tukhoa_sp);
-					$where .= " and (slugvi LIKE CONCAT('%', '" . $k . "', '%'))";
-					// foreach($tk_m as $tk){
-					//     // var_dump($tk);
-					//     $where .= " and (slugvi LIKE CONCAT('%', '" . $tk . "', '%'))";
-					//     // $where .= " and (slugvi LIKE '%$tk%' or slugen LIKE '%$tk%')";
-					// }
-	
+				if (strpos($tukhoa, ' ') !== false) {
+					$i = 1;
+					foreach ($tukhoa_sp as $k) {
+						$tk_m = str_split($k, 4);
+						if ($i > 1) {
+							$where .= " and (tenkhongdauvi LIKE CONCAT('%', '-" . $k . "', '%'))";
+						} else {
+							$where .= " and (tenkhongdauvi LIKE CONCAT('%', '" . $k . "-', '%'))";
+						}
+						$i++;
+					}
+				} else {
+					foreach ($tukhoa_sp as $k) {
+						$tk_m = str_split($k, 4);
+						$where .= " and (slugvi LIKE CONCAT('%', '" . $k . "', '%'))";
+					}
 				}
 			} else {
-				foreach ($tukhoa_sp as $k) {
-					$tk_m = str_split($k, 4);
-					// $all_tk = implode('|',$tk_m);
-					// var_dump($all_tk);
-					$where .= " and (slugen LIKE CONCAT('%', '" . $k . "', '%'))";
-					// foreach($tk_m as $tk){
-					//     // var_dump($tk);
-					//     $where .= " and (slugen LIKE CONCAT('%', '" . $tk . "', '%'))";
-					//     // $where .= " and (slugvi LIKE '%$tk%' or slugen LIKE '%$tk%')";
-					// }
-	
+				if (strpos($tukhoa, ' ') !== false) {
+					$i = 1;
+					foreach ($tukhoa_sp as $k) {
+						$tk_m = str_split($k, 4);
+						if ($i > 1) {
+							$where .= " and (tenkhongdauen LIKE CONCAT('%', '-" . $k . "', '%'))";
+						} else {
+							$where .= " and (tenkhongdauen LIKE CONCAT('%', '" . $k . "-', '%'))";
+						}
+						$i++;
+					}
+				} else {
+					foreach ($tukhoa_sp as $k) {
+						$tk_m = str_split($k, 4);
+						// $all_tk = implode('|',$tk_m);
+						// var_dump($all_tk);
+						$where .= " and (slugen LIKE CONCAT('%', '" . $k . "', '%'))";
+						// foreach($tk_m as $tk){
+						//     // var_dump($tk);
+						//     $where .= " and (slugen LIKE CONCAT('%', '" . $tk . "', '%'))";
+						//     // $where .= " and (slugvi LIKE '%$tk%' or slugen LIKE '%$tk%')";
+						// }
+		
+					}
 				}
 			}
 			

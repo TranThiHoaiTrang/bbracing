@@ -90,19 +90,23 @@
                             ?>
                             <?php if(!empty($sanpham)) { ?>
                                 <label for="id_sanpham">Tên sản phẩm:</label>
-                                <input type="text" class="form-control" name="data[id_sanpham]" id="id_sanpham" placeholder="Tên sản phẩm" value="<?=$sanpham['tenvi']?>">
+                                <input type="text" class="form-control" placeholder="Tên sản phẩm" value="<?=$sanpham['tenvi']?>">
+                                <input type="hidden" class="form-control" name="data[id_sanpham]" id="id_sanpham" placeholder="Tên sản phẩm" value="<?=$sanpham['id']?>">
                             <?php } ?>
                             <?php if(!empty($brand)) { ?>
                                 <label for="id_sanpham">Tên Brand:</label>
-                                <input type="text" class="form-control" name="data[id_sanpham]" id="id_sanpham" placeholder="Tên Brand" value="<?=$brand['tenvi']?>">
+                                <input type="text" class="form-control" placeholder="Tên Brand" value="<?=$brand['tenvi']?>">
+                                <input type="hidden" class="form-control" name="data[id_sanpham]" id="id_sanpham" placeholder="Tên Brand" value="<?=$brand['id']?>">
                             <?php } ?>
                             <?php if(!empty($list)) { ?>
                                 <label for="id_sanpham">Tên danh mục:</label>
-                                <input type="text" class="form-control" name="data[id_sanpham]" id="id_sanpham" placeholder="Tên danh mục" value="<?=$list['tenvi']?>">
+                                <input type="text" class="form-control" placeholder="Tên danh mục" value="<?=$list['tenvi']?>">
+                                <input type="hidden" class="form-control" name="data[id_sanpham]" id="id_sanpham" placeholder="Tên danh mục" value="<?=$list['id']?>">
                             <?php } ?>
                             <?php if(!empty($doday)) { ?>
                                 <label for="id_sanpham">Tên Vehicles:</label>
-                                <input type="text" class="form-control" name="data[id_sanpham]" id="id_sanpham" placeholder="Tên Vehicles" value="<?=$doday['tenvi']?>">
+                                <input type="text" class="form-control" placeholder="Tên Vehicles" value="<?=$doday['tenvi']?>">
+                                <input type="hidden" class="form-control" name="data[id_sanpham]" id="id_sanpham" placeholder="Tên Vehicles" value="<?=$doday['id']?>">
                             <?php } ?>
                             
                         </div>

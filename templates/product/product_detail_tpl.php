@@ -301,6 +301,7 @@
                     $id_option = $d->rawQuery("select id,tenvi,tenen,tenkhongdauvi from #_product_option where id REGEXP '" . $row_detail['id_option'] . "' and type = '$type'");
                     // $id_option = explode('|', $row_detail['id_option']);
                     ?>
+                    <?php if($row_detail['hienthi_option'] == 0) {?>
                     <ul class="nav nav-pills mb-2" id="pills-tab-idop" role="tablist">
                         <?php
                         foreach ($id_option as $idop) {
@@ -310,16 +311,22 @@
                             </li>
                         <?php } ?>
                     </ul>
+                    <?php } ?>
                     <div class="tab-content" id="pills-tabContent">
                         <?php
                         foreach ($id_option as $idop) {
-                            $all_option_list = $d->rawQuery("select id,tenvi,tenen,tenkhongdauvi from #_product_option_list where id_option = '" . $idop['id'] . "' and id REGEXP '" . $row_detail['id_option_list'] . "' and type = '$type'");
-                            // var_dump("select id,tenvi from #_product_option_list where id_option = '$idop' and id REGEXP '".$row_detail['id_option_list']."' and type = '$type'");
+                            $all_option_list = $d->rawQuery("select id,tenvi,tenen,tenkhongdauvi from #_product_option_list where id_option = '" . $idop['id'] . "' and id REGEXP '^(" . $row_detail['id_option_list'] . ")$' and type = '$type'");
+                            // var_dump("select id,tenvi,tenen,tenkhongdauvi from #_product_option_list where id_option = '" . $idop['id'] . "' and id REGEXP '^(" . $row_detail['id_option_list'] . ")$' and type = '$type'");
                         ?>
                             <div class="tab-pane fade" id="pills-<?= $idop['id'] ?>" role="tabpanel" aria-labelledby="pills-<?= $idop['id'] ?>-tab">
 
                                 <ul class="nav nav-pills mb-2" id="pills-tab-option-list" role="tablist">
                                     <?php
+                                    usort($all_option_list, function($a, $b) {
+                                        $a_value = (int)str_replace(',', '', $a);
+                                        $b_value = (int)str_replace(',', '', $b);
+                                        return $a_value - $b_value;
+                                    });
                                     foreach ($all_option_list as $idol) {
                                     ?>
                                         <li class="nav-item" role="presentation">
@@ -331,6 +338,7 @@
                                     <?php
                                     for ($i = 0; $i < count($all_option_list); $i++) {
                                         $all_danhsach_option = explode('/', $row_detail['danhsach_option']);
+                                        
                                         $danhsach_option = explode(',', $all_danhsach_option[$i]);
                                         $id_sp = explode('|', $danhsach_option[1]);
                                         $where = '';
@@ -339,12 +347,11 @@
                                         }
 
                                         $all_sp_product = $d->rawQuery("select * from #_product where id IN (" . substr($where, 0, -1) . ")");
-
                                     ?>
                                         <div class="tab-pane fade" id="pills-<?= $all_option_list[$i]['tenkhongdauvi'] ?>" role="tabpanel" aria-labelledby="pills-<?= $all_option_list[$i]['tenkhongdauvi'] ?>-tab">
                                             <div class="all_sp_option_li">
                                                 <?php foreach ($all_sp_product as $sp) { ?>
-                                                    <a href="<?= $sp['tenkhongdau'.$lang] ?>" target="_blank">
+                                                    <a href="<?= $sp['tenkhongdau'.$lang] ?>">
                                                         <div class="sp_option_li <?= $sp['id']==$row_detail['id'] ? 'active':'' ?>">
                                                             <div class="tenvi_option"><?= $sp['ten' . $lang] ?></div>
                                                             <div class="all_gia_sp_option">
@@ -357,7 +364,6 @@
                                         </div>
                                     <?php } ?>
                                 </div>
-
                             </div>
                         <?php } ?>
                     </div>
@@ -586,14 +592,13 @@
 
                 <div class="taifile">
                     <div class="descriptionheader mb-2">
-                        <span><?= $lang == 'vi' ? 'Lựa chọn khác ' : 'Other options' ?></span>
+                        <span><?= $lang == 'vi' ? 'Phụ tùng thay thế ' : 'Spare part' ?></span>
                     </div>
                     <?php
                     $sp_thaythe = $d->rawQuery("select * from #_product where type = ? and id_list = ? and id_cat = ? and hienthi > 0 order by stt,id desc ", array('san-pham', $row_detail['id_list'], $row_detail['id_cat']));
                     // var_dump("select * from #_product where type = ? and id_list = ? and id_cat = ? and hienthi > 0 order by stt,id desc ", array('san-pham', $row_detail['id_list'], $row_detail['id_cat']));
                     ?>
                     <div class=" paging-productthaythe-index" data-id="<?= $row_detail['id_list'] ?>" data-idcat="<?= $row_detail['id_cat'] ?>"></div>
-
                 </div>
 
                 <div class="all_sp_cungloai">

@@ -161,6 +161,12 @@ if ((isset($config['product'][$type]['images_list']) && $config['product'][$type
                             </div>
                         </div>
                     <?php } ?>
+                    <?php if (isset($config['product'][$type]['link_banner_list']) && $config['product'][$type]['link_banner_list'] == true) { ?>
+                        <div class="form-group">
+                            <label for="link_banner">Link banner:</label>
+                            <input type="text" class="form-control for-seo" name="data[link_banner]" id="link_banner" placeholder="Link banner" value="<?= @$item['link_banner'] ?>">
+                        </div>
+                    <?php } ?>
                     <div class="card card-primary card-outline text-sm">
                         <div class="card-header">
                             <h3 class="card-title">Thông tin <?= $config['product'][$type]['title_main'] ?></h3>

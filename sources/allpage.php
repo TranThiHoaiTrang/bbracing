@@ -11,12 +11,16 @@ $logo_mobile = $d->rawQueryOne("select id, photo from #_photo where type = ? and
 $video = $d->rawQueryOne("select * from #_photo where type = ? and hienthi > 0 limit 0,1 ", array('video'));
 $banner_event = $d->rawQueryOne("select * from #_photo where type = ? and hienthi > 0 limit 0,1 ", array('banner_event'));
 $background_banner = $d->rawQueryOne("select * from #_photo where type = ? and hienthi > 0 limit 0,1 ", array('background-banner'));
+$banner_sp_khuyenmai = $d->rawQueryOne("select * from #_photo where type = ? and hienthi > 0 limit 0,1 ", array('banner_sp_khuyenmai'));
 
 $thuonghieuxe = $d->rawQuery("select * from #_product_doday where type = ? and hienthi > 0 order by stt,id desc ", array('san-pham'));
 $brand = $d->rawQuery("select * from #_product_brand where type = ? and hienthi > 0 order by stt,id desc ", array('san-pham'));
 $tenxe = $d->rawQuery("select * from #_product_size where type = ? and hienthi > 0 order by stt,id desc ", array('san-pham'));
 $vehicles = $d->rawQuery("select * from #_product_doday where type = ? and hienthi > 0 order by stt,id desc ", array('san-pham'));
 $splistmenu = $d->rawQuery("select * from #_product_list where type = ? and hienthi > 0 and noibat > 0 order by stt,id desc", array('san-pham'));
+
+$sp_moi = $d->rawQuery("select * from #_product where type = ? and hienthi > 0 and hot > 0 order by stt,id desc", array('san-pham'));
+$sp_banchay = $d->rawQuery("select * from #_product where type = ? and hienthi > 0 and banchay > 0 order by stt,id desc", array('san-pham'));
 
 if($lang == 'vi'){
     $splistmenu_order = $d->rawQuery("select * from #_product_list where type = ? and hienthi > 0 and noibat > 0 order by tenvi ASC", array('san-pham'));
@@ -52,6 +56,8 @@ $chinhsach = $d->rawQuery("select * from #_news where type = ? and noibat > 0 an
 $tintuc = $d->rawQuery("select * from #_news where type = ? and noibat > 0 and hienthi > 0 order by stt,id desc ", array('tintuc'));
 $gioithieu1 = $d->rawQuery("select * from #_news where type = ? and noibat > 0 and hienthi > 0 order by stt,id desc", array('gioi-thieu'));
 $popup2 = $d->rawQueryOne("select * from #_photo where type = ? and hienthi > 0", array("popup"));
+
+$slogan_chuong_trinh = $d->rawQueryOne("select * from #_static where type = ? and hienthi > 0", array("slogan_chuong_trinh"));
 //$tagsProduct = $d->rawQuery("select ten$lang, tenkhongdauvi, tenkhongdauen, id from #_tags where type = ? and noibat > 0 order by stt,id desc",array('san-pham'));
 
 /* Get statistic */

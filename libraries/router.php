@@ -56,9 +56,11 @@ if (is_array($match)) {
 		$get_page = isset($_GET['p']) ? htmlspecialchars($_GET['p']) : 1;
 	}
 } else {
-	header('HTTP/1.0 404 Not Found', true, 404);
-	include("404.php");
-	exit;
+	// header('HTTP/1.0 404 Not Found', true, 404);
+	// include("404.php");
+	// exit;
+	header("Location: /");
+	exit();
 }
 
 /* Setting */
@@ -216,7 +218,7 @@ switch ($com) {
 
 	case 'san-pham-khuyenmai':
 		$source = "khuyenmai_sp";
-		$template = isset($_GET['id']) ? "product/product_detail" : "product/product";
+		$template = isset($_GET['id']) ? "sp_khuyenmai/product_detail" : "sp_khuyenmai/product";
 		$seo->setSeo('type', 'article');
 		$type = 'san-pham';
 		$title_crumb = sanpham;
@@ -324,8 +326,10 @@ switch ($com) {
 		break;
 
 	default:
-		header('HTTP/1.0 404 Not Found', true, 404);
-		include("404.php");
+		//header('HTTP/1.0 404 Not Found', true, 404);
+		// include("404.php");
+		// exit();
+		header("Location: /");
 		exit();
 }
 

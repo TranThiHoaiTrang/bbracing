@@ -167,8 +167,8 @@ function onSearchsp() {
       .data("id");
   }
 
-  // var url = "https://bbracing.vn/tim-kiem-sp";
-  var url = "http://bbracing.local/tim-kiem-sp";
+  var url = "https://bbracing.vn/tim-kiem-sp";
+  //var url = "http://bbracing.local/tim-kiem-sp";
   // var url = "https://trang.hdweb24h.com/bbracing/tim-kiem-sp";
   var urlObject = new URL(url);
 

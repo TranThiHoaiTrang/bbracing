@@ -29,8 +29,8 @@
         /* Lấy tags *-/
 		if($row_detail['id_tags']) $pro_tags = $d->rawQuery("select id, ten$lang, tenkhongdauvi, tenkhongdauen from #_tags where id in (".$row_detail['id_tags'].") and type='".$type."'");
 
-		/* Lấy thương hiệu *=/
-		$pro_brand = $d->rawQuery("select ten$lang, tenkhongdauvi, tenkhongdauen, id from #_product_brand where id = ? and type = ? and hienthi > 0",array($row_detail['id_brand'],$type));
+		/* Lấy thương hiệu */
+		$pro_brand = $d->rawQueryOne("select * from #_product_brand where id = ? and type = ? and hienthi > 0",array($row_detail['id_brand'],$type));
 
 		/* Lấy màu *=/
 		if($row_detail['id_mau']) $mau = $d->rawQuery("select loaihienthi, photo, mau, id from #_product_mau where type='".$type."' and find_in_set(id,'".$row_detail['id_mau']."') and hienthi > 0 order by stt,id desc");
@@ -116,16 +116,17 @@
 		/* breadCrumbs */
 		if(isset($title_crumb) && $title_crumb != '') $breadcr->setBreadCrumbs($com,$title_crumb);
 		if($pro_list != null) $breadcr->setBreadCrumbs($pro_list[$sluglang],$pro_list['ten'.$lang]);
-		if($pro_cat != null) $breadcr->setBreadCrumbs($pro_cat[$sluglang],$pro_cat['ten'.$lang]);
+		//if($pro_cat != null) $breadcr->setBreadCrumbs($pro_cat[$sluglang],$pro_cat['ten'.$lang]);
 		if($pro_item != null) $breadcr->setBreadCrumbs($pro_item[$sluglang],$pro_item['ten'.$lang]);
 		if($pro_sub != null) $breadcr->setBreadCrumbs($pro_sub[$sluglang],$pro_sub['ten'.$lang]);
+		if($pro_brand != null) $breadcr->setBreadCrumbs($pro_brand[$sluglang],$pro_brand['ten'.$lang]);
 		$breadcr->setBreadCrumbs($row_detail[$sluglang],$row_detail['ten'.$lang]);
 		$breadcrumbs = $breadcr->getBreadCrumbs();
 	}
 	else if($idl!='')
 	{
 		/* Lấy cấp 1 detail */
-		$pro_list = $d->rawQueryOne("select id, ten$lang, tenkhongdau$lang, type, photo,icon, options,noidung$lang,mota$lang from #_product_list where id = ? and type = ? limit 0,1",array($idl,$type));
+		$pro_list = $d->rawQueryOne("select id, ten$lang, tenkhongdau$lang, type, photo,icon, options,noidung$lang,mota$lang, link_banner from #_product_list where id = ? and type = ? limit 0,1",array($idl,$type));
 
 
 		$noidung_page=$pro_list['noidung'.$lang];
@@ -405,7 +406,7 @@
 	else if($idb!='')
 	{
 		/* Lấy brand detail */
-		$pro_brand = $d->rawQueryOne("select ten$lang, noidung$lang, tenkhongdauvi, tenkhongdauen, id, type, photo, options,icon from #_product_brand where id = ? and type = ? limit 0,1",array($idb,$type));
+		$pro_brand = $d->rawQueryOne("select ten$lang, noidung$lang, tenkhongdauvi, tenkhongdauen, id, type, photo, options,icon,link_banner from #_product_brand where id = ? and type = ? limit 0,1",array($idb,$type));
 
 		$noidung_page=$pro_brand['noidung'.$lang];
 		/* SEO */
@@ -550,7 +551,7 @@
 		// var_dump($where);
 		$orderby = "ORDER BY stt,id ASC";
 		$sql = "select * from #_product where $where $orderby $limit";
-		var_dump($sql);
+		// var_dump($sql);
 		$product = $d->rawQuery($sql,$params);
 		$sqlNum = "select count(*) as 'num' from #_product where $where $orderby";
 		$count = $d->rawQueryOne($sqlNum,$params);

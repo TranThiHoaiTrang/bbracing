@@ -5,6 +5,8 @@
     }
     // var_dump($_SERVER);
 
+    
+
     session_start();
     define('TEMPLATE','./templates/');
     define('LIBRARIES','./libraries/');
@@ -13,11 +15,14 @@
     define('THUMBS','thumbs');
     define('WATERMARK','watermark');
 
+    
     /* Config */
     require_once LIBRARIES."config.php";
     require_once LIBRARIES.'autoload.php';
     require_once './login_google/vendor/autoload.php';
     require_once './vendor/autoload.php';
+
+    
     new AutoLoad();
     $injection = new AntiSQLInjection();
     $d = new PDODb($config['database']);
@@ -33,6 +38,7 @@
     $addons = new AddonsOnline();
     $css = new CssMinify($config['website']['debug-css'], $func);
     $js = new JsMinify($config['website']['debug-js'], $func);
+    
     
     
     /* Router */

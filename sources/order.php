@@ -775,7 +775,7 @@ echo '<script>var thongbaodathang = true;</script>';
 		"dataEmail" => array(
 			"name" => $hoten,
 			"email" => $email,
-			// "emailCC" => 'ecommerce@bbracing.vn'
+			"emailCC" => 'ecommerce@bbracing.vn'
 		)
 	);
 	$subject = "Order information from " . $setting['ten' . $lang];

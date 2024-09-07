@@ -16,7 +16,7 @@
 
     if(isset($config['order']['active']))
     {
-        $orderNotify = $d->rawQuery("select id from #_order where tinhtrang=1");
+        $orderNotify = $d->rawQuery("select id from #_order where tinhtrang=2");
         $countNotify += count($orderNotify);
     }
 ?>

@@ -31,6 +31,7 @@ if ($_POST['vehicles_list']) {
 }
 
 
+$com_pr = $_POST['com'];
 $order_pr = $_POST['orderby'];
 $p_pro = $_POST['p'];
 
@@ -51,6 +52,7 @@ $idll_p = $_GET['idll'];
 $iddl_p = $_GET['iddl'];
 $idodaylist_p = $_GET['idodaylist'];
 $order_p = $_GET['order'];
+$com_p = $_GET['com'];
 
 if ($listpr) {
     $per .= "&idl=$listpr";
@@ -105,6 +107,12 @@ if ($order_pr) {
 }
 if ($order_p) {
     $per .= "&order=$order_p";
+}
+if ($com_pr) {
+    $per .= "&com=$com_pr";
+}
+if ($com_p) {
+    $per .= "&com=$com_p";
 }
 
 $start = ($p - 1) * $pagingAjax->perpage;
@@ -214,18 +222,33 @@ if ($order_pr) {
         $orderby = 'order by stt,id desc';
     }
 }
+
+if($com_pr == 'san-pham-khuyenmai'){
+    if ($lang == 'vi') {
+        $com .= " and giamoi > 0";
+    } else {
+        $com .= " and giadomoi > 0";
+    }
+}
+if($com_p == 'san-pham-khuyenmai'){
+    if ($lang == 'vi') {
+        $com .= " and giamoi > 0";
+    } else {
+        $com .= " and giadomoi > 0";
+    }
+}
 // var_dump("select * from #_product where type = 'san-pham' and hienthi > 0 $id_brand $id_brand_list $id_list_list $id_doday $id_vehicles_list $id_doday_list $id_list $id_cat $orderby");
-$sql = "select * from #_product where type = 'san-pham' and hienthi > 0 $id_brand $id_brand_list $id_list_list $id_doday $id_vehicles_list $id_doday_list $id_list $id_cat $orderby";
+$sql = "select * from #_product where type = 'san-pham' and hienthi > 0 $com $id_brand $id_brand_list $id_list_list $id_doday $id_vehicles_list $id_doday_list $id_list $id_cat $orderby";
 $sqlCache = $sql . " limit $start, $pagingAjax->perpage";
 $product = $d->rawQuery($sqlCache);
 
-// var_dump($sql);
+var_dump($sql);
 /* Count all data */
 $countItems = count($d->rawQuery($sql));
 /* Get page result */
 $pagingItems = $pagingAjax->getAllPageLinks($countItems, $pageLink, $eShow);
 
-$sanpham = $d->rawQuery("select * from #_product where type = 'san-pham' and hienthi > 0 $id_brand $id_brand_list $id_list_list $id_vehicles_list $id_doday_list $id_doday $id_list $id_cat order by stt,id desc");
+$sanpham = $d->rawQuery("select * from #_product where type = 'san-pham' and hienthi > 0 $com $id_brand $id_brand_list $id_list_list $id_vehicles_list $id_doday_list $id_doday $id_list $id_cat order by stt,id desc");
 
 // $arr_rong = [];
 // var_dump($order_pr);

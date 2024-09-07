@@ -645,6 +645,9 @@ function signup()
 	}
 	if ($d->insert('member', $data)) {
 		// $func->transfer($thanhcong, $config_base . "account/dang-nhap");
+		$login_message = $thanhcong;
+		$redirect_url = $config_base;
+		$stt = true;
 		send_active_user($username);
 	} else {
 		// $func->transfer($thongbaothatbai, $config_base, false);
@@ -745,7 +748,7 @@ function signup_daili()
 
 	if ($d->insert('member', $data)) {
 		if ($lang == 'vi') {
-			$thanhcong = "Đăng ký thành viên thành công. Vui lòng đợi chúng tôi các thực thông tin";
+			$thanhcong = "Đăng ký thành viên thành công. Vui lòng đợi chúng tôi xác thực thông tin";
 		} else {
 			$thanhcong = "Member registration successful. Please wait for us the real information";
 		}
@@ -1008,7 +1011,7 @@ function diachi_update()
 			$data['avatar'] = $photo1;
 		}
 	}
-	var_dump($data);die();
+	// var_dump($data);die();
 	$iduser = $_SESSION[$login_member]['id'];
 	/* Kiểm tra email đăng ký */
 	$d->where('id', $iduser);
@@ -1312,10 +1315,11 @@ function send_active_user($username)
 	}
 	// var_dump($emailer->sendEmail("customer", $arrayEmail, $subject, $message, $file));die();
 	if ($emailer->sendEmail("customer", $arrayEmail, $subject, $message, $file)) {
-		// $func->transfer($thanhcong, $config_base);
+		// $func->transfer_tb($thanhcong, $config_base,$stt = true);
 		$login_message = $thanhcong;
 		$redirect_url = $config_base;
 		$stt = true;
+		// var_dump($redirect_url);
 	} else {
 		// $func->transfer($loi, $config_base . "lien-he", false);
 		$login_message = $loi;
